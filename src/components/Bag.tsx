@@ -5,23 +5,27 @@ import { INSTAGRAM_DM } from "../data/menu";
 import { Photo } from "./Photo";
 import { Reveal } from "./Reveal";
 
-const notes = ["Chocolate", "Caramelo", "Frutos rojos", "Panela"];
-const grinds = ["Grano", "Molido"] as const;
+export const notes = ["Chocolate", "Caramelo", "Frutos rojos", "Panela"];
+export const grinds = ["Grano", "Molido"] as const;
+export type Grind = (typeof grinds)[number];
 
 // Escala de acidez igual a la de la etiqueta: 2.5 de 6.
-function AcidityDots() {
+export function AcidityDots({ tone = "gold" }: { tone?: "gold" | "ink" }) {
+  const border = tone === "gold" ? "border-on-gold" : "border-ink";
+  const fill = tone === "gold" ? "bg-on-gold" : "bg-ink";
   return (
     <div className="flex gap-1.5" role="img" aria-label="Acidez media, 2.5 de 6">
       {Array.from({ length: 6 }, (_, i) => (
-        <span key={i} className="relative size-3.5 overflow-hidden rounded-full border border-on-gold">
-          {i < 2 && <span className="absolute inset-0 bg-on-gold" />}
-          {i === 2 && <span className="absolute inset-y-0 left-0 w-1/2 bg-on-gold" />}
+        <span key={i} className={`relative size-3.5 overflow-hidden rounded-full border ${border}`}>
+          {i < 2 && <span className={`absolute inset-0 ${fill}`} />}
+          {i === 2 && <span className={`absolute inset-y-0 left-0 w-1/2 ${fill}`} />}
         </span>
       ))}
     </div>
   );
 }
 
+// Versión estática: se usa cuando el visitante pide reducir el movimiento.
 export function Bag() {
   const [grind, setGrind] = useState<(typeof grinds)[number]>("Molido");
   const ref = useRef<HTMLElement>(null);

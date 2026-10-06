@@ -2,15 +2,16 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
 import { MapPin } from "@phosphor-icons/react";
 import { MAPS_URL } from "../data/menu";
+import { ROOT } from "../lib/paths";
+import { OpenBadge } from "./OpenBadge";
 import { Wordmark } from "./Wordmark";
 
-const links = [
-  { href: "#menu", label: "Menú" },
-  { href: "#cafe", label: "Café en casa" },
-  { href: "#visitanos", label: "Visítanos" },
-];
+type Page = "home" | "menu";
 
-export function Nav() {
+// En el inicio las secciones se enlazan con #ancla; desde otras páginas vuelven al inicio.
+const section = (page: Page, id: string) => (page === "home" ? `#${id}` : `${ROOT}#${id}`);
+
+export function Nav({ page = "home" }: { page?: Page }) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
 
@@ -19,6 +20,12 @@ export function Nav() {
     const next = y > 24;
     if (next !== scrolled) setScrolled(next);
   });
+
+  const links = [
+    { href: `${ROOT}menu/`, label: "Menú", current: page === "menu" },
+    { href: section(page, "cafe"), label: "Café en casa", current: false },
+    { href: section(page, "visitanos"), label: "Visítanos", current: false },
+  ];
 
   return (
     <motion.header
@@ -30,21 +37,28 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 md:h-[72px] md:px-8">
-        <a href="#top" aria-label="Noble Café, inicio" className="text-[2rem] md:text-[2.25rem]">
+        <a href={page === "home" ? "#top" : ROOT} aria-label="Noble Café, inicio" className="text-[2rem] md:text-[2.25rem]">
           <Wordmark />
         </a>
         <ul className="hidden items-center gap-9 text-[15px] md:flex">
           {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="group relative py-2">
+            <li key={l.label}>
+              <a href={l.href} aria-current={l.current ? "page" : undefined} className="group relative py-2">
                 {l.label}
-                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-ink transition-transform duration-500 ease-out-expo group-hover:scale-x-100" />
+                <span
+                  className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-ink transition-transform duration-500 ease-out-expo group-hover:scale-x-100 ${
+                    l.current ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
               </a>
             </li>
           ))}
         </ul>
         <div className="flex items-center gap-2">
-          <a href="#menu" className="rounded-full px-3 py-2 text-[15px] md:hidden">
+          <span className="mr-3 hidden xl:block">
+            <OpenBadge />
+          </span>
+          <a href={`${ROOT}menu/`} className="rounded-full px-3 py-2 text-[15px] md:hidden">
             Menú
           </a>
           <a

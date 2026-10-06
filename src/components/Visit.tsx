@@ -1,7 +1,9 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Clock, InstagramLogo, MapPin } from "@phosphor-icons/react";
-import { ADDRESS, INSTAGRAM_DM, MAPS_URL } from "../data/menu";
+import { ADDRESS, ADDRESS_DETAIL, INSTAGRAM_DM, MAPS_URL } from "../data/menu";
+import { HOURS } from "../data/hours";
+import { OpenBadge } from "./OpenBadge";
 import { Photo } from "./Photo";
 import { Reveal } from "./Reveal";
 
@@ -19,14 +21,16 @@ export function Visit() {
           <Reveal>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">Visítanos</p>
             <h2 className="mt-4 font-display text-[clamp(2.75rem,6vw,5.25rem)] leading-[0.95]">{ADDRESS}</h2>
+            <p className="mt-3 text-lg text-muted">{ADDRESS_DETAIL}</p>
+            <OpenBadge className="mt-6" />
           </Reveal>
 
           <Reveal delay={0.1} className="mt-10 grid gap-6 sm:grid-cols-2">
             <div className="flex gap-3">
               <Clock size={22} weight="regular" className="mt-0.5 shrink-0" />
               <div>
-                <p className="font-semibold">Lunes a sábado</p>
-                <p className="text-muted">8:00 a.m. a 6:30 p.m.</p>
+                <p className="font-semibold">{HOURS.label}</p>
+                <p className="text-muted">{HOURS.range}</p>
               </div>
             </div>
             <div className="flex gap-3">

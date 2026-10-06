@@ -1,3 +1,5 @@
+import { asset } from "../lib/paths";
+
 type PhotoProps = {
   name: string;
   alt: string;
@@ -10,8 +12,8 @@ type PhotoProps = {
 export function Photo({ name, alt, sizes = "(min-width: 1024px) 50vw, 100vw", priority, className = "" }: PhotoProps) {
   return (
     <img
-      src={`./img/${name}-1600.webp`}
-      srcSet={`./img/${name}-800.webp 800w, ./img/${name}-1600.webp 1600w`}
+      src={asset(`img/${name}-1600.webp`)}
+      srcSet={`${asset(`img/${name}-800.webp`)} 800w, ${asset(`img/${name}-1600.webp`)} 1600w`}
       sizes={sizes}
       alt={alt}
       loading={priority ? "eager" : "lazy"}
