@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { LOGO_LETTERS, LOGO_VIEWBOX } from "./logo-data";
+import { LOGO_LETTERS, LOGO_REGISTERED, LOGO_VIEWBOX } from "./logo-data";
 
 type LogoProps = {
   className?: string;
@@ -21,10 +21,13 @@ export const Logo = forwardRef<SVGSVGElement, LogoProps>(function Logo(
         ))}
       </g>
       {registered && (
-        <g data-registered fill="none" stroke="currentColor">
-          <circle cx="1748" cy="154" r="64" strokeWidth="14" />
-          <path d="M1722 196V112h30q24 0 24 22t-24 22h-30M1752 156l26 40" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
+        <path
+          data-registered
+          d={LOGO_REGISTERED}
+          fill="currentColor"
+          fillRule="evenodd"
+          style={{ transformBox: "fill-box", transformOrigin: "center" }}
+        />
       )}
     </svg>
   );

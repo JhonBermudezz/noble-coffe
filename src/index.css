@@ -15,7 +15,7 @@
   --ink: #161614;
   --muted: #5e5851;
   --line: rgb(22 22 20 / 0.13);
-  --gold: #b3a468;
+  --gold: #d4ad6a;
   --on-gold: #161614;
   color-scheme: light;
 }
@@ -39,6 +39,8 @@ html {
 }
 
 body {
+  /* Nada debe ensanchar la página en celular (las formas rotadas sí lo hacen). */
+  overflow-x: clip;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);

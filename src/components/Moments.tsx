@@ -31,7 +31,7 @@ export function Moments() {
     const mm = gsap.matchMedia();
 
     mm.add(NO_REDUCED_MOTION, () => {
-      const distance = () => Math.max(0, row.scrollWidth - window.innerWidth);
+      const distance = () => Math.max(0, row.scrollWidth - window.innerWidth + 16);
       const pan = gsap.to(row, {
         x: () => -distance(),
         ease: "none",
@@ -76,7 +76,7 @@ export function Moments() {
           href={INSTAGRAM}
           target="_blank"
           rel="noreferrer"
-          className="group ml-[4vw] mr-[10vw] flex shrink-0 items-center gap-3 whitespace-nowrap font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-none"
+          className="group ml-[4vw] mr-[14vw] flex shrink-0 items-center gap-3 whitespace-nowrap font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-none"
         >
           @somos.noble
           <ArrowUpRight

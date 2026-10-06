@@ -2,6 +2,8 @@ import { motion, useMotionValueEvent, useScroll, type MotionValue } from "motion
 import { useLayoutEffect, useRef, useState } from "react";
 import { InstagramLogo } from "@phosphor-icons/react";
 import { INSTAGRAM_DM } from "../data/menu";
+import { asset } from "../lib/paths";
+import { LOGO_LETTERS, LOGO_REGISTERED } from "./logo-data";
 import { AcidityDots, grinds, notes, type Grind } from "./Bag";
 
 /*
@@ -19,7 +21,7 @@ import { AcidityDots, grinds, notes, type Grind } from "./Bag";
 const C = {
   bag: "#f4f1ea",
   ink: "#161614",
-  gold: "#b3a468",
+  gold: "#d4ad6a",
   metal: "#d7d4cc",
   metalDark: "#c4c1b8",
   body: "#2b2b28",
@@ -106,7 +108,11 @@ function useScene(progress: MotionValue<number>, refs: React.RefObject<Refs>) {
       "transform",
       `translate(${tx} ${ty}) rotate(${TILT.rot * tilt} ${BAG.cx} ${BAG.cy}) translate(${BAG.cx} ${BAG.cy}) scale(${scale}) translate(${-BAG.cx} ${-BAG.cy})`,
     );
-    set("bag", "opacity", 1 - exit);
+    // La foto real sostiene el primer cuadro y se funde con la bolsa dibujada justo antes de rasgarse.
+    const swap = ease(ramp(p, 0.17, 0.25));
+    set("bag", "opacity", swap * (1 - exit));
+    set("real", "opacity", 1 - swap);
+    set("real", "transform", `translate(0 ${30 * (1 - intro)})`);
     set("shadow", "opacity", 0.14 * (1 - tilt));
 
     // 2. La parte de arriba se rasga y sale volando.
@@ -297,9 +303,6 @@ export function BagStory() {
               <clipPath id="cup-clip">
                 <path d="M328,860 L472,860 L461,971 Q460,978 452,978 L348,978 Q340,978 339,971 Z" />
               </clipPath>
-              <clipPath id="half-dot">
-                <rect x="447" y="560" width="5" height="12" />
-              </clipPath>
             </defs>
 
             <ellipse ref={bind("shadow")} cx="400" cy="768" rx="160" ry="14" fill="#000" opacity="0.14" />
@@ -389,6 +392,11 @@ export function BagStory() {
               </g>
             ))}
 
+            {/* Primer cuadro: foto real de la bolsa. Se funde con la versión dibujada antes de abrirse. */}
+            <g ref={bind("real")}>
+              <image href={asset("img/bolsa-real.webp")} x="180.35" y="244.9" width="439.7" height="523.9" />
+            </g>
+
             {/* Bolsa */}
             <g ref={bind("bag")}>
               <path
@@ -412,52 +420,36 @@ export function BagStory() {
                 <circle key={`${x}-${y}`} cx={x} cy={y} r="1.6" fill={C.ink} fillOpacity="0.4" />
               ))}
 
-              {/* Etiqueta dorada, como la bolsa real */}
-              <rect x="274" y="448" width="252" height="262" fill={C.gold} />
-              <g fill={C.ink} fontSize="11" fontWeight="700" style={{ letterSpacing: "0.02em" }}>
-                <text x="290" y="474">CAFÉ TRADICIONAL</text>
-                <circle cx="294" cy="488" r="4" fill="none" stroke={C.ink} strokeWidth="1.2" />
-                <text x="303" y="492" fontWeight="500">GRANO</text>
-                <circle cx="294" cy="504" r="4" />
-                <text x="303" y="508" fontWeight="500">MOLIDO</text>
-                <text x="420" y="474">NOTAS</text>
-                <g fontWeight="500" fontSize="10">
-                  <text x="420" y="492">CHOCOLATE</text>
-                  <text x="420" y="506">CARAMELO</text>
-                  <text x="420" y="520">FRUTOS ROJOS</text>
-                  <text x="420" y="534">PANELA</text>
+              {/* Etiqueta dorada, calcada de la bolsa real (coordenadas de la foto, escala 0.3827) */}
+              <g transform="translate(295.5 437.7) scale(0.3827)">
+                <rect width="557" height="621" fill={C.gold} />
+                <g fill={C.ink} fontWeight="800" fontSize="23">
+                  <text x="58" y="72">CAFÉ TRADICIONAL</text>
+                  <text x="349" y="72">NOTAS</text>
+                  <text x="58" y="225">PITALITO, HUILA.</text>
+                  <text x="351" y="227">ACIDEZ</text>
                 </g>
-                <text x="290" y="560">PITALITO, HUILA.</text>
-                <text x="290" y="576" fontWeight="500" fontSize="10">340 G.   12 OZ.</text>
-                <text x="420" y="556">ACIDEZ</text>
+                <g fill={C.ink} fontWeight="500" fontSize="21">
+                  <text x="82" y="100">GRANO</text>
+                  <text x="82" y="122">MOLIDO</text>
+                  <text x="349" y="104">CHOCOLATE</text>
+                  <text x="349" y="125">CARAMELO</text>
+                  <text x="349" y="146">FRUTOS ROJOS</text>
+                  <text x="349" y="167">PANELA</text>
+                  <text x="58" y="258">340 G.    12 OZ.</text>
+                </g>
+                <circle cx="67" cy="92" r="8" fill="none" stroke={C.ink} strokeWidth="2" />
+                <circle cx="67" cy="114" r="8" fill={C.ink} />
                 {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <circle
-                    key={i}
-                    cx={426 + i * 13}
-                    cy="566"
-                    r="5"
-                    fill={i < 2 ? C.ink : "none"}
-                    stroke={C.ink}
-                    strokeWidth="1.2"
-                  />
+                  <circle key={i} cx={363 + i * 31} cy="252" r="11" fill={i < 3 ? C.ink : "none"} stroke={C.ink} strokeWidth="2" />
                 ))}
-                <circle cx="452" cy="566" r="5" clipPath="url(#half-dot)" />
+                <g transform="translate(53 334) scale(0.1258) translate(-121 -90)" fill={C.ink} fillRule="evenodd">
+                  {LOGO_LETTERS.map((l) => (
+                    <path key={l.letter} d={l.d} />
+                  ))}
+                  <path d={LOGO_REGISTERED} />
+                </g>
               </g>
-              <text
-                x="284"
-                y="694"
-                fontSize="120"
-                fontWeight="900"
-                style={{ fontStretch: "62%" }}
-                textLength="226"
-                lengthAdjust="spacingAndGlyphs"
-                fill={C.ink}
-              >
-                NOBLE
-              </text>
-              <text x="512" y="606" fontSize="11" fontWeight="700" fill={C.ink}>
-                ®
-              </text>
 
               {/* Parte superior que se rasga */}
               <g ref={bind("top")}>

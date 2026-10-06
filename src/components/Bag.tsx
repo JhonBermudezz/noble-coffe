@@ -9,16 +9,15 @@ export const notes = ["Chocolate", "Caramelo", "Frutos rojos", "Panela"];
 export const grinds = ["Grano", "Molido"] as const;
 export type Grind = (typeof grinds)[number];
 
-// Escala de acidez igual a la de la etiqueta: 2.5 de 6.
+// Escala de acidez igual a la de la etiqueta: 3 de 6.
 export function AcidityDots({ tone = "gold" }: { tone?: "gold" | "ink" }) {
   const border = tone === "gold" ? "border-on-gold" : "border-ink";
   const fill = tone === "gold" ? "bg-on-gold" : "bg-ink";
   return (
-    <div className="flex gap-1.5" role="img" aria-label="Acidez media, 2.5 de 6">
+    <div className="flex gap-1.5" role="img" aria-label="Acidez media, 3 de 6">
       {Array.from({ length: 6 }, (_, i) => (
         <span key={i} className={`relative size-3.5 overflow-hidden rounded-full border ${border}`}>
-          {i < 2 && <span className={`absolute inset-0 ${fill}`} />}
-          {i === 2 && <span className={`absolute inset-y-0 left-0 w-1/2 ${fill}`} />}
+          {i < 3 && <span className={`absolute inset-0 ${fill}`} />}
         </span>
       ))}
     </div>
