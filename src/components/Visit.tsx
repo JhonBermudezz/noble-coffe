@@ -19,25 +19,17 @@ export function Visit() {
       <div className="mx-auto grid max-w-[1400px] gap-14 px-4 py-24 md:px-8 md:py-36 lg:grid-cols-12 lg:items-center lg:gap-10">
         <div className="lg:col-span-6">
           <Reveal>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">Visítanos</p>
-            <h2 className="mt-4 font-display text-[clamp(2.75rem,6vw,5.25rem)] leading-[0.95]">{ADDRESS}</h2>
+            <h2 className="font-display text-[clamp(2.75rem,6vw,5.25rem)] leading-[0.95]">{ADDRESS}</h2>
             <p className="mt-3 text-lg text-muted">{ADDRESS_DETAIL}</p>
             <OpenBadge className="mt-6" />
           </Reveal>
 
-          <Reveal delay={0.1} className="mt-10 grid gap-6 sm:grid-cols-2">
+          <Reveal delay={0.1} className="mt-10">
             <div className="flex gap-3">
               <Clock size={22} weight="regular" className="mt-0.5 shrink-0" />
               <div>
                 <p className="font-semibold">{HOURS.label}</p>
                 <p className="text-muted">{HOURS.range}</p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <MapPin size={22} weight="regular" className="mt-0.5 shrink-0" />
-              <div>
-                <p className="font-semibold">Aquí o para llevar</p>
-                <p className="text-muted">Mesas para quedarse un rato.</p>
               </div>
             </div>
           </Reveal>

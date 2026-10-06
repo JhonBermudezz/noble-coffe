@@ -4,7 +4,7 @@ import { MapPin } from "@phosphor-icons/react";
 import { MAPS_URL } from "../data/menu";
 import { ROOT } from "../lib/paths";
 import { OpenBadge } from "./OpenBadge";
-import { Wordmark } from "./Wordmark";
+import { Logo } from "./Logo";
 
 type Page = "home" | "menu";
 
@@ -14,6 +14,7 @@ const section = (page: Page, id: string) => (page === "home" ? `#${id}` : `${ROO
 export function Nav({ page = "home" }: { page?: Page }) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   // Solo cambia de estado al cruzar el umbral, no en cada frame.
   useMotionValueEvent(scrollY, "change", (y) => {
@@ -37,19 +38,30 @@ export function Nav({ page = "home" }: { page?: Page }) {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 md:h-[72px] md:px-8">
-        <a href={page === "home" ? "#top" : ROOT} aria-label="Noble Café, inicio" className="text-[2rem] md:text-[2.25rem]">
-          <Wordmark />
+        <a href={page === "home" ? "#top" : ROOT} aria-label="Noble Café, inicio" className="block w-[3.1rem] md:w-[3.6rem]">
+          <Logo />
         </a>
-        <ul className="hidden items-center gap-9 text-[15px] md:flex">
+        <ul className="hidden items-center gap-1 text-[15px] md:flex" onPointerLeave={() => setHovered(null)}>
           {links.map((l) => (
             <li key={l.label}>
-              <a href={l.href} aria-current={l.current ? "page" : undefined} className="group relative py-2">
-                {l.label}
-                <span
-                  className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-ink transition-transform duration-500 ease-out-expo group-hover:scale-x-100 ${
-                    l.current ? "scale-x-100" : "scale-x-0"
-                  }`}
-                />
+              <a
+                href={l.href}
+                aria-current={l.current ? "page" : undefined}
+                onPointerEnter={() => setHovered(l.label)}
+                onFocus={() => setHovered(l.label)}
+                onBlur={() => setHovered(null)}
+                className="relative block rounded-full px-4 py-2"
+              >
+                {/* Elemento compartido: una sola píldora que se desliza entre los enlaces. */}
+                {hovered === l.label && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-full bg-ink/[0.08]"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+                <span className="relative">{l.label}</span>
+                {l.current && <span className="absolute inset-x-4 bottom-1 h-px bg-ink" />}
               </a>
             </li>
           ))}
