@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+/*
+  Paleta tomada de la marca: gris concreto de las paredes del local,
+  tinta casi negra del logo y el dorado oliva de la etiqueta de la bolsa.
+  Sistema de formas: botones y pestañas siempre en píldora; las fotos usan
+  las formas de la marca (óvalo, arco, círculo) o rectángulo recto, sin radios intermedios.
+*/
+:root {
+  --paper: #ecebe6;
+  --paper-2: #e1dfd8;
+  --ink: #161614;
+  --muted: #595853;
+  --line: rgb(22 22 20 / 0.14);
+  --gold: #b3a468;
+  --on-gold: #161614;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121211;
+    --paper-2: #1c1c1a;
+    --ink: #ecebe6;
+    --muted: #a6a49c;
+    --line: rgb(236 235 230 / 0.14);
+    --gold: #b8aa6f;
+    --on-gold: #161614;
+    color-scheme: dark;
+  }
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-on-gold: var(--on-gold);
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--on-gold);
+}
+
+/* Logotipo y titulares condensados, como el wordmark NOBLE. */
+.font-condensed {
+  font-stretch: 62%;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.font-display {
+  font-stretch: 88%;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Grano fijo, fuera del flujo de scroll para no forzar repintados. */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .spin-slow {
+    animation: none;
+  }
+}
