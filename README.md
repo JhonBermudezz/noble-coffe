@@ -6,7 +6,7 @@ Sitio web de Noble Café (@somos.noble). Hecho con React, Vite, Tailwind CSS v4 
 
 ```bash
 npm install
-npm run dev      # servidor local en http://localhost:5173
+npm run dev      # servidor local en http://localhost:5173 (menú en /menu/)
 npm run build    # genera el sitio estático en dist/
 ```
 
@@ -14,6 +14,9 @@ npm run build    # genera el sitio estático en dist/
 
 - **Menú y precios:** `src/data/menu.ts`. Los precios van en miles (`4.5` se muestra como `4.5K`).
 - **Dirección, Instagram y enlace de mapas:** también en `src/data/menu.ts`.
+- **Horario y "Abierto ahora":** `src/data/hours.ts` (usa la hora de Bogotá).
+- **Reseñas:** pega reseñas reales de Google en `src/data/reviews.ts`. Con la lista vacía la sección no aparece.
+- **Foto de cada bebida (hover del menú):** campo `photo` de cada producto en `src/data/menu.ts`.
 - **Fotos:** coloca las fotos originales (`imgi_*.jpg`) en la raíz y ejecuta `npm run images`. Las versiones optimizadas quedan en `public/img/`. Para usar una foto nueva, agrégala al diccionario `NAMES` de `scripts/optimize_images.py`.
 
 ## Publicar

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { INSTAGRAM } from "../data/menu";
+import { ADDRESS, INSTAGRAM } from "../data/menu";
+import { ROOT } from "../lib/paths";
 
 const letters = "NOBLE".split("");
 
@@ -13,7 +14,7 @@ export function Footer() {
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="hover:underline underline-offset-4">
               Instagram
             </a>
-            <a href="#menu" className="hover:underline underline-offset-4">
+            <a href={`${ROOT}menu/`} className="hover:underline underline-offset-4">
               Menú
             </a>
             <a href="#top" className="hover:underline underline-offset-4">
@@ -45,7 +46,7 @@ export function Footer() {
 
         <div className="flex flex-wrap justify-between gap-4 border-t border-[#ecebe6]/15 py-6 text-xs text-[#ecebe6]/70">
           <p>© {new Date().getFullYear()} Noble Café. Todos los derechos reservados.</p>
-          <p>Calle 106 # 56-76</p>
+          <p>{ADDRESS}, Bogotá</p>
         </div>
       </div>
     </footer>
