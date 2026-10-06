@@ -74,7 +74,7 @@ export function Preloader({ onReveal }: { onReveal: () => void }) {
           setGone(true);
         }
       }}
-      className="fixed inset-0 z-[80] flex flex-col bg-[#161614] text-[#ecebe6]"
+      className="fixed inset-0 z-[80] flex flex-col bg-white text-[#161614]"
     >
       <div className="relative flex flex-1 items-center justify-center">
         <motion.div animate={leaving ? { y: -120, opacity: 0 } : undefined} transition={{ duration: 0.8, ease }} className="relative">

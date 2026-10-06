@@ -4,33 +4,20 @@
 @import "@fontsource/ibm-plex-mono/500.css";
 
 /*
-  Paleta tomada de la marca: gris concreto de las paredes del local,
+  Paleta tomada de la marca: blanco del local,
   tinta casi negra del logo y el dorado oliva de la etiqueta de la bolsa.
   Sistema de formas: botones y pestañas siempre en píldora; las fotos usan
   las formas de la marca (óvalo, arco, círculo) o rectángulo recto, sin radios intermedios.
 */
 :root {
-  --paper: #ecebe6;
-  --paper-2: #e1dfd8;
+  --paper: #ffffff;
+  --paper-2: #f4f3ef;
   --ink: #161614;
   --muted: #595853;
-  --line: rgb(22 22 20 / 0.14);
+  --line: rgb(22 22 20 / 0.12);
   --gold: #b3a468;
   --on-gold: #161614;
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #121211;
-    --paper-2: #1c1c1a;
-    --ink: #ecebe6;
-    --muted: #a6a49c;
-    --line: rgb(236 235 230 / 0.14);
-    --gold: #b8aa6f;
-    --on-gold: #161614;
-    color-scheme: dark;
-  }
 }
 
 @theme {
