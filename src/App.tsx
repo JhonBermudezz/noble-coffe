@@ -4,13 +4,13 @@ import { Bag } from "./components/Bag";
 import { BagStory } from "./components/BagStory";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
+import { Marquee } from "./components/Marquee";
 import { Moments } from "./components/Moments";
 import { MenuPreview } from "./components/MenuPreview";
 import { Nav } from "./components/Nav";
 import { Preloader, shouldShowIntro } from "./components/Preloader";
 import { Reviews } from "./components/Reviews";
 import { Ritual } from "./components/Ritual";
-import { Statement } from "./components/Statement";
 import { Visit } from "./components/Visit";
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
         <main>
           {/* El inicio se monta al levantar el telón para que su animación de entrada se vea. */}
           {ready ? <Hero /> : <div className="min-h-[100dvh]" />}
-          <Statement />
+          <Marquee />
           <MenuPreview />
           {reduce ? <Bag /> : <BagStory />}
           <Ritual />

@@ -15,7 +15,7 @@ export function Visit() {
   const rotate = useTransform(scrollYProgress, [0, 1], [-14, 14]);
 
   return (
-    <section ref={ref} id="visitanos" className="border-t border-line">
+    <section ref={ref} id="visitanos" className="overflow-x-clip border-t border-line">
       <div className="mx-auto grid max-w-[1400px] gap-14 px-4 py-24 md:px-8 md:py-36 lg:grid-cols-12 lg:items-center lg:gap-10">
         <div className="lg:col-span-6">
           <Reveal>

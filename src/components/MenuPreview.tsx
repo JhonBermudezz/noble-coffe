@@ -6,7 +6,7 @@ import { CursorImage } from "./CursorImage";
 import { MagnifyList, MagnifyRow } from "./menu/MagnifyList";
 import { MenuSelectionProvider } from "./menu/selection";
 import { Photo } from "./Photo";
-import { Reveal } from "./Reveal";
+import { ScrollText } from "./ScrollText";
 
 // Adelanto del menú en el inicio. La carta completa vive en /menu.
 export function MenuPreview() {
@@ -19,13 +19,13 @@ export function MenuPreview() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
-              <Reveal>
-                <h2 className="font-display text-[clamp(2.75rem,5.5vw,4.75rem)] leading-[0.95]">
-                  Pocas cosas,
-                  <br />
-                  bien hechas.
-                </h2>
-              </Reveal>
+              <ScrollText
+                start="top 88%"
+                end="top 52%"
+                className="font-display text-[clamp(2.75rem,5.5vw,4.75rem)] leading-[0.95]"
+              >
+                Pocas cosas, bien hechas.
+              </ScrollText>
               <div className="relative mt-10 hidden aspect-[3/4] w-[70%] overflow-hidden rounded-full lg:block">
                 <Photo name="chemex-gorra" alt="Chemex con café sostenida sobre una gorra Everyday Happiness" sizes="30vw" />
               </div>

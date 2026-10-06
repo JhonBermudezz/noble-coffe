@@ -28,8 +28,8 @@ export function Ritual() {
           <ScrollText
             id="ritual-title"
             trigger={ref}
-            start={() => `top+=${window.innerHeight * 0.72} top`}
-            end={() => `top+=${window.innerHeight * 1.28} top`}
+            start={() => `top+=${window.innerHeight * 0.18} top`}
+            end={() => `top+=${window.innerHeight * 0.92} top`}
             className="font-display text-[clamp(2.5rem,6.4vw,6rem)] leading-[0.98]"
           >
             El café se toma con tiempo.
