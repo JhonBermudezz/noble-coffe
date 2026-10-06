@@ -80,17 +80,22 @@ export function Ritual() {
           <div className="absolute inset-0 bg-[#121211]/50" />
         </div>
 
-        {/* La hendidura en S del grano: se dibuja con el color del fondo y se desvanece al abrirse. */}
+        {/* La hendidura en S del grano lleva la frase de la marca siguiendo su curva.
+            Se dibuja con el color del fondo y se desvanece al abrirse el grano. */}
         {!reduce && (
           <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full">
             <g ref={crease}>
-              <path
-                d={CREASE}
-                fill="none"
-                strokeWidth="0.028"
-                strokeLinecap="round"
-                style={{ stroke: "var(--paper)" }}
-              />
+              <path id="bean-crease" d={CREASE} fill="none" strokeWidth="0.006" strokeLinecap="round" style={{ stroke: "var(--paper)", strokeOpacity: 0.35 }} />
+              <text
+                dy="0.0175"
+                fontSize="0.05"
+                className="font-display"
+                style={{ fill: "var(--paper)", letterSpacing: "0.05em" }}
+              >
+                <textPath href="#bean-crease" startOffset="50%" textAnchor="middle">
+                  ¡Somos pura #Cafelicidad!
+                </textPath>
+              </text>
             </g>
           </svg>
         )}
@@ -99,6 +104,7 @@ export function Ritual() {
           <ScrollText
             id="ritual-title"
             trigger={ref}
+            from={0}
             start={() => `top+=${window.innerHeight * 0.18} top`}
             end={() => `top+=${window.innerHeight * 0.92} top`}
             className="font-display text-[clamp(2.5rem,6.4vw,6rem)] leading-[0.98]"

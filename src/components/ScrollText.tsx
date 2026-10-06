@@ -10,6 +10,8 @@ type ScrollTextProps = {
   trigger?: RefObject<HTMLElement | null>;
   start?: string | (() => string);
   end?: string | (() => string);
+  // Opacidad inicial de las letras antes de encenderse (0 = invisibles).
+  from?: number;
 };
 
 // Cada letra aparece con el avance del scroll (scrub): al subir, el texto se vuelve a apagar.
@@ -21,6 +23,7 @@ export function ScrollText({
   trigger,
   start = "top 82%",
   end = "bottom 48%",
+  from = 0.1,
 }: ScrollTextProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -32,7 +35,7 @@ export function ScrollText({
       const split = SplitText.create(el, { type: "words,chars", wordsClass: "inline-block", charsClass: "inline-block" });
       gsap.fromTo(
         split.chars,
-        { opacity: 0.1, yPercent: 35 },
+        { opacity: from, yPercent: 35 },
         {
           opacity: 1,
           yPercent: 0,
@@ -44,7 +47,7 @@ export function ScrollText({
       return () => split.revert();
     });
     return () => mm.revert();
-  }, [trigger, start, end]);
+  }, [trigger, start, end, from]);
 
   return (
     <Tag ref={ref} id={id} className={className}>
