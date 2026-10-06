@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
 import { createContext, useContext, useRef, type ReactNode } from "react";
 import { formatPrice } from "../../data/menu";
+import { Photo } from "../Photo";
 import { useSelect, type DetailItem } from "./selection";
 
 // Magnificación tipo Dock de macOS: la fila bajo el cursor crece y se corre a la derecha,
@@ -55,6 +56,12 @@ export function MagnifyRow({ item, onHover, size = "lg" }: RowProps) {
           className="block w-full py-4 text-left md:py-5"
         >
           <motion.span style={{ scale, x: shift, transformOrigin: "0% 50%" }} className="flex items-center gap-4">
+            {/* En celular no hay cursor: la foto del producto va fija al lado. */}
+            {item.photo && (
+              <span className="block size-14 shrink-0 overflow-hidden rounded-full md:hidden">
+                <Photo name={item.photo} alt="" sizes="56px" />
+              </span>
+            )}
             <span className="min-w-0 flex-1">
               <motion.span
                 layoutId={`name-${item.id}`}
