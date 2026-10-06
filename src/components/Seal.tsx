@@ -2,7 +2,7 @@
 export function Seal({ label, className = "", spin = true }: { label: string; className?: string; spin?: boolean }) {
   return (
     <div
-      className={`relative grid aspect-square place-items-center rounded-full bg-[#f4f1ea] text-[#161614] ring-1 ring-[#161614]/15 ${className}`}
+      className={`relative grid aspect-square place-items-center rounded-full bg-[#fffaf5] text-[#161614] ring-1 ring-[#161614]/15 ${className}`}
     >
       <span
         aria-hidden

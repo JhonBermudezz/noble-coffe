@@ -29,19 +29,11 @@ export function Hero() {
             <br />
             cafelicidad.
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease }}
-            className="mt-7 max-w-[34ch] text-lg leading-relaxed text-muted md:text-xl"
-          >
-            Café de Pitalito, Huila, preparado sin afán en la Calle 106. De lunes a sábado.
-          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.45, ease }}
-            className="mt-10 flex flex-wrap gap-3"
+            transition={{ duration: 1, delay: 0.3, ease }}
+            className="mt-9 flex flex-wrap gap-3"
           >
             <a
               href="#menu"

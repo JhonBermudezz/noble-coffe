@@ -235,16 +235,10 @@ export function BagStory() {
 
           <Stage index={1} refs={refs}>
             <h2 className="font-display text-[clamp(2.25rem,4.6vw,4rem)] leading-[0.95]">En grano o molido.</h2>
-            <p className="mt-5 max-w-[36ch] text-muted md:text-lg">
-              Como lo prepares en casa: en grano para tu molino, o molido para tu método.
-            </p>
           </Stage>
 
           <Stage index={2} refs={refs}>
             <h2 className="font-display text-[clamp(2.25rem,4.6vw,4rem)] leading-[0.95]">Del molino a la taza.</h2>
-            <p className="mt-5 max-w-[36ch] text-muted md:text-lg">
-              Molerlo justo antes de prepararlo cuida las notas de chocolate y panela.
-            </p>
           </Stage>
 
           <Stage index={3} refs={refs}>

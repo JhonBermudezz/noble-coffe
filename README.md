@@ -1,6 +1,11 @@
 # Noble Café
 
-Sitio web de Noble Café (@somos.noble). Hecho con React, Vite, Tailwind CSS v4 y Motion.
+Sitio web de Noble Café (@somos.noble). Hecho con React, Vite y Tailwind CSS v4.
+
+Animaciones, cada librería en su zona:
+- **Motion** (`motion/react`): menú con crossfade, tarjeta de detalle con elemento compartido (`layoutId`), magnificación tipo dock, píldora del menú superior, bolsa y Chemex con scroll.
+- **GSAP + ScrollTrigger + SplitText**: texto que se enciende letra por letra con el scroll (`Statement`, `ScrollText`) y la galería horizontal fijada (`Moments`).
+- **anime.js**: pantalla de carga (letras del logo, óvalo que se dibuja, contador).
 
 ## Desarrollo
 
@@ -17,6 +22,7 @@ npm run build    # genera el sitio estático en dist/
 - **Horario y "Abierto ahora":** `src/data/hours.ts` (usa la hora de Bogotá).
 - **Reseñas:** pega reseñas reales de Google en `src/data/reviews.ts`. Con la lista vacía la sección no aparece.
 - **Foto de cada bebida (hover del menú):** campo `photo` de cada producto en `src/data/menu.ts`.
+- **Logo:** `src/components/logo-data.ts` (vectorizado de la foto de la bolsa). Si llega el SVG oficial, se reemplazan los trazados de ahí.
 - **Fotos:** coloca las fotos originales (`imgi_*.jpg`) en la raíz y ejecuta `npm run images`. Las versiones optimizadas quedan en `public/img/`. Para usar una foto nueva, agrégala al diccionario `NAMES` de `scripts/optimize_images.py`.
 
 ## Publicar

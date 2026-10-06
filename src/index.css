@@ -4,17 +4,17 @@
 @import "@fontsource/ibm-plex-mono/500.css";
 
 /*
-  Paleta tomada de la marca: blanco del local,
+  Paleta tomada de la marca: el marfil #f7eee7 es el fondo exacto del logo,
   tinta casi negra del logo y el dorado oliva de la etiqueta de la bolsa.
   Sistema de formas: botones y pestañas siempre en píldora; las fotos usan
   las formas de la marca (óvalo, arco, círculo) o rectángulo recto, sin radios intermedios.
 */
 :root {
-  --paper: #ffffff;
-  --paper-2: #f4f3ef;
+  --paper: #f7eee7;
+  --paper-2: #efe3d8;
   --ink: #161614;
-  --muted: #595853;
-  --line: rgb(22 22 20 / 0.12);
+  --muted: #5e5851;
+  --line: rgb(22 22 20 / 0.13);
   --gold: #b3a468;
   --on-gold: #161614;
   color-scheme: light;
