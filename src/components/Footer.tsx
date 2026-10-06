@@ -6,7 +6,7 @@ const letters = "NOBLE".split("");
 
 export function Footer() {
   return (
-    <footer className="overflow-hidden border-t border-line bg-[#161614] text-[#ecebe6]">
+    <footer className="overflow-hidden border-t border-line bg-paper text-ink">
       <div className="mx-auto max-w-[1400px] px-4 pt-16 md:px-8 md:pt-24">
         <div className="flex flex-wrap items-end justify-between gap-6 text-sm">
           <p className="max-w-[28ch] text-lg leading-snug md:text-xl">¡Somos pura #Cafelicidad!</p>
@@ -44,7 +44,7 @@ export function Footer() {
           ))}
         </motion.p>
 
-        <div className="flex flex-wrap justify-between gap-4 border-t border-[#ecebe6]/15 py-6 text-xs text-[#ecebe6]/70">
+        <div className="flex flex-wrap justify-between gap-4 border-t border-line py-6 text-xs text-muted">
           <p>© {new Date().getFullYear()} Noble Café. Todos los derechos reservados.</p>
           <p>{ADDRESS}, Bogotá</p>
         </div>
