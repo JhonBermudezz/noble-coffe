@@ -20,6 +20,7 @@ export function Ritual() {
   const photo = useRef<HTMLDivElement>(null);
   const clipPath = useRef<SVGPathElement>(null);
   const crease = useRef<SVGGElement>(null);
+  const tagline = useRef<HTMLParagraphElement>(null);
   const size = useRef({ w: 1, h: 1 });
   const reduce = useReducedMotion();
 
@@ -42,6 +43,17 @@ export function Ritual() {
     crease.current.setAttribute("transform", `translate(${w / 2} ${h / 2}) scale(${B})`);
     crease.current.style.opacity = String(1 - ramp(p, 0.04, 0.26));
     photo.current.style.clipPath = open >= 0.999 ? "none" : "url(#bean-clip)";
+
+    // Frase de arriba: queda a mitad de camino entre el menú y el borde superior del grano,
+    // y se borra de derecha a izquierda cuando aparece el texto de adentro.
+    const line = tagline.current;
+    if (line) {
+      const topEdge = h / 2 - (BEAN_H * B) / 2;
+      const erase = ramp(p, 0.03, 0.2);
+      line.style.transform = `translate(-50%, -50%) translateY(${(72 + topEdge) / 2}px)`;
+      line.style.clipPath = `inset(0 ${erase * 100}% 0 0)`;
+      line.style.opacity = String(1 - ramp(p, 0.15, 0.22));
+    }
   };
 
   useLayoutEffect(() => {
@@ -80,24 +92,23 @@ export function Ritual() {
           <div className="absolute inset-0 bg-[#121211]/50" />
         </div>
 
-        {/* La hendidura en S del grano lleva la frase de la marca siguiendo su curva.
-            Se dibuja con el color del fondo y se desvanece al abrirse el grano. */}
+        {/* La hendidura en S del grano: gruesa, con el color del fondo; se desvanece al abrirse. */}
         {!reduce && (
           <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full">
             <g ref={crease}>
-              <path id="bean-crease" d={CREASE} fill="none" strokeWidth="0.006" strokeLinecap="round" style={{ stroke: "var(--paper)", strokeOpacity: 0.35 }} />
-              <text
-                dy="0.0175"
-                fontSize="0.05"
-                className="font-display"
-                style={{ fill: "var(--paper)", letterSpacing: "0.05em" }}
-              >
-                <textPath href="#bean-crease" startOffset="50%" textAnchor="middle">
-                  ¡Somos pura #Cafelicidad!
-                </textPath>
-              </text>
+              <path d={CREASE} fill="none" strokeWidth="0.038" strokeLinecap="round" style={{ stroke: "var(--paper)" }} />
             </g>
           </svg>
+        )}
+
+        {/* Frase de la marca encima del grano. */}
+        {!reduce && (
+          <p
+            ref={tagline}
+            className="pointer-events-none absolute left-1/2 top-0 w-max max-w-[92vw] text-center font-display text-[clamp(1.9rem,4.6vw,4rem)] leading-[1.02] text-ink"
+          >
+            ¡Somos pura #Cafelicidad!
+          </p>
         )}
 
         <div className="relative mx-auto flex h-full max-w-[1100px] items-center justify-center px-4 text-center text-[#f7eee7]">
