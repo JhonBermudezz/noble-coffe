@@ -1,7 +1,8 @@
 import { AnimatePresence, LayoutGroup, motion, useAnimationFrame } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Sparkle, X } from "@phosphor-icons/react";
-import { monthly } from "../data/menu";
+import { ArrowRight, MapPin, X } from "@phosphor-icons/react";
+import { MAPS_URL, monthly } from "../data/menu";
+import { ROOT } from "../lib/paths";
 
 // Contorno de la prensa francesa (perilla, varilla, tapa, jarra y asa) en un lienzo de 640 x 760.
 const OUTER =
@@ -189,9 +190,8 @@ export function MonthlyPopup({ auto = false }: { auto?: boolean }) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 28 }}
-            className="fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 whitespace-nowrap bg-mint px-5 py-3 text-sm font-medium text-ink shadow-[0_10px_30px_-12px_rgb(22_22_20/0.35)] hover:-translate-y-0.5 active:scale-[0.98] md:bottom-6 md:left-6"
+            className="fixed bottom-4 left-4 z-40 inline-flex items-center whitespace-nowrap bg-mint px-5 py-3 text-sm font-medium text-ink shadow-[0_10px_30px_-12px_rgb(22_22_20/0.35)] hover:-translate-y-0.5 active:scale-[0.98] md:bottom-6 md:left-6"
           >
-            <Sparkle size={16} weight="fill" />
             Filtrado del mes
           </motion.button>
         )}
@@ -214,19 +214,45 @@ export function MonthlyPopup({ auto = false }: { auto?: boolean }) {
               ref={card}
               tabIndex={-1}
               layoutId="monthly-card"
-              style={{ borderRadius: 0 }}
+              style={{ borderRadius: 0, outline: "none" }}
               transition={{ type: "spring", stiffness: 240, damping: 30 }}
-              className="relative max-h-[94dvh] w-[min(96vw,66rem)] overflow-y-auto overflow-x-hidden bg-mint text-ink outline-none"
+              className="relative max-h-[94dvh] w-[min(96vw,66rem)] overflow-y-auto overflow-x-hidden bg-mint text-ink"
             >
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="grid items-center gap-2 px-5 pb-6 pt-14 md:grid-cols-2 md:gap-6 md:px-10 md:py-10"
+                className="grid items-center gap-x-6 gap-y-3 px-5 pb-7 pt-14 md:grid-cols-2 md:px-10 md:py-10"
               >
-                <Title />
-                <PressArt active={open} />
+                <div className="md:col-start-1 md:row-start-1 md:self-end">
+                  <Title />
+                </div>
+
+                <div className="md:col-start-2 md:row-span-2 md:row-start-1">
+                  <PressArt active={open} />
+                </div>
+
+                {/* Dos acciones: ver el menú y llegar al local. */}
+                <div className="flex flex-wrap justify-center gap-3 pt-2 md:col-start-1 md:row-start-2 md:justify-start md:self-start md:pt-4">
+                  <a
+                    href={`${ROOT}menu/#calientes`}
+                    onClick={() => setOpen(false)}
+                    className="group inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-ink px-6 py-3.5 font-medium text-paper transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                  >
+                    Menú
+                    <ArrowRight size={18} weight="bold" className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </a>
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full border border-ink/80 px-6 py-3.5 font-medium transition-colors duration-300 hover:bg-ink hover:text-paper active:scale-[0.98]"
+                  >
+                    <MapPin size={18} weight="bold" />
+                    Cómo llegar
+                  </a>
+                </div>
               </motion.div>
 
               <button
