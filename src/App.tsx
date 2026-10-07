@@ -5,7 +5,7 @@ import { BagStory } from "./components/BagStory";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Marquee } from "./components/Marquee";
-import { MonthlyFilter } from "./components/MonthlyFilter";
+import { MonthlyPopup } from "./components/MonthlyPopup";
 import { Moments } from "./components/Moments";
 import { MenuPreview } from "./components/MenuPreview";
 import { Nav } from "./components/Nav";
@@ -25,12 +25,12 @@ export default function App() {
       <div className="grain">
         {intro && <Preloader onReveal={reveal} />}
         <Nav />
+        <MonthlyPopup auto={ready} />
         <main>
           {/* El inicio se monta al levantar el telón para que su animación de entrada se vea. */}
           {ready ? <Hero /> : <div className="min-h-[100dvh]" />}
           <Marquee />
           <MenuPreview />
-          <MonthlyFilter />
           {reduce ? <Bag /> : <BagStory />}
           <Ritual />
           <Moments />

@@ -93,6 +93,8 @@ export const cold: MenuGroup[] = [
 export const monthly = {
   title: ["filtrado", "del mes"],
   method: "PRENSA FRANCESA",
+  // Se abre solo una vez por visita, unos segundos después de entrar. Poner false para que solo abra con el botón.
+  autoOpen: true,
 };
 
 // Selección corta que se muestra en el inicio; el menú completo vive en /menu.

@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { FoodGrid } from "../components/menu/FoodGrid";
 import { MagnifyList, MagnifyRow } from "../components/menu/MagnifyList";
 import { MenuSelectionProvider } from "../components/menu/selection";
+import { MonthlyPopup } from "../components/MonthlyPopup";
 import { Nav } from "../components/Nav";
 import { OpenBadge } from "../components/OpenBadge";
 import { Photo } from "../components/Photo";
@@ -70,6 +71,7 @@ export default function MenuPage() {
       <div className="grain">
         <Nav page="menu" />
         <CursorImage photo={hovered} />
+        <MonthlyPopup />
 
         <MenuSelectionProvider>
           <main id="top">
