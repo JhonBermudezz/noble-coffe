@@ -33,7 +33,13 @@ export function Ritual() {
     if (!clipPath.current || !crease.current || !photo.current) return;
 
     const open = ease(ramp(p, 0, 0.5));
-    const start = w < 768 ? w * 0.9 : Math.min(w * 0.5, h * 1.1);
+    const line = tagline.current;
+    const textH = line ? line.offsetHeight : 70;
+    // Tamaño inicial: en computador más contenido, y nunca tan alto que invada la frase de arriba.
+    // El grano debe terminar al menos 36 px por debajo de la frase (que a su vez queda bajo el menú).
+    const room = (h / 2 - (72 + textH + 36)) / (BEAN_H / 2);
+    const base = w < 768 ? w * 0.9 : Math.min(w * 0.42, h * 0.8);
+    const start = Math.max(220, Math.min(base, room));
     // Con esta medida el grano cubre toda la pantalla aunque esté inclinado.
     const end = Math.hypot(w, h / BEAN_H) * 1.7;
     const B = start * Math.pow(end / start, open);
@@ -44,13 +50,13 @@ export function Ritual() {
     crease.current.style.opacity = String(1 - ramp(p, 0.04, 0.26));
     photo.current.style.clipPath = open >= 0.999 ? "none" : "url(#bean-clip)";
 
-    // Frase de arriba: queda a mitad de camino entre el menú y el borde superior del grano,
+    // Frase de arriba: queda justo encima del borde superior del grano, con un respiro fijo,
     // y se borra de derecha a izquierda cuando aparece el texto de adentro.
-    const line = tagline.current;
     if (line) {
       const topEdge = h / 2 - (BEAN_H * B) / 2;
+      const centerY = Math.max(72 + textH / 2 + 8, topEdge - 28 - textH / 2);
       const erase = ramp(p, 0.03, 0.2);
-      line.style.transform = `translate(-50%, -50%) translateY(${(72 + topEdge) / 2}px)`;
+      line.style.transform = `translate(-50%, -50%) translateY(${centerY}px)`;
       line.style.clipPath = `inset(0 ${erase * 100}% 0 0)`;
       line.style.opacity = String(1 - ramp(p, 0.15, 0.22));
     }
