@@ -88,6 +88,13 @@ export const cold: MenuGroup[] = [
   },
 ];
 
+// Filtrado del mes: se cambia cada mes editando solo este bloque.
+// El dibujo del contorno corresponde a la prensa francesa.
+export const monthly = {
+  title: ["filtrado", "del mes"],
+  method: "PRENSA FRANCESA",
+};
+
 // Selección corta que se muestra en el inicio; el menú completo vive en /menu.
 export const featured: MenuItem[] = [
   { name: "Flat white", note: "Leche sedosa, más café", price: 8.5, photo: "vaso-galleta" },

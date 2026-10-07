@@ -5,6 +5,7 @@ import { BagStory } from "./components/BagStory";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Marquee } from "./components/Marquee";
+import { MonthlyFilter } from "./components/MonthlyFilter";
 import { Moments } from "./components/Moments";
 import { MenuPreview } from "./components/MenuPreview";
 import { Nav } from "./components/Nav";
@@ -29,6 +30,7 @@ export default function App() {
           {ready ? <Hero /> : <div className="min-h-[100dvh]" />}
           <Marquee />
           <MenuPreview />
+          <MonthlyFilter />
           {reduce ? <Bag /> : <BagStory />}
           <Ritual />
           <Moments />
