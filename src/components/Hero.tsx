@@ -25,8 +25,6 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.15, ease }}
             className="font-display text-[clamp(3.5rem,9vw,8rem)] leading-[0.92]"
           >
-            Pura
-            <br />
             cafelicidad.
           </motion.h1>
           <motion.div
