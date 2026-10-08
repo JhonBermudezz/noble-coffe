@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { INSTAGRAM_DM, img, kits, price } from "../data";
+import { Drift } from "./Drift";
 import { Painted } from "./Painted";
 
 type Q = { q: string; options: { id: string; label: string; color: string }[] };
@@ -55,7 +56,9 @@ export function PlanQuiz() {
 
   return (
     <section id="plan" className="relative overflow-hidden py-24 md:py-32">
-      <Painted name="dots" color="#f28bb0" className="absolute left-[4%] top-16 hidden w-32 md:block" />
+      <Drift className="absolute left-[4%] top-16 hidden w-32 md:block" rotate={90} y={-60}>
+        <Painted name="dots" color="#f28bb0" className="w-full" />
+      </Drift>
       <div className="relative mx-auto max-w-[900px] px-4 text-center md:px-8">
         <h2 className="font-display text-[clamp(3.2rem,7.5vw,6.5rem)] leading-[0.92] text-forest">
           ¿Qué plan <em>armamos</em>?

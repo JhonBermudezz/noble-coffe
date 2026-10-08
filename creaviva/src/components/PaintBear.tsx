@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState, type MouseEvent } from "react";
 import { INSTAGRAM_DM } from "../data";
 import { Bear, PARTS, type Fills, type Part } from "./Bear";
+import { Drift } from "./Drift";
 import { Painted } from "./Painted";
 
 const PALETTE = [
@@ -43,7 +44,9 @@ export function PaintBear() {
 
   return (
     <section id="pinta" className="relative overflow-hidden bg-forest py-24 text-cream md:py-32">
-      <Painted name="monstera" color="#2a5c40" className="absolute -right-16 -top-10 w-72 rotate-12 md:w-96" />
+      <Drift className="absolute -right-16 -top-10 w-72 md:w-96" rotate={40} y={-80}>
+        <Painted name="monstera" color="#2a5c40" className="w-full rotate-12" />
+      </Drift>
 
       <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-4 md:px-8 lg:grid-cols-2">
         <div>

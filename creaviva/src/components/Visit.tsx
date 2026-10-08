@@ -1,12 +1,17 @@
 import { INSTAGRAM, INSTAGRAM_DM, img } from "../data";
+import { Drift } from "./Drift";
 import { Painted } from "./Painted";
 
 // Cierre. La dirección y el horario se agregan cuando estén confirmados.
 export function Visit() {
   return (
     <section id="visita" className="relative overflow-hidden bg-terra py-24 text-cream md:py-32">
-      <Painted name="monstera" color="#1f4a32" className="absolute -bottom-10 -left-12 w-56 md:-left-36 md:w-80" />
-      <Painted name="flower" color="#f2c230" className="absolute -right-10 -top-10 w-40 rotate-12 md:w-56" />
+      <Drift className="absolute -bottom-10 -left-12 w-56 md:-left-36 md:w-80" rotate={30} y={-60}>
+        <Painted name="monstera" color="#1f4a32" className="w-full" />
+      </Drift>
+      <Drift className="absolute -right-10 -top-10 w-40 md:w-56" rotate={160} y={40}>
+        <Painted name="flower" color="#f2c230" className="w-full" />
+      </Drift>
 
       <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 px-5 md:px-8 lg:grid-cols-[1.2fr_1fr]">
         <div>
