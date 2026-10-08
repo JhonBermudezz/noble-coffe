@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
+@import "@fontsource/yellowtail/400.css";
+
+@source "./";
+
+/*
+  Paleta de Creaviva: tomada de sus murales, del cuadro "La Dolce Vita" y del logo.
+  Verde botella de los delantales como base, crema de fondo y manchas de colores vivos.
+*/
+:root {
+  --cream: #f6efe2;
+  --forest: #1f4a32;
+  color-scheme: light;
+}
+
+@theme {
+  --color-cream: #f6efe2;
+  --color-forest: #1f4a32;
+  --color-moss: #7f9a5b;
+  --color-terra: #c8643b;
+  --color-tangerine: #ee5a24;
+  --color-mustard: #f2c230;
+  --color-bubble: #f28bb0;
+  --color-lilac: #b9a6e8;
+  --color-teal: #3fb8a6;
+  --color-ink: #1b1b17;
+  --font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-hand: "Yellowtail", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--cream);
+  color: var(--forest);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-mustard);
+  color: var(--forest);
+}
+
+:focus-visible {
+  outline: 2px dashed var(--forest);
+  outline-offset: 3px;
+}
+
+/* Titulares: Fraunces con el eje "wonky" y suave, gordita como pintura. */
+.font-display {
+  font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.03em;
+}
+
+/* Manchas que cambian de forma sin parar, como pintura fresca. */
+@keyframes blob {
+  0%, 100% { border-radius: 62% 38% 46% 54% / 54% 44% 56% 46%; }
+  33% { border-radius: 40% 60% 58% 42% / 42% 60% 40% 58%; }
+  66% { border-radius: 54% 46% 36% 64% / 62% 38% 62% 38%; }
+}
+.blob { animation: blob 9s ease-in-out infinite; }
+.blob-slow { animation: blob 14s ease-in-out infinite reverse; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+.wiggle-hover:hover { animation: wiggle 0.35s ease-in-out infinite; }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 30s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob, .blob-slow, .marquee-track, .wiggle-hover:hover { animation: none; }
+}

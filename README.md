@@ -26,6 +26,17 @@ npm run build    # genera el sitio estático en dist/
 - **Logo:** `src/components/logo-data.ts` (vectorizado de la foto de la bolsa). Si llega el SVG oficial, se reemplazan los trazados de ahí.
 - **Fotos:** coloca las fotos originales (`imgi_*.jpg`) en la raíz y ejecuta `npm run images`. Las versiones optimizadas quedan en `public/img/`. Para usar una foto nueva, agrégala al diccionario `NAMES` de `scripts/optimize_images.py`.
 
+## Serie de cafés
+
+Cada café es un sitio independiente dentro de este repo. Noble vive en la raíz y los demás en su carpeta:
+
+- `creaviva/` → `dist/creaviva/` (`npm run dev:creaviva`, `npm run build:creaviva`).
+- Comparten el sistema de diseño (`src/index.css`, `src/components`, `src/lib`) y tienen su propio contenido y fotos.
+- Para añadir otro café: copia `creaviva/`, cambia el nombre de la carpeta y súmalo al workflow de despliegue.
+- Las rutas son relativas: renombrar el repositorio a `serie` no requiere cambiar código.
+- `npm run build` compila Noble y después Creaviva (Noble vacía `dist/`), así el workflow publica los dos.
+- Creaviva: contenido en `creaviva/src/data.ts` (menú, kits, Instagram). Las fotos de `creaviva/public/img/` son recortes temporales de capturas de Instagram; se reemplazan por las originales con el mismo nombre.
+
 ## Publicar
 
 Al hacer merge a `main`, el workflow `.github/workflows/deploy.yml` publica el sitio en GitHub Pages.
