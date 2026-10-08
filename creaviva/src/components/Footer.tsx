@@ -1,23 +1,15 @@
-import { motion } from "motion/react";
 import { INSTAGRAM, img } from "../data";
 
 export function Footer() {
   return (
-    <footer className="bg-forest px-4 py-16 text-center text-cream">
-      <motion.img
-        src={img("logo")}
-        alt="Creaviva Café"
-        whileHover={{ rotate: 360 }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto h-28 w-28 rounded-full ring-4 ring-mustard"
-      />
-      <p className="mx-auto mt-8 max-w-md font-display text-3xl leading-tight">
-        Tu terapia cuesta menos que una sesión de <span className="font-hand text-mustard">psicología</span>.
-      </p>
-      <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="mt-6 inline-block text-lg underline decoration-wavy decoration-bubble underline-offset-8">
-        @creaviva_cafe
-      </a>
-      <p className="mt-10 text-sm text-cream/60">Café · Arte · Plantas · Experiencias</p>
+    <footer className="bg-forest px-5 py-14 text-cream">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+        <img src={img("logo")} alt="Creaviva Café" className="h-20 w-20 rounded-full" />
+        <p className="text-sm tracking-[0.2em] text-cream/70 uppercase">Café · Arte · Plantas · Experiencias</p>
+        <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="font-display text-2xl italic hover:text-mustard">
+          @creaviva_cafe
+        </a>
+      </div>
     </footer>
   );
 }

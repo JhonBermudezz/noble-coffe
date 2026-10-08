@@ -1,13 +1,13 @@
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 import { img } from "../data";
-import { Flower } from "./shapes";
+import { Painted } from "./Painted";
 
 // Colores tierra del mural de la entrada.
 const EARTH = ["#5b3a2e", "#3c6e71", "#6b7f3a", "#c8643b", "#8a3b3b", "#2f4f4f", "#a0662f", "#4f6b3a"];
 
 // Posiciones fijas (en %) para que el mural se vea igual siempre.
-const FLOWERS = Array.from({ length: 26 }, (_, i) => {
+const FLOWERS = Array.from({ length: 34 }, (_, i) => {
   const r = (n: number) => {
     const x = Math.sin(i * 12.9898 + n * 78.233) * 43758.5453;
     return x - Math.floor(x);
@@ -17,19 +17,18 @@ const FLOWERS = Array.from({ length: 26 }, (_, i) => {
     top: r(2) * 100,
     size: 70 + r(3) * 120,
     color: EARTH[i % EARTH.length],
-    center: EARTH[(i + 3) % EARTH.length],
-    petals: 5 + (i % 4),
+    shape: (i % 5 === 0 ? "monstera" : i % 4 === 0 ? "sprig" : "flower") as "monstera" | "sprig" | "flower",
     start: r(4) * 0.5,
     spin: (r(5) - 0.5) * 120,
   };
-});
+}).filter((f) => !(f.left > 18 && f.left < 82 && f.top > 30 && f.top < 72)); // el centro queda libre para la palabra
 
 function Bloom({ f, progress }: { f: (typeof FLOWERS)[number]; progress: MotionValue<number> }) {
   const scale = useTransform(progress, [f.start, f.start + 0.35], [0, 1]);
   const rotate = useTransform(progress, [f.start, f.start + 0.35], [f.spin, 0]);
   return (
     <motion.div className="absolute" style={{ left: `${f.left}%`, top: `${f.top}%`, width: f.size, height: f.size, marginLeft: -f.size / 2, marginTop: -f.size / 2, scale, rotate }}>
-      <Flower className="h-full w-full" color={f.color} center={f.center} petals={f.petals} />
+      <Painted name={f.shape} className="h-full w-full" color={f.color} />
     </motion.div>
   );
 }
@@ -48,19 +47,14 @@ export function Mural() {
       ))}
       <div className="absolute inset-0 grid place-items-center px-4">
         <div className="text-center">
-          <h2 className="flex font-display text-[clamp(3.5rem,13vw,12rem)] leading-none" aria-label="Creaviva">
+          <h2 className="flex font-display text-[clamp(3.2rem,12vw,11rem)] leading-none" aria-label="Creaviva">
             {WORD.map((ch, i) => (
               <Letter key={i} ch={ch} i={i} progress={scrollYProgress} />
             ))}
           </h2>
-          <motion.figure
-            style={{ rotate: -4 }}
-            whileHover={{ rotate: 2, scale: 1.04 }}
-            className="mx-auto mt-6 w-48 bg-cream p-2 pb-8 shadow-xl md:w-56"
-          >
+          <figure className="mx-auto mt-6 w-44 overflow-hidden rounded-[20px] md:w-52">
             <img src={img("mural")} alt="El mural de flores de la entrada de Creaviva" loading="lazy" className="aspect-[3/4] w-full object-cover" />
-            <figcaption className="mt-1 font-hand text-2xl text-forest">la entrada ♡</figcaption>
-          </motion.figure>
+          </figure>
         </div>
       </div>
     </section>
@@ -75,8 +69,8 @@ function Letter({ ch, i, progress }: { ch: string; i: number; progress: MotionVa
   return (
     <motion.span
       aria-hidden
-      style={{ y, opacity, color: colors[i % colors.length], WebkitTextStroke: "3px #f3ead8", paintOrder: "stroke" }}
-      className="inline-block drop-shadow-[0_4px_0_#1f4a32]"
+      style={{ y, opacity, color: colors[i % colors.length] }}
+      className="inline-block"
     >
       {ch}
     </motion.span>
