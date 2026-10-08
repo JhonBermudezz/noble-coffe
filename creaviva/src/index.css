@@ -49,6 +49,12 @@ body {
   color: var(--forest);
 }
 
+/* Con el pincel activo se oculta la flecha del sistema en toda la página. */
+html.brush-cursor,
+html.brush-cursor * {
+  cursor: none !important;
+}
+
 :focus-visible {
   outline: 2px dashed var(--forest);
   outline-offset: 3px;
