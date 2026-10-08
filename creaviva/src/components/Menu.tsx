@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { img, menu, price } from "../data";
+import { Drift } from "./Drift";
 import { Painted } from "./Painted";
 
 // La carta completa a la vista, como la hoja impresa del local: tres columnas,
@@ -7,8 +8,12 @@ import { Painted } from "./Painted";
 export function Menu() {
   return (
     <section id="menu" className="relative overflow-hidden bg-[#efe6d4] py-24 md:py-32">
-      <Painted name="leafy" color="#7f9a5b" className="absolute -right-6 top-10 w-32 opacity-80 md:w-44" />
-      <Painted name="sprig" color="#c8643b" className="absolute -left-4 bottom-10 w-20 -rotate-12 opacity-80 md:w-28" />
+      <Drift className="absolute -right-6 top-10 w-32 opacity-80 md:w-44" rotate={50} y={-80}>
+        <Painted name="leafy" color="#7f9a5b" className="w-full" />
+      </Drift>
+      <Drift className="absolute -left-4 bottom-10 w-20 opacity-80 md:w-28" rotate={-60} y={60}>
+        <Painted name="sprig" color="#c8643b" className="w-full -rotate-12" />
+      </Drift>
 
       <div className="relative mx-auto max-w-[1200px] px-5 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-forest/25 pb-8">

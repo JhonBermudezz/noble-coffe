@@ -1,10 +1,80 @@
 import { motion, useReducedMotion } from "motion/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { INSTAGRAM_DM, img } from "../data";
+import { Drift } from "./Drift";
 import { Painted } from "./Painted";
 import type { PaintedName } from "./painted-data";
 
 const ease = [0.16, 1, 0.3, 1] as const;
+const TRAIL = ["#f28bb0", "#f2c230", "#3fb8a6", "#ee5a24", "#b9a6e8"];
+
+// Con el mouse se pinta sobre el inicio: la pintura se va secando (desvaneciendo) sola.
+function BrushTrail({ area }: { area: React.RefObject<HTMLElement | null> }) {
+  const canvas = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const c = canvas.current;
+    const el = area.current;
+    if (!c || !el) return;
+    if (!window.matchMedia("(pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = c.getContext("2d")!;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const resize = () => {
+      c.width = el.clientWidth * dpr;
+      c.height = el.clientHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(el);
+
+    let last: { x: number; y: number } | null = null;
+    let hue = 0;
+    let raf = 0;
+    let visible = true;
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      const p = { x: e.clientX - r.left, y: e.clientY - r.top };
+      if (last) {
+        const d = Math.hypot(p.x - last.x, p.y - last.y);
+        ctx.globalCompositeOperation = "source-over";
+        ctx.strokeStyle = TRAIL[Math.floor(hue) % TRAIL.length];
+        ctx.lineWidth = Math.max(8, 26 - d * 0.35);
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(last.x, last.y);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+        hue += 0.04;
+      }
+      last = p;
+    };
+    const leave = () => (last = null);
+    const fade = () => {
+      if (visible) {
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fillStyle = "rgba(0,0,0,0.035)";
+        ctx.fillRect(0, 0, c.width, c.height);
+      }
+      raf = requestAnimationFrame(fade);
+    };
+    const io = new IntersectionObserver(([entry]) => (visible = entry.isIntersecting));
+    io.observe(el);
+    raf = requestAnimationFrame(fade);
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerleave", leave);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      io.disconnect();
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerleave", leave);
+    };
+  }, [area]);
+
+  return <canvas ref={canvas} aria-hidden className="pointer-events-none absolute inset-0 h-full w-full opacity-70" />;
+}
+
 
 // Formas del cuadro del local que se pueden arrastrar por el inicio.
 function Sticker({
@@ -45,6 +115,7 @@ export function Hero() {
 
   return (
     <section ref={ref} id="top" className="relative overflow-hidden">
+      <BrushTrail area={ref} />
       <div className="relative mx-auto grid min-h-[100dvh] max-w-[1300px] grid-cols-1 items-center gap-12 px-5 pb-16 pt-28 md:px-8 lg:grid-cols-12">
         <div className="relative z-10 lg:col-span-6">
           <motion.h1
@@ -85,8 +156,12 @@ export function Hero() {
 
         {/* Foto principal con formas del cuadro asomándose por detrás, como en sus piezas de Instagram. */}
         <div className="relative mx-auto w-full max-w-[520px] lg:col-span-6 lg:ml-auto lg:mr-0">
-          <Painted name="monstera" color="#1f4a32" className="absolute -left-16 -top-10 w-48 -rotate-12 md:-left-24 md:w-64" />
-          <Painted name="flower" color="#f28bb0" className="absolute -bottom-10 -right-8 w-40 rotate-12 md:w-52" />
+          <Drift className="absolute -left-16 -top-10 w-48 md:-left-24 md:w-64" rotate={-30} y={-60}>
+            <Painted name="monstera" color="#1f4a32" className="w-full -rotate-12" />
+          </Drift>
+          <Drift className="absolute -bottom-10 -right-8 w-40 md:w-52" rotate={120} y={40}>
+            <Painted name="flower" color="#f28bb0" className="w-full" />
+          </Drift>
           <motion.div
             initial={{ clipPath: "inset(100% 0 0 0 round 240px 240px 28px 28px)" }}
             animate={{ clipPath: "inset(0% 0 0 0 round 240px 240px 28px 28px)" }}
