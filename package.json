@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build -c creaviva/vite.config.ts",
     "preview": "vite preview",
     "images": "python3 scripts/optimize_images.py",
     "dev:creaviva": "vite -c creaviva/vite.config.ts",
@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource/caprasimo": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/yellowtail": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "animejs": "^4.5.0",
     "gsap": "^3.15.0",
