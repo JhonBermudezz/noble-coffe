@@ -1,5 +1,6 @@
 import { MotionConfig } from "motion/react";
 import { useCallback, useState } from "react";
+import { BrushCursor } from "./components/BrushCursor";
 import { Footer } from "./components/Footer";
 import { Gallery } from "./components/Gallery";
 import { Hero } from "./components/Hero";
@@ -23,6 +24,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       {intro && <Preloader onDone={done} />}
       <Splash />
+      <BrushCursor />
       <Nav />
       <main>
         {ready ? <Hero /> : <div className="min-h-[100dvh]" />}

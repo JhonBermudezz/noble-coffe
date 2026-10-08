@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-
-const COLORS = ["#f28bb0", "#f2c230", "#3fb8a6", "#ee5a24", "#b9a6e8"];
+import { currentColor } from "../paint";
 type Drop = { id: number; x: number; y: number; color: string; dots: { dx: number; dy: number; r: number }[] };
 
 // Chispas de pintura en cada clic: una gota central y gotitas que saltan.
@@ -17,7 +16,7 @@ export function Splash() {
         id: id++,
         x: e.clientX,
         y: e.clientY,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        color: currentColor(),
         dots: Array.from({ length: 9 }, () => {
           const a = Math.random() * Math.PI * 2;
           const d = 26 + Math.random() * 30;
