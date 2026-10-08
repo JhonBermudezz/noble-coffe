@@ -49,7 +49,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
             <motion.div initial={{ scale: 0.6, rotate: -10 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 140, damping: 12 }}>
               <Bear fills={fills} className="w-40 md:w-52" />
             </motion.div>
-            <p className="font-hand text-4xl text-cream">pintando…</p>
+            <p className="font-display text-3xl italic text-cream">pintando…</p>
           </div>
         </motion.div>
       )}

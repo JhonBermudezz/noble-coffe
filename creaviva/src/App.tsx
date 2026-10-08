@@ -11,7 +11,6 @@ import { PaintBear } from "./components/PaintBear";
 import { PlanQuiz } from "./components/PlanQuiz";
 import { Preloader, shouldShowIntro } from "./components/Preloader";
 import { Ribbon } from "./components/Ribbon";
-import { Splash } from "./components/Splash";
 import { Visit } from "./components/Visit";
 
 export default function App() {
@@ -22,7 +21,6 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       {intro && <Preloader onDone={done} />}
-      <Splash />
       <Nav />
       <main>
         {ready ? <Hero /> : <div className="min-h-[100dvh]" />}

@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState, type MouseEvent } from "react";
 import { INSTAGRAM_DM } from "../data";
 import { Bear, PARTS, type Fills, type Part } from "./Bear";
-import { Squiggle } from "./shapes";
+import { Painted } from "./Painted";
 
 const PALETTE = [
   { name: "Rosa chicle", hex: "#f28bb0" },
@@ -43,14 +43,13 @@ export function PaintBear() {
 
   return (
     <section id="pinta" className="relative overflow-hidden bg-forest py-24 text-cream md:py-32">
-      <div aria-hidden className="blob absolute -right-32 -top-20 h-96 w-96 bg-teal/25" />
-      <div aria-hidden className="blob-slow absolute -bottom-24 -left-24 h-96 w-96 bg-bubble/20" />
+      <Painted name="monstera" color="#2a5c40" className="absolute -right-16 -top-10 w-72 rotate-12 md:w-96" />
 
       <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-4 md:px-8 lg:grid-cols-2">
         <div>
-          <p className="font-hand text-4xl text-mustard">prueba aquí</p>
-          <h2 className="mt-1 font-display text-[clamp(3rem,7vw,6rem)] leading-[0.9]">Pinta tu cerámica</h2>
-          <Squiggle className="mt-4 h-5 w-48" color="#f2c230" />
+          <h2 className="font-display text-[clamp(3.2rem,7.5vw,6.5rem)] leading-[0.92] [&_em]:text-mustard">
+            Tu momento <em>creativo</em>
+          </h2>
           <p className="mt-6 max-w-sm text-lg text-cream/80">Elige un color y toca el osito. En el local es igual, pero con pinceles de verdad.</p>
 
           <div className="mt-8 flex flex-wrap gap-3" role="radiogroup" aria-label="Colores">
@@ -64,7 +63,7 @@ export function PaintBear() {
                 whileHover={{ scale: 1.15, rotate: -8 }}
                 whileTap={{ scale: 0.9 }}
                 animate={{ y: color === p.hex ? -8 : 0 }}
-                className="blob h-12 w-12 ring-cream"
+                className="h-11 w-11 rounded-full"
                 style={{ background: p.hex, boxShadow: color === p.hex ? "0 0 0 4px #f6efe2" : "none" }}
               />
             ))}
@@ -84,8 +83,7 @@ export function PaintBear() {
         </div>
 
         <div className="relative mx-auto w-full max-w-[460px]">
-          <div aria-hidden className="blob absolute inset-[8%] bg-cream/10" />
-          <motion.div whileHover={{ rotate: -2 }} className="relative">
+                    <motion.div whileHover={{ rotate: -2 }} className="relative">
             <Bear fills={fills} onPaint={paint} className="w-full drop-shadow-[0_20px_30px_rgb(0_0_0/0.3)]">
               <AnimatePresence>
                 {splats.map((s) => (
@@ -119,7 +117,7 @@ export function PaintBear() {
                 animate={{ scale: 1, rotate: -8 }}
                 exit={{ scale: 0 }}
                 transition={{ type: "spring", stiffness: 200, damping: 12 }}
-                className="absolute -top-4 right-0 grid h-32 w-32 place-items-center rounded-full bg-tangerine p-3 text-center font-display text-lg leading-tight text-cream shadow-xl md:h-36 md:w-36"
+                className="absolute -top-4 right-0 grid h-32 w-32 place-items-center rounded-full bg-tangerine p-3 text-center font-display text-xl leading-tight text-cream shadow-xl md:h-36 md:w-36"
               >
                 ¡Obra maestra! Ven a pintarla
               </motion.a>

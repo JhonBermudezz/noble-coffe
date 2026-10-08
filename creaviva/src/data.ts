@@ -20,13 +20,13 @@ export type Kit = {
 };
 
 export const kits: Kit[] = [
-  { id: "escencia", name: "Escencia", price: 39900, includes: ["Cerámica pequeña", "Café"], photo: "osito", color: "bg-bubble", text: "text-forest" },
+  { id: "escencia", name: "Escencia", price: 39900, includes: ["Cerámica pequeña", "Café"], photo: "osito", color: "bg-forest", text: "text-cream" },
   { id: "inspira", name: "Inspira", price: 49900, includes: ["Cerámica pequeña", "Panadería", "Café"], photo: "cerdito", color: "bg-mustard", text: "text-forest" },
-  { id: "florece", name: "Florece", price: 59900, includes: ["Cerámica mediana", "Bebida", "Panadería"], photo: "unicornio", color: "bg-lilac", text: "text-forest" },
-  { id: "crea", name: "Crea", price: 79900, includes: ["Cerámica grande", "Bebida", "Panadería"], photo: "pareja", color: "bg-tangerine", text: "text-cream" },
-  { id: "enciende", name: "Enciende", price: 69900, includes: ["Taller de velas", "Bebida", "Panadería"], photo: "velas", color: "bg-teal", text: "text-forest" },
+  { id: "florece", name: "Florece", price: 59900, includes: ["Cerámica mediana", "Bebida", "Panadería"], photo: "unicornio", color: "bg-terra", text: "text-cream" },
+  { id: "crea", name: "Crea", price: 79900, includes: ["Cerámica grande", "Bebida", "Panadería"], photo: "pareja", color: "bg-forest", text: "text-cream" },
+  { id: "enciende", name: "Enciende", price: 69900, includes: ["Taller de velas", "Bebida", "Panadería"], photo: "velas", color: "bg-mustard", text: "text-forest" },
   { id: "expresa", name: "Expresa", price: 75900, includes: ["Tote bag para pintar o estampar", "Café", "Panadería"], photo: "totebag", color: "bg-terra", text: "text-cream" },
-  { id: "siembra", name: "Siembra", price: 89900, includes: ["Pinta tu matera y siembra", "Bebida", "Panadería"], photo: "siembra", color: "bg-moss", text: "text-cream" },
+  { id: "siembra", name: "Siembra", price: 89900, includes: ["Pinta tu matera y siembra", "Bebida", "Panadería"], photo: "siembra", color: "bg-forest", text: "text-cream" },
 ];
 
 export type MenuLine = { name: string; price: number; flavors?: string[] };
@@ -53,7 +53,7 @@ export const menu: MenuTab[] = [
   },
   {
     id: "calientes",
-    title: "Calientes",
+    title: "Bebidas calientes",
     color: "bg-terra",
     ink: "text-cream",
     photo: "taller",
@@ -71,7 +71,7 @@ export const menu: MenuTab[] = [
   },
   {
     id: "frias",
-    title: "Frías",
+    title: "Bebidas frías",
     color: "bg-teal",
     ink: "text-forest",
     photo: "soda",
