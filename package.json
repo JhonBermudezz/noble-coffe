@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "images": "python3 scripts/optimize_images.py"
+    "images": "python3 scripts/optimize_images.py",
+    "dev:creaviva": "vite -c creaviva/vite.config.ts",
+    "build:creaviva": "tsc -b && vite build -c creaviva/vite.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
