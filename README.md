@@ -31,10 +31,11 @@ npm run build    # genera el sitio estático en dist/
 Cada café es un sitio independiente dentro de este repo. Noble vive en la raíz y los demás en su carpeta:
 
 - `creaviva/` → `dist/creaviva/` (`npm run dev:creaviva`, `npm run build:creaviva`).
+- `geekveria/` → `dist/geekveria/` (`npm run dev:geekveria`, `npm run build:geekveria`). Menú, tienda y dirección en `geekveria/src/data.ts`; los precios de la tienda van en `null` hasta tenerlos. El carrito es solo de interfaz (no cobra ni envía pedidos).
 - Comparten el sistema de diseño (`src/index.css`, `src/components`, `src/lib`) y tienen su propio contenido y fotos.
 - Para añadir otro café: copia `creaviva/`, cambia el nombre de la carpeta y súmalo al workflow de despliegue.
 - Las rutas son relativas: renombrar el repositorio a `serie` no requiere cambiar código.
-- `npm run build` compila Noble y después Creaviva (Noble vacía `dist/`), así el workflow publica los dos.
+- `npm run build` compila Noble y después Creaviva y Geekveria (Noble vacía `dist/`), así el workflow publica los dos.
 - Creaviva: contenido en `creaviva/src/data.ts` (menú, kits, Instagram). Las fotos de `creaviva/public/img/` son recortes temporales de capturas de Instagram; se reemplazan por las originales con el mismo nombre.
 
 ## Publicar
