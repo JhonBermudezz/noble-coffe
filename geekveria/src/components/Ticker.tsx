@@ -19,7 +19,7 @@ function Row({ className, reverse }: { className: string; reverse?: boolean }) {
 // Dos cintas cruzadas como en la referencia: cómic puro.
 export function Ticker() {
   return (
-    <div aria-label="Club, cómic, manga, café, camisetas, pines y coleccionables" className="relative z-10 -my-6 h-40 md:h-52">
+    <div aria-label="Club, cómic, manga, café, camisetas, pines y coleccionables" className="relative z-10 -my-6 h-40 overflow-x-clip md:h-52">
       <Row className="absolute left-[-5%] top-4 w-[110%] -rotate-3 bg-yellow text-ink" />
       <Row reverse className="absolute left-[-5%] top-16 w-[110%] rotate-2 bg-brown text-paper md:top-24" />
     </div>

@@ -36,6 +36,9 @@
 }
 
 html {
+  /* Fondo café: si la página se estira más allá del final (rebote en celular o trackpad), se ve igual que el footer y no gris. */
+  background: #2a1610;
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
