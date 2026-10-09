@@ -3,6 +3,7 @@ import { useState, type MouseEvent } from "react";
 import { INSTAGRAM_DM } from "../data";
 import { Bear, PARTS, type Fills, type Part } from "./Bear";
 import { Drift } from "./Drift";
+import { Edge } from "./Edge";
 import { Painted } from "./Painted";
 
 const PALETTE = [
@@ -43,10 +44,14 @@ export function PaintBear() {
   };
 
   return (
-    <section id="pinta" className="relative overflow-hidden bg-forest py-24 text-cream md:py-32">
-      <Drift className="absolute -right-16 -top-10 w-72 md:w-96" rotate={40} y={-80}>
-        <Painted name="monstera" color="#2a5c40" className="w-full rotate-12" />
-      </Drift>
+    <section id="pinta" className="relative bg-forest py-24 text-cream md:py-32">
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <Drift className="absolute -right-16 -top-10 w-72 md:w-96" rotate={40} y={-80}>
+          <Painted name="monstera" color="#2a5c40" className="w-full rotate-12" />
+        </Drift>
+      </div>
+      <Edge color="#1f4a32" variant="brush" />
+      <Edge color="#1f4a32" variant="drips" />
 
       <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-4 md:px-8 lg:grid-cols-2">
         <div>

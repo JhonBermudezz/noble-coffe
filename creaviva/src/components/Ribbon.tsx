@@ -20,7 +20,7 @@ function Row({ className, reverse }: { className: string; reverse?: boolean }) {
 // Dos cintas cruzadas de colores con lo que se puede hacer en Creaviva.
 export function Ribbon() {
   return (
-    <div aria-label="Cerámica, velas, tote bags, plantas, café y cumpleaños" className="relative h-44 overflow-hidden md:h-56">
+    <div aria-label="Cerámica, velas, tote bags, plantas, café y cumpleaños" className="relative z-20 h-44 overflow-hidden md:h-56">
       <Row className="absolute left-[-5%] top-8 w-[110%] -rotate-2 bg-forest text-cream" />
       <Row reverse className="absolute left-[-5%] top-20 w-[110%] rotate-1 bg-mustard text-forest md:top-28" />
     </div>
