@@ -22,7 +22,7 @@ export function Nav() {
         <nav className="mx-auto flex h-16 max-w-[1300px] items-center justify-between gap-4 px-4 md:h-20 md:px-8">
           <a href="#top" aria-label="Geekveria, inicio" className="shrink-0">
             <motion.img
-              src={img("logo")}
+              src={img("logo-dark")}
               alt=""
               whileHover={{ scale: 1.06, rotate: -2 }}
               className="h-11 w-auto md:h-14"

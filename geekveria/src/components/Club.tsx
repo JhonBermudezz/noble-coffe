@@ -6,7 +6,7 @@ const PANELS = [
   { photo: "club-art", title: "Café de verdad", text: "Latte, chai, mochis y cheesecake de Baileys.", sfx: "¡SLURP!", color: "#f2c40f", cls: "md:col-span-7 md:row-span-2", aspect: "aspect-[4/5] md:aspect-auto md:h-full", rot: -1.5 },
   { photo: "marvel", title: "Cómic + manga", text: "Distribuidor autorizado Panini Comics y Panini Manga.", sfx: "¡ZAS!", color: "#e63946", cls: "md:col-span-5", aspect: "aspect-[4/3]", rot: 2 },
   { photo: "t-sailor", title: "La tienda", text: "Camisetas, pines, Funkos y coleccionables.", sfx: "¡WOW!", color: "#2ec4f1", cls: "md:col-span-5", aspect: "aspect-[4/3]", rot: -2 },
-  { photo: "duenos", title: "Los del club", text: "Los que te reciben en la Calle 100.", sfx: "¡HOLA!", color: "#ff5fa2", cls: "md:col-span-12", aspect: "aspect-[16/9] md:aspect-[21/8]", rot: 0.8 },
+  { photo: "squad", title: "El escuadrón del club", text: "Manga, café y la mejor banda geek de la Calle 100.", sfx: "¡HOLA!", color: "#ff5fa2", cls: "md:col-span-12", aspect: "aspect-[16/9] md:aspect-[21/8]", rot: 0.8 },
 ];
 
 // Una página de cómic: cada viñeta cae de golpe al entrar en pantalla.
