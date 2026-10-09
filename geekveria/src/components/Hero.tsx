@@ -60,7 +60,7 @@ function PowerUp() {
         <motion.img
           src={img("mascot-coffee")}
           alt=""
-          className="pointer-events-none absolute -top-20 left-6 w-32 max-w-none md:-top-24 md:w-36"
+          className="pointer-events-none absolute -top-14 left-16 w-24 max-w-none md:-top-16 md:w-28"
           animate={holding ? { x: [0, -3, 3, -2, 2, 0], rotate: [-2, 2, -2] } : { y: [0, -6, 0] }}
           transition={holding ? { duration: 0.25, repeat: Infinity } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
         />
