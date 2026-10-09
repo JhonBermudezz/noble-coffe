@@ -136,7 +136,7 @@ export function Hero() {
           >
             Club · Cómic + Manga · Café
           </motion.p>
-          <h1 className="mt-6 font-display uppercase leading-[0.86]">
+          <h1 className="pointer-events-none relative mt-6 font-display uppercase leading-[0.86]">
             {[
               { t: "Tu nación", c: "text-paper", s: "text-[clamp(3.6rem,10vw,8.5rem)]" },
               { t: "geek", c: "text-yellow", s: "text-[clamp(5.5rem,17vw,14rem)]" },
@@ -153,7 +153,7 @@ export function Hero() {
               </motion.span>
             ))}
           </h1>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7, ease }} className="mt-8 flex flex-wrap gap-3">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7, ease }} className="relative z-10 mt-8 flex flex-wrap gap-3">
             <a href="#menu" className="panel bg-red px-7 py-4 font-display text-xl uppercase tracking-wide text-white transition-transform hover:-translate-y-1 active:translate-x-1 active:translate-y-1 active:shadow-none">
               Ver el menú
             </a>
