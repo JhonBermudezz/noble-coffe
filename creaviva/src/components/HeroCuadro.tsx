@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { INSTAGRAM_DM, img } from "../data";
+import { BrushTrail } from "./BrushTrail";
 import { CUADRO, CUADRO_BG } from "./cuadro-data";
 import { Painted } from "./Painted";
 import { useDepth, usePointer } from "./parallax";
@@ -42,6 +43,7 @@ export function HeroCuadro() {
           <Layer key={l.id} d={l.d} color={l.color} i={i} px={x} py={y} />
         ))}
       </svg>
+      <BrushTrail area={ref} />
 
       <motion.div style={reduce ? undefined : { x: mx, y: my }} className="absolute right-[4%] top-[8%] w-[34%] max-w-[300px] md:w-[22%]">
         <motion.div initial={{ rotate: -40, scale: 0 }} animate={{ rotate: -8, scale: 1 }} transition={{ type: "spring", stiffness: 90, damping: 12, delay: 0.6 }}>
