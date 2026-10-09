@@ -56,7 +56,7 @@ export function Kits() {
 
   if (!pinned) {
     return (
-      <section id="kits" className="py-24">
+      <section id="kits" className="pb-24 pt-32">
         {header}
         <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-8 pt-4 [scrollbar-width:none]">
           {kits.map((k) => (
@@ -69,7 +69,7 @@ export function Kits() {
 
   return (
     <section id="kits" ref={ref} style={{ height: `calc(100vh + ${distance}px)` }} className="relative">
-      <div className="sticky top-0 flex h-[100dvh] flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 flex h-[100dvh] flex-col justify-center overflow-hidden pt-20">
         {header}
         <motion.div ref={track} style={{ x }} className="flex w-max gap-8 px-8 py-4">
           {kits.map((k) => (
