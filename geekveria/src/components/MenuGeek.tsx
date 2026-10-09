@@ -44,7 +44,6 @@ export function MenuGeek() {
                   <span>Geekveria</span>
                 </div>
                 <img src={img(s.icon)} alt="" className="relative mx-auto mt-2 h-24 w-24 object-contain drop-shadow-[3px_3px_0_#2a1610] md:h-28 md:w-28" />
-                <p className="absolute right-2 top-10 rotate-12 font-sfx text-2xl text-white [-webkit-text-stroke:2px_#2a1610] [paint-order:stroke_fill] md:text-3xl">{s.sfx}</p>
                 <p className="absolute inset-x-3 bottom-3 font-display text-2xl uppercase leading-[0.95] text-ink md:text-3xl">{s.title}</p>
               </motion.button>
             );
@@ -60,7 +59,7 @@ export function MenuGeek() {
             exit={{ opacity: 0, rotateY: 60, x: 40 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformPerspective: 1200, transformOrigin: "left center" }}
-            className="panel mt-6 grid gap-0 bg-paper text-ink md:grid-cols-[1fr_280px]"
+            className="panel mt-6 grid gap-0 bg-paper text-ink md:grid-cols-[1fr_340px]"
           >
             <ul className="divide-y-2 divide-dashed divide-ink/25 p-5 md:p-8">
               {section.items.map((it) => (
