@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { ADDITIONS, cop, img, menu } from "../data";
+import { Burst } from "./Burst";
 import { useCart } from "./cart";
 
 // El menú como tomos de manga en abanico: se elige un tomo y abajo aparece su página.
@@ -83,8 +84,21 @@ export function MenuGeek() {
             </ul>
             <aside className="relative hidden border-l-4 border-ink md:block" style={{ background: section.color }}>
               <div className="halftone absolute inset-0" aria-hidden />
-              {/* Se queda fija al costado mientras se baja por la lista. */}
-              <img src={img("ww")} alt="" className="sticky top-28 mx-auto max-h-[calc(100vh-8rem)] w-auto py-6" />
+              {/* La mascota sostiene el producto del tomo elegido y se queda fija mientras se baja por la lista. */}
+              <div className="sticky top-28 px-4 py-8">
+                <motion.img
+                  key={section.id}
+                  src={img(`hold-${section.id}`)}
+                  alt=""
+                  className="mx-auto max-h-[calc(100vh-10rem)] w-full object-contain drop-shadow-[5px_5px_0_#2a1610]"
+                  initial={{ scale: 0.4, rotate: -14, y: 40, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, y: 0, opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 14, delay: 0.15 }}
+                />
+                <div className="absolute right-3 top-4 rotate-12">
+                  <Burst text={section.sfx} color="#fff6e6" className="h-20 w-20" size="text-lg" />
+                </div>
+              </div>
             </aside>
           </motion.div>
         </AnimatePresence>
