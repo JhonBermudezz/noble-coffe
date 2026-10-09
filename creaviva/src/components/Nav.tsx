@@ -120,7 +120,7 @@ export function Nav() {
               onClick={() => setOpen(true)}
               aria-label="Abrir menú"
               aria-expanded={open}
-              className={`grid h-12 w-12 place-items-center rounded-full md:hidden ${solid ? "bg-forest text-cream" : "bg-cream text-forest"}`}
+              className={`grid h-12 w-12 place-items-center rounded-full md:hidden bg-forest text-cream`}
             >
               <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden>
                 <path d="M1 2c6-1 13 1 20 0M1 8c7 1 13-1 20 0M1 14c6-1 13 1 20 0" stroke="currentColor" strokeWidth="2.6" fill="none" strokeLinecap="round" />
