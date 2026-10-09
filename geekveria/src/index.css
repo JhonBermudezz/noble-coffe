@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "@fontsource/anton/400.css";
+@import "@fontsource/bangers/400.css";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/800.css";
+
+@source "./";
+
+/*
+  Geekveria: café, club de cómic y manga, y tienda. Estética de página de cómic:
+  tinta café oscuro del logo, amarillo del logo, rayos crema y salmón de sus piezas,
+  tramas de puntos y onomatopeyas.
+*/
+:root {
+  --ink: #2a1610;
+  --paper: #fff6e6;
+  color-scheme: light;
+}
+
+@theme {
+  --color-ink: #2a1610;
+  --color-brown: #3a1d14;
+  --color-paper: #fff6e6;
+  --color-cream: #fde6c8;
+  --color-salmon: #e8a090;
+  --color-yellow: #f2c40f;
+  --color-red: #e63946;
+  --color-blue: #2ec4f1;
+  --color-pink: #ff5fa2;
+  --color-violet: #7b2ff7;
+  --color-mint: #06d6a0;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", "Impact", sans-serif;
+  --font-sfx: "Bangers", "Anton", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-yellow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Viñeta de cómic: borde de tinta grueso y sombra sólida desplazada. */
+  .panel {
+    border: 4px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .panel-sm {
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  /* Texto con contorno de tinta, como los títulos de cómic. */
+  .ink-text {
+    -webkit-text-stroke: 3px var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 5px 5px 0 var(--ink);
+  }
+  .ink-text-sm {
+    -webkit-text-stroke: 2px var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 var(--ink);
+  }
+  /* Trama de puntos (halftone). */
+  .halftone {
+    background-image: radial-gradient(rgb(42 22 16 / 0.22) 1.6px, transparent 1.8px);
+    background-size: 12px 12px;
+  }
+  .halftone-light {
+    background-image: radial-gradient(rgb(255 255 255 / 0.28) 1.6px, transparent 1.8px);
+    background-size: 12px 12px;
+  }
+  /* Rayos de sol como en las piezas de la marca. */
+  .rays {
+    background: repeating-conic-gradient(from 0deg at 50% 50%, #fde6c8 0deg 9deg, #e8a090 9deg 18deg);
+  }
+  /* Líneas de velocidad de manga. */
+  .speed {
+    background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 4deg, rgb(42 22 16 / 0.85) 4deg 4.6deg, transparent 4.6deg 9deg);
+    -webkit-mask: radial-gradient(circle at 50% 50%, transparent 32%, #000 70%);
+    mask: radial-gradient(circle at 50% 50%, transparent 32%, #000 70%);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin-slow { animation: spin 60s linear infinite; }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 22s linear infinite; }
+
+/* Sacudida de pantalla para los golpes. */
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(-9px, 5px) rotate(-0.4deg); }
+  30% { transform: translate(8px, -6px) rotate(0.4deg); }
+  45% { transform: translate(-6px, -3px); }
+  60% { transform: translate(5px, 4px); }
+  80% { transform: translate(-2px, 1px); }
+}
+.shake { animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow, .marquee-track, .shake { animation: none; }
+}

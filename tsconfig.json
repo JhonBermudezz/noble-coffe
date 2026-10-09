@@ -13,5 +13,5 @@
     "isolatedModules": true,
     "types": ["vite/client"]
   },
-  "include": ["src", "creaviva/src", "vite.config.ts", "creaviva/vite.config.ts"]
+  "include": ["src", "creaviva/src", "vite.config.ts", "creaviva/vite.config.ts", "geekveria/src", "geekveria/vite.config.ts"]
 }
