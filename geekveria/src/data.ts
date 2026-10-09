@@ -10,7 +10,7 @@ export const img = (name: string) => `${ROOT}img/${name}.webp`;
 export const cop = (n: number) => "$" + n.toLocaleString("es-CO");
 
 export type MenuItem = { id: string; name: string; price: number; note?: string };
-export type MenuSection = { id: string; title: string; sfx: string; color: string; items: MenuItem[] };
+export type MenuSection = { id: string; title: string; sfx: string; color: string; icon: string; items: MenuItem[] };
 
 const slug = (s: string) =>
   s
@@ -25,6 +25,7 @@ const items = (prefix: string, list: [string, number, string?][]): MenuItem[] =>
 export const menu: MenuSection[] = [
   {
     id: "calientes",
+    icon: "icon-hot",
     title: "Bebidas calientes",
     sfx: "¡FSSH!",
     color: "#e63946",
@@ -46,6 +47,7 @@ export const menu: MenuSection[] = [
   },
   {
     id: "frias",
+    icon: "icon-cold",
     title: "Bebidas frías",
     sfx: "¡GLUP!",
     color: "#2ec4f1",
@@ -70,6 +72,7 @@ export const menu: MenuSection[] = [
   },
   {
     id: "panaderia",
+    icon: "icon-bakery",
     title: "Panadería",
     sfx: "¡ÑAM!",
     color: "#f2c40f",
@@ -84,6 +87,7 @@ export const menu: MenuSection[] = [
   },
   {
     id: "pasteleria",
+    icon: "icon-pastry",
     title: "Pastelería",
     sfx: "¡YUM!",
     color: "#ff5fa2",
@@ -101,6 +105,7 @@ export const menu: MenuSection[] = [
   },
   {
     id: "sandwiches",
+    icon: "icon-sandwich",
     title: "Sándwiches",
     sfx: "¡CRUNCH!",
     color: "#7b2ff7",
@@ -112,6 +117,7 @@ export const menu: MenuSection[] = [
   },
   {
     id: "postres",
+    icon: "icon-mochi",
     title: "Postres fríos",
     sfx: "¡BRRR!",
     color: "#06d6a0",

@@ -10,7 +10,7 @@ export function MenuGeek() {
   const section = menu.find((s) => s.id === active)!;
 
   return (
-    <section id="menu" className="relative overflow-hidden border-y-4 border-ink bg-brown py-24 text-paper md:py-32">
+    <section id="menu" className="relative overflow-x-clip border-y-4 border-ink bg-brown py-24 text-paper md:py-32">
       <div className="halftone-light absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-[1300px] px-4 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
@@ -21,7 +21,7 @@ export function MenuGeek() {
         </div>
 
         {/* Tomos en abanico */}
-        <div className="mt-12 flex snap-x gap-3 overflow-x-auto pb-6 pt-6 [scrollbar-width:none] md:justify-center md:gap-0 md:overflow-visible">
+        <div className="mt-12 flex snap-x gap-4 overflow-x-auto px-2 pb-6 pt-8 [scrollbar-width:none] lg:justify-center lg:gap-3 lg:overflow-visible">
           {menu.map((s, i) => {
             const on = s.id === active;
             const mid = (menu.length - 1) / 2;
@@ -30,10 +30,10 @@ export function MenuGeek() {
                 key={s.id}
                 onClick={() => setActive(s.id)}
                 aria-pressed={on}
-                className="panel relative h-56 w-40 shrink-0 snap-center overflow-hidden text-left md:-mx-2 md:h-72 md:w-48"
+                className="panel relative h-56 w-40 shrink-0 snap-center overflow-hidden text-left md:h-64 md:w-44 xl:h-72 xl:w-48"
                 style={{ background: s.color, zIndex: on ? 10 : 5 - Math.abs(i - mid) }}
-                animate={{ y: on ? -26 : 0, rotate: on ? 0 : (i - mid) * 4, scale: on ? 1.06 : 1 }}
-                whileHover={{ y: -18, rotate: 0 }}
+                animate={{ y: on ? -26 : 0, rotate: on ? 0 : (i - mid) * 3, scale: on ? 1.06 : 1 }}
+                whileHover={{ y: -22, rotate: 0, scale: 1.08, zIndex: 30 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="speed absolute -inset-[40%] opacity-20" aria-hidden />
@@ -42,7 +42,8 @@ export function MenuGeek() {
                   <span>Vol. {String(i + 1).padStart(2, "0")}</span>
                   <span>Geekveria</span>
                 </div>
-                <p className="relative mt-6 px-3 text-center font-sfx text-4xl text-white [-webkit-text-stroke:2px_#2a1610] [paint-order:stroke_fill] md:text-5xl">{s.sfx}</p>
+                <img src={img(s.icon)} alt="" className="relative mx-auto mt-2 h-24 w-24 object-contain drop-shadow-[3px_3px_0_#2a1610] md:h-28 md:w-28" />
+                <p className="absolute right-2 top-10 rotate-12 font-sfx text-2xl text-white [-webkit-text-stroke:2px_#2a1610] [paint-order:stroke_fill] md:text-3xl">{s.sfx}</p>
                 <p className="absolute inset-x-3 bottom-3 font-display text-2xl uppercase leading-[0.95] text-ink md:text-3xl">{s.title}</p>
               </motion.button>
             );
@@ -80,9 +81,10 @@ export function MenuGeek() {
                 </li>
               ))}
             </ul>
-            <aside className="relative hidden overflow-hidden border-l-4 border-ink md:block" style={{ background: section.color }}>
+            <aside className="relative hidden border-l-4 border-ink md:block" style={{ background: section.color }}>
               <div className="halftone absolute inset-0" aria-hidden />
-              <img src={img("ww")} alt="" className="relative mx-auto h-full max-h-[560px] object-contain object-bottom" />
+              {/* Se queda fija al costado mientras se baja por la lista. */}
+              <img src={img("ww")} alt="" className="sticky top-28 mx-auto max-h-[calc(100vh-8rem)] w-auto py-6" />
             </aside>
           </motion.div>
         </AnimatePresence>

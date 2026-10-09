@@ -4,6 +4,7 @@ import { Brands } from "./components/Brands";
 import { CartDrawer, CartProvider } from "./components/cart";
 import { Club } from "./components/Club";
 import { Combo } from "./components/Combo";
+import { Community } from "./components/Community";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { MenuGeek } from "./components/MenuGeek";
@@ -36,6 +37,7 @@ export default function App() {
             <Combo />
             <Shop />
             <Brands />
+            <Community />
             <Visit />
           </main>
           <Footer />

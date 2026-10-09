@@ -7,6 +7,7 @@ const links = [
   { href: "#club", label: "El club" },
   { href: "#menu", label: "Menú geek" },
   { href: "#tienda", label: "Tienda" },
+  { href: "#club-geek", label: "Únete" },
   { href: "#visita", label: "Visítanos" },
 ];
 

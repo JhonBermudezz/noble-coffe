@@ -18,7 +18,7 @@ function PowerUp() {
   const level = useRef(0);
   useAnimationFrame((_, delta) => {
     if (!holding) return;
-    level.current = Math.min(1, level.current + delta / 1100);
+    level.current = Math.min(1, level.current + delta / 900);
     setCharge(level.current);
     if (level.current >= 1) release();
   });
@@ -36,36 +36,34 @@ function PowerUp() {
     }, 900);
   };
 
+  // Un toque basta: la carga sigue sola hasta llenarse y dispara.
   const start = () => {
+    if (holding) return;
     level.current = 0;
     setCharge(0);
     setHolding(true);
   };
-  const end = () => {
-    if (!holding) return;
-    if (level.current > 0.15) release();
-    else {
-      setHolding(false);
-      level.current = 0;
-      setCharge(0);
-    }
-  };
-
   return (
-    <div className="mt-8 flex items-center gap-4">
+    <div className="relative mt-8 flex items-center gap-4">
       <button
         onPointerDown={start}
-        onPointerUp={end}
-        onPointerLeave={end}
-        onKeyDown={(e) => (e.key === " " || e.key === "Enter") && !holding && start()}
-        onKeyUp={end}
+        onClick={start}
+        onContextMenu={(e) => e.preventDefault()}
         className="panel relative select-none overflow-hidden bg-blue px-6 py-4 font-display text-xl uppercase tracking-wide text-ink transition-transform active:translate-x-1 active:translate-y-1 active:shadow-none md:text-2xl"
         style={{ touchAction: "none" }}
       >
         <span className="absolute inset-y-0 left-0 bg-white/60" style={{ width: `${charge * 100}%` }} />
-        <span className="relative">{holding ? "¡Cargando…!" : "Mantén para cargar poder"}</span>
+        <span className="relative">{holding ? "¡Cargando poder…!" : "Carga tu poder"}</span>
       </button>
       <div className="relative h-14 w-14 shrink-0">
+        {/* La mascota espera junto al botón y tiembla mientras se carga el poder. */}
+        <motion.img
+          src={img("mascot-coffee")}
+          alt=""
+          className="pointer-events-none absolute -top-14 left-16 w-24 max-w-none md:-top-16 md:w-28"
+          animate={holding ? { x: [0, -3, 3, -2, 2, 0], rotate: [-2, 2, -2] } : { y: [0, -6, 0] }}
+          transition={holding ? { duration: 0.25, repeat: Infinity } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        />
         <motion.div
           ref={orb}
           className="absolute inset-0 rounded-full"
@@ -83,18 +81,28 @@ function PowerUp() {
         {blast > 0 && (
           <motion.div key={blast} className="pointer-events-none fixed inset-0 z-[110]" initial={{ opacity: 1 }} animate={{ opacity: 0 }} transition={{ delay: 0.75, duration: 0.3 }}>
             <motion.div className="speed absolute -inset-[30%]" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0.7] }} transition={{ duration: 0.3 }} />
+            {/* La mascota entra disparando desde la izquierda y el rayo sigue desde sus manos. */}
+            <motion.img
+              src={img("mascot-blast")}
+              alt=""
+              className="absolute left-0 w-[min(46vw,360px)]"
+              style={{ top: origin.y - Math.min(window.innerWidth * 0.46, 360) * 0.42 }}
+              initial={{ x: "-110%", rotate: -8 }}
+              animate={{ x: "-8%", rotate: 0 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            />
             <motion.div
-              className="absolute left-0 rounded-r-full"
+              className="absolute rounded-r-full"
               style={{
                 top: origin.y - 45,
-                left: origin.x,
+                left: Math.min(window.innerWidth * 0.46, 360) * 0.86,
                 height: 90,
                 background: "linear-gradient(180deg, #2ec4f1 0%, #c9f6ff 30%, #fff 50%, #c9f6ff 70%, #2ec4f1 100%)",
-                boxShadow: "0 0 40px 18px rgb(46 196 241 / 0.7), 0 0 0 4px #2a1610",
+                boxShadow: "0 0 40px 18px rgb(46 196 241 / 0.7)",
               }}
               initial={{ width: 0 }}
-              animate={{ width: `calc(100vw - ${origin.x}px + 40px)` }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
+              animate={{ width: "100vw" }}
+              transition={{ delay: 0.12, duration: 0.35, ease: "easeOut" }}
             />
             <motion.div
               className="absolute right-[4%]"
