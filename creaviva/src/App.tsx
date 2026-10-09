@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { BrushCursor } from "./components/BrushCursor";
 import { Footer } from "./components/Footer";
 import { Gallery } from "./components/Gallery";
-import { HeroCuadro } from "./components/HeroCuadro";
+import { HeroCollage } from "./components/HeroCollage";
 import { Kits } from "./components/Kits";
 import { Menu } from "./components/Menu";
 import { Mural } from "./components/Mural";
@@ -27,7 +27,7 @@ export default function App() {
       <BrushCursor />
       <Nav />
       <main>
-        {ready ? <HeroCuadro /> : <div className="min-h-[100dvh]" />}
+        {ready ? <HeroCollage /> : <div className="min-h-[100dvh]" />}
         <Ribbon />
         <PaintBear />
         <Kits />
