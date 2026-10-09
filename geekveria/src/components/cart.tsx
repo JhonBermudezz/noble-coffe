@@ -144,7 +144,7 @@ export function CartDrawer() {
               ) : lines.length === 0 ? (
                 <div className="grid h-full place-items-center text-center">
                   <div>
-                    <Burst text="¿VACÍO?" color="#2ec4f1" className="mx-auto h-36 w-36" size="text-3xl" />
+                    <img src={img("mascot-cart")} alt="" className="mx-auto h-56 w-auto" />
                     <p className="mt-6 text-ink/70">Agrega algo del menú o de la tienda.</p>
                   </div>
                 </div>

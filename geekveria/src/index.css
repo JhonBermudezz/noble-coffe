@@ -53,6 +53,14 @@ body {
   color: var(--ink);
 }
 
+/* Todo lo que se puede tocar muestra la manito. */
+a,
+button,
+[role="button"],
+[role="tab"] {
+  cursor: pointer;
+}
+
 :focus-visible {
   outline: 3px solid var(--ink);
   outline-offset: 3px;
