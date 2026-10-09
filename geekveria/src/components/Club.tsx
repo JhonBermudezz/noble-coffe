@@ -6,7 +6,7 @@ const PANELS = [
   { photo: "club-art", title: "Café de verdad", text: "Latte, chai, mochis y cheesecake de Baileys.", sfx: "¡SLURP!", color: "#f2c40f", cls: "md:col-span-7 md:row-span-2", aspect: "aspect-[4/5] md:aspect-auto md:h-full", rot: -1.5 },
   { photo: "marvel", title: "Cómic + manga", text: "Distribuidor autorizado Panini Comics y Panini Manga.", sfx: "¡ZAS!", color: "#e63946", cls: "md:col-span-5", aspect: "aspect-[4/3]", rot: 2 },
   { photo: "t-sailor", title: "La tienda", text: "Camisetas, pines, Funkos y coleccionables.", sfx: "¡WOW!", color: "#2ec4f1", cls: "md:col-span-5", aspect: "aspect-[4/3]", rot: -2 },
-  { photo: "squad", title: "El escuadrón del club", text: "Manga, café y la mejor banda geek de la Calle 100.", sfx: "¡HOLA!", color: "#ff5fa2", cls: "md:col-span-12", aspect: "aspect-[16/9] md:aspect-[21/8]", rot: 0.8 },
+  { photo: "squad", title: "El escuadrón del club", text: "Manga, café y la mejor banda geek de la Calle 100.", sfx: "¡HOLA!", color: "#ff5fa2", cls: "md:col-span-12", aspect: "aspect-[16/9] md:aspect-[21/8]", rot: 0.8, cap: "bottom-4 left-4" },
 ];
 
 // Una página de cómic: cada viñeta cae de golpe al entrar en pantalla.
@@ -31,7 +31,7 @@ export function Club() {
             <div className={`${p.aspect} overflow-hidden`}>
               <img src={img(p.photo)} alt={p.title} loading="lazy" className="h-full w-full object-cover" />
             </div>
-            <figcaption className="absolute left-4 top-4 max-w-[80%] border-[3px] border-ink bg-yellow px-3 py-2 shadow-[4px_4px_0_#2a1610]">
+            <figcaption className={`absolute max-w-[80%] ${"cap" in p ? p.cap : "left-4 top-4"} border-[3px] border-ink bg-yellow px-3 py-2 shadow-[4px_4px_0_#2a1610]`}>
               <p className="font-display text-2xl uppercase leading-none md:text-3xl">{p.title}</p>
               <p className="mt-1 text-sm leading-snug">{p.text}</p>
             </figcaption>
