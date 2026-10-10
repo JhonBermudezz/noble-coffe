@@ -6,3 +6,6 @@ dist
 
 # impeccable engine binary (launcher downloads it on demand)
 .claude/skills/impeccable/scripts/bin/
+
+# Claude Code per-machine settings
+.claude/settings.local.json
