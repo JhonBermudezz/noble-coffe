@@ -38,7 +38,7 @@ export function Castle() {
 
   const header = (
     <div className="mx-auto mb-12 max-w-[1300px] px-5 md:px-10">
-      <p className="title text-sm tracking-[0.5em] text-blood">—Recorrido—</p>
+      <p className="label">—Recorrido—</p>
       <h2 className="title mt-3 text-[clamp(3.4rem,9vw,7.5rem)] text-bone">El castillo</h2>
     </div>
   );

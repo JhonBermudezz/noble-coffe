@@ -83,7 +83,7 @@ export function Hero() {
         ))}
 
       <motion.div style={reduce ? undefined : { y: titleY }} className="relative z-10 mx-auto flex h-full max-w-[1300px] flex-col justify-center px-5 md:px-10">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 1 }} className="title text-sm tracking-[0.5em] text-blood md:text-base">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 1 }} className="label">
           Un café dentro de un castillo · Bogotá
         </motion.p>
         <motion.h1
@@ -97,10 +97,10 @@ export function Hero() {
           Purgatorio
         </motion.h1>
         <motion.p
-          initial={{ clipPath: "inset(0 100% 0 0)" }}
-          animate={{ clipPath: "inset(0 0% 0 0)" }}
+          initial={{ clipPath: "inset(-30% 100% -30% -5%)" }}
+          animate={{ clipPath: "inset(-30% -10% -30% -5%)" }}
           transition={{ duration: 2, delay: 1.4, ease: "easeInOut" }}
-          className="mt-2 font-script text-[clamp(2.4rem,5vw,4.2rem)] text-bone"
+          className="mt-3 font-script text-[clamp(2.2rem,6vw,4.6rem)] leading-tight text-bone [text-shadow:0_2px_12px_rgb(0_0_0/0.9)]"
         >
           Arte, café y algo más
         </motion.p>

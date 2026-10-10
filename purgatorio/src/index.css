@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import "@fontsource-variable/antonio/index.css";
+@import "@fontsource/im-fell-english/400.css";
+@import "@fontsource/im-fell-english/400-italic.css";
+@import "@fontsource/im-fell-english-sc/400.css";
 @import "@fontsource/pinyon-script/400.css";
 @import "@fontsource-variable/cormorant-garamond/wght.css";
 @import "@fontsource-variable/cormorant-garamond/wght-italic.css";
@@ -26,7 +28,8 @@
   --color-neon: #ff2d6f;
   --color-violet: #7b3cff;
   --color-candle: #ffb347;
-  --font-display: "Antonio Variable", "Oswald", sans-serif;
+  --font-display: "IM Fell English SC", "IM Fell English", Georgia, serif;
+  --font-fell: "IM Fell English", Georgia, serif;
   --font-script: "Pinyon Script", cursive;
   --font-serif: "Cormorant Garamond Variable", Georgia, serif;
 }
@@ -65,12 +68,19 @@ button,
 
 @layer components {
   /* Títulos altos y condensados, como "—COCTELES—" en su menú. */
+  /* Títulos con tipografía de imprenta antigua (como un grimorio o un afiche del siglo XVII). */
   .title {
     font-family: var(--font-display);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+  }
+  /* Etiquetas pequeñas: cursiva de imprenta, sin espaciado exagerado. */
+  .label {
+    font-family: var(--font-fell);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--color-blood);
   }
   /* Neón rojo que parpadea de vez en cuando. */
   .neon {

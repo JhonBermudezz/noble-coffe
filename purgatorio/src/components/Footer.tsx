@@ -1,21 +1,29 @@
-import { img } from "../data";
+import { motion } from "motion/react";
+import { ADDRESS, CITY, PLACE, img } from "../data";
 
-// Almenas del castillo contra la luna y "Memento mori" en neón.
+// Cierre: foto nocturna de las almenas con la luna y el neón "Memento mori" (ilustración generada a partir del castillo real).
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden pt-40">
-      <div aria-hidden className="absolute left-1/2 top-6 h-40 w-40 -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,#fff7e6,#e9dcc0_55%,#b9a98a)] shadow-[0_0_120px_40px_rgb(239_230_216/0.15)]" />
-      <svg aria-hidden viewBox="0 0 1440 160" preserveAspectRatio="none" className="relative block h-28 w-full md:h-40">
-        <path
-          fill="#050304"
-          d="M0 160V70h40V40h30v30h40V40h30v30h40V40h30v30h60V20h20V0h40v20h20v50h40V40h30v30h40V40h30v30h120V30h30V10h40v20h30v40h120V40h30v30h40V40h30v30h60V20h20V0h40v20h20v50h40V40h30v30h40V40h30v30h40V40h30v120z"
-        />
-      </svg>
-      <div className="bg-[#050304] px-5 pb-10 pt-6 text-center">
-        <p className="title neon text-[clamp(2.6rem,8vw,5.5rem)]">Memento mori</p>
-        <img src={img("logo")} alt="El Purgatorio" className="mx-auto mt-8 h-24 w-24 rounded-full" />
-        <p className="mt-4 font-script text-3xl text-bone/80">Arte, café y algo más</p>
-        <p className="mt-8 text-sm text-bone/40">© {new Date().getFullYear()} El Purgatorio · Castillo del Mono Osorio · Bogotá</p>
+    <footer className="relative overflow-hidden bg-night">
+      <div className="relative">
+      <motion.picture
+        initial={{ scale: 1.08 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+        className="block"
+      >
+        <source media="(max-width: 767px)" srcSet={img("footer-tall")} />
+        <img src={img("footer-wide")} alt="Las almenas del castillo bajo la luna llena con el neón Memento mori" loading="lazy" className="block w-full" />
+      </motion.picture>
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-night to-transparent" />
+      </div>
+      <div className="relative -mt-16 px-5 pb-10 text-center md:-mt-28 md:pb-12">
+        <img src={img("logo")} alt="El Purgatorio" className="mx-auto h-16 w-16 rounded-full md:h-20 md:w-20" />
+        <p className="mt-3 font-script text-4xl text-bone md:text-5xl">Arte, café y algo más</p>
+        <p className="mt-4 text-sm text-bone/50">
+          © {new Date().getFullYear()} El Purgatorio · {PLACE} · {ADDRESS} · {CITY}
+        </p>
       </div>
     </footer>
   );

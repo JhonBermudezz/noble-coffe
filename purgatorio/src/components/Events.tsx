@@ -5,7 +5,7 @@ export function Events() {
   return (
     <section className="relative py-28 md:py-36">
       <div className="mx-auto max-w-[1300px] px-5 md:px-10">
-        <p className="title text-sm tracking-[0.5em] text-blood">—Lo que pasa adentro—</p>
+        <p className="label">—Lo que pasa adentro—</p>
         <h2 className="title mt-3 text-[clamp(3rem,8vw,6.5rem)] text-bone">Más que un café</h2>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {events.map((e, i) => (
