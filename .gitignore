@@ -3,3 +3,6 @@ dist
 *.log
 .DS_Store
 *.tsbuildinfo
+
+# impeccable engine binary (launcher downloads it on demand)
+.claude/skills/impeccable/scripts/bin/
