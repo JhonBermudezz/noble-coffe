@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { VILLANOS, img } from "../data";
+import { INSTAGRAM_DM, VILLANOS, img } from "../data";
 import { play } from "../sound";
 
 function useCountdown(target: Date) {
@@ -29,7 +29,7 @@ export function Villanos() {
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgb(123_60_255/0.25),transparent_60%),radial-gradient(ellipse_at_20%_80%,rgb(200_16_46/0.25),transparent_55%)]" />
       <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 px-5 md:px-10 lg:grid-cols-[1.1fr_1fr]">
         <div>
-          <p className="title text-sm tracking-[0.5em] text-violet">31 de octubre · 6 a 9 p. m.</p>
+          <p className="label !text-violet">31 de octubre · 6 a 9 p. m.</p>
           <h2 className="title mt-3 text-[clamp(3.4rem,9vw,7.5rem)] text-bone">
             Noche de
             <br />
@@ -45,12 +45,19 @@ export function Villanos() {
                 <motion.p key={p.value} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="title text-4xl text-bone md:text-5xl">
                   {String(p.value).padStart(2, "0")}
                 </motion.p>
-                <p className="title mt-1 text-xs tracking-[0.3em] text-bone/50">{p.label}</p>
+                <p className="title mt-1 text-xs  text-bone/50">{p.label}</p>
               </div>
             ))}
           </div>
           {done && <p className="title mt-4 text-2xl text-blood">¡Esta noche es la noche!</p>}
-          <p className="mt-8 font-script text-4xl text-bone/90">Reserva por DM</p>
+          <a
+            href={INSTAGRAM_DM}
+            target="_blank"
+            rel="noreferrer"
+            className="title mt-8 inline-block border border-blood bg-blood px-8 py-4 text-2xl text-bone shadow-[0_0_30px_rgb(200_16_46/0.45)] transition-transform hover:scale-105"
+          >
+            Reservar por DM
+          </a>
         </div>
 
         <motion.figure

@@ -21,16 +21,16 @@ function Card({ sin, flipped, chosen, hidden, onFlip }: { sin: Sin; flipped: boo
       >
         {/* Cara: la carta ilustrada del pecado */}
         <div className={`absolute inset-0 overflow-hidden border border-[#8a6a2e] bg-night [backface-visibility:hidden] ${chosen ? "shadow-[0_0_50px_rgb(200_16_46/0.8)]" : "shadow-[0_20px_40px_-15px_rgb(0_0_0/0.9)]"}`}>
-          <img src={img(hidden ? "tarot-back" : `tarot-${sin.id}`)} alt={`Carta de tarot de la ${sin.name}`} loading="lazy" className="h-full w-full object-cover" />
+          <img src={img(hidden ? "tarot-back" : `tarot-${sin.id}`)} alt={`Carta de tarot de la ${sin.name}`} loading="lazy" className="h-full w-full object-cover object-[50%_100%]" />
         </div>
         {/* Reverso: el coctel */}
-        <div className="absolute inset-0 flex flex-col justify-between border border-blood bg-[linear-gradient(160deg,#1a0a0d,#0b0809_60%)] p-4 text-left [backface-visibility:hidden] [transform:rotateY(180deg)] md:p-5">
+        <div className="absolute inset-0 flex flex-col justify-between border border-blood bg-[linear-gradient(160deg,#1a0a0d,#0b0809_60%)] overflow-hidden p-3 text-left [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-4 md:p-5">
           <div>
-            <p className="title text-xs tracking-[0.4em] text-blood">{sin.numeral} · {sin.spirit}</p>
-            <h3 className="title mt-2 text-4xl text-bone md:text-5xl">{sin.name}</h3>
+            <p className="font-[family-name:var(--font-fell)] text-sm italic text-blood">{sin.numeral} · {sin.spirit}</p>
+            <h3 className="title mt-1 text-3xl text-bone sm:text-4xl md:text-5xl">{sin.name}</h3>
           </div>
-          <p className="text-sm leading-snug text-bone/85 md:text-base">{sin.desc}</p>
-          <p className="title text-3xl text-blood">{cop(sin.price)}</p>
+          <p className="text-[13px] leading-[1.3] text-bone/85 sm:text-sm md:text-base">{sin.desc}</p>
+          <p className="title text-2xl text-blood sm:text-3xl">{cop(sin.price)}</p>
         </div>
       </motion.div>
     </motion.button>
@@ -74,7 +74,7 @@ export function Sins() {
       <div className="mx-auto max-w-[1300px] px-5 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <p className="title text-sm tracking-[0.5em] text-blood">—Cocteles—</p>
+            <p className="label">—Cocteles—</p>
             <h2 className="title mt-3 text-[clamp(3.4rem,9vw,7.5rem)] text-bone">Los 7 pecados</h2>
             <p className="mt-4 max-w-md text-xl text-bone/75">Toca una carta para ver su coctel. O deja que el castillo elija por ti.</p>
           </div>

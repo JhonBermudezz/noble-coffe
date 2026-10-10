@@ -1,8 +1,11 @@
 // Contenido de El Purgatorio, tomado de su menú "Arte, café y algo más" y de sus piezas de Instagram.
 
 export const PLACE = "Castillo del Mono Osorio";
+export const ADDRESS = "Calle 74 # 2-86";
 export const CITY = "Bogotá";
-export const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("El Purgatorio, Castillo del Mono Osorio, Bogotá");
+// Falta el usuario de Instagram del local: mientras tanto el botón busca "El Purgatorio Bogotá" en Instagram.
+export const INSTAGRAM_DM = "https://www.instagram.com/explore/search/keyword/?q=" + encodeURIComponent("el purgatorio bogota");
+export const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("El Purgatorio, Castillo del Mono Osorio, Calle 74 # 2-86, Bogotá");
 
 export const ROOT = document.documentElement.dataset.root ?? "./";
 export const img = (name: string) => `${ROOT}img/${name}.webp`;

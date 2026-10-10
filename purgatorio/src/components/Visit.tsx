@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { CITY, MAPS_URL, PLACE, img } from "../data";
+import { ADDRESS, CITY, MAPS_URL, PLACE, img } from "../data";
 
 // Pergamino sellado con lacre: el sello se parte en dos al aparecer.
 export function Visit() {
@@ -21,7 +21,7 @@ export function Visit() {
         >
           <p className="font-script text-5xl">Se te espera en</p>
           <h2 className="title mt-4 text-[clamp(2.6rem,7vw,4.6rem)] text-wine">{PLACE}</h2>
-          <p className="mt-2 text-2xl italic">{CITY}</p>
+          <p className="mt-2 text-2xl italic">{ADDRESS} · {CITY}</p>
           <p className="mx-auto mt-6 max-w-md text-lg">Cruza el puente, sube a la torre y pide tu pecado. El castillo abre sus puertas para el café, el arte y algo más.</p>
           <a
             href={MAPS_URL}
