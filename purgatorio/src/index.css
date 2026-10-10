@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "@fontsource-variable/antonio/index.css";
+@import "@fontsource/pinyon-script/400.css";
+@import "@fontsource-variable/cormorant-garamond/wght.css";
+@import "@fontsource-variable/cormorant-garamond/wght-italic.css";
+
+@source "./";
+
+/*
+  El Purgatorio: un castillo de arte oscuro. Negro, el rojo sangre del logo y del menú,
+  hueso para leer y los neones magenta y violeta de sus fotos de noche.
+*/
+:root {
+  --night: #0b0809;
+  --bone: #efe6d8;
+  --blood: #c8102e;
+  color-scheme: dark;
+}
+
+@theme {
+  --color-night: #0b0809;
+  --color-stone: #2a2626;
+  --color-blood: #c8102e;
+  --color-wine: #7a0f1f;
+  --color-bone: #efe6d8;
+  --color-neon: #ff2d6f;
+  --color-violet: #7b3cff;
+  --color-candle: #ffb347;
+  --font-display: "Antonio Variable", "Oswald", sans-serif;
+  --font-script: "Pinyon Script", cursive;
+  --font-serif: "Cormorant Garamond Variable", Georgia, serif;
+}
+
+html {
+  background: var(--night);
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--night);
+  color: var(--bone);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--blood);
+  color: var(--bone);
+}
+
+a,
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blood);
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Títulos altos y condensados, como "—COCTELES—" en su menú. */
+  .title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.9;
+  }
+  /* Neón rojo que parpadea de vez en cuando. */
+  .neon {
+    color: #ffe9ee;
+    text-shadow: 0 0 4px #fff, 0 0 12px var(--color-neon), 0 0 28px var(--color-blood), 0 0 60px var(--color-blood);
+    animation: flicker 6s infinite;
+  }
+  /* Grano de película sobre todo el sitio. */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* Marco dorado de cuadro antiguo. */
+  .frame {
+    border: 10px solid transparent;
+    border-image: linear-gradient(135deg, #8a6a2e, #f2d78a 30%, #7a5a22 55%, #e8c66a 80%, #6b4c1c) 1;
+    box-shadow: 0 0 0 2px #2b1d0b, 0 30px 60px -20px rgb(0 0 0 / 0.9);
+  }
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.35; }
+}
+
+/* Niebla que se mueve despacio. */
+@keyframes fog {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.fog {
+  animation: fog 60s linear infinite;
+}
+
+@keyframes bat {
+  0% { transform: translate(-10vw, 0) scale(0.7); }
+  50% { transform: translate(50vw, -6vh) scale(1); }
+  100% { transform: translate(110vw, 4vh) scale(0.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon, .fog { animation: none; }
+}
