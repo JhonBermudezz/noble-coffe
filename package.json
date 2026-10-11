@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && vite build -c creaviva/vite.config.ts && vite build -c geekveria/vite.config.ts && vite build -c purgatorio/vite.config.ts",
+    "build": "tsc -b && vite build && vite build -c creaviva/vite.config.ts && vite build -c geekveria/vite.config.ts && vite build -c purgatorio/vite.config.ts && vite build -c casita-de-dios/vite.config.ts",
     "preview": "vite preview",
     "images": "python3 scripts/optimize_images.py",
     "dev:creaviva": "vite -c creaviva/vite.config.ts",
@@ -13,13 +13,16 @@
     "dev:geekveria": "vite -c geekveria/vite.config.ts",
     "build:geekveria": "tsc -b && vite build -c geekveria/vite.config.ts",
     "dev:purgatorio": "vite -c purgatorio/vite.config.ts",
-    "build:purgatorio": "tsc -b && vite build -c purgatorio/vite.config.ts"
+    "build:purgatorio": "tsc -b && vite build -c purgatorio/vite.config.ts",
+    "dev:casita": "vite -c casita-de-dios/vite.config.ts",
+    "build:casita": "tsc -b && vite build -c casita-de-dios/vite.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/antonio": "^5.3.0",
     "@fontsource-variable/archivo": "^5.3.0",
     "@fontsource-variable/cormorant-garamond": "^5.3.0",
     "@fontsource-variable/hanken-grotesk": "^5.3.0",
+    "@fontsource-variable/nunito": "^5.3.0",
     "@fontsource/anton": "^5.3.0",
     "@fontsource/bangers": "^5.3.0",
     "@fontsource/caprasimo": "^5.3.0",
@@ -27,8 +30,10 @@
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/im-fell-english": "^5.3.0",
     "@fontsource/im-fell-english-sc": "^5.3.0",
+    "@fontsource/lilita-one": "^5.3.0",
     "@fontsource/pinyon-script": "^5.3.0",
     "@fontsource/poppins": "^5.3.0",
+    "@fontsource/yellowtail": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "animejs": "^4.5.0",
     "gsap": "^3.15.0",

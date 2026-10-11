@@ -36,7 +36,8 @@ Cada café es un sitio independiente dentro de este repo. Noble vive en la raíz
 - Para añadir otro café: copia `creaviva/`, cambia el nombre de la carpeta y súmalo al workflow de despliegue.
 - Las rutas son relativas: renombrar el repositorio a `serie` no requiere cambiar código.
 - `purgatorio/` → `dist/purgatorio/` (`npm run dev:purgatorio`, `npm run build:purgatorio`). Menú, 7 pecados y Noche de Villanos en `purgatorio/src/data.ts`; sonidos en `purgatorio/public/snd/` (apagados hasta que la persona los activa).
-- `npm run build` compila Noble y después Creaviva, Geekveria y El Purgatorio (Noble vacía `dist/`), así el workflow los publica todos.
+- `casita-de-dios/` → `dist/casita-de-dios/` (`npm run dev:casita`, `npm run build:casita`). Carta, galletas, frases y datos de contacto en `casita-de-dios/src/data.ts`; lo que falta va en `null` y se muestra "Por confirmar". Los archivos que sube el dueño quedan en `casita-de-dios/fotos/` y no se publican.
+- `npm run build` compila Noble y después Creaviva, Geekveria, El Purgatorio y La Casita de Dios (Noble vacía `dist/`), así el workflow los publica todos.
 - Creaviva: contenido en `creaviva/src/data.ts` (menú, kits, Instagram). Las fotos de `creaviva/public/img/` son recortes temporales de capturas de Instagram; se reemplazan por las originales con el mismo nombre.
 
 ## Publicar
