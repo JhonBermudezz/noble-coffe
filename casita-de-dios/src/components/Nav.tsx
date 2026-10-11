@@ -20,7 +20,10 @@ export function Nav() {
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
-    const next = y > prev && y > 240;
+    // Dentro de la carta el header no vuelve a bajar: ahí manda el índice fijo de secciones.
+    const carta = document.getElementById("carta")?.getBoundingClientRect();
+    const inCarta = !!carta && carta.top < 120 && carta.bottom > 200;
+    const next = inCarta || (y > prev && y > 240);
     if (next !== hidden) setHidden(next);
   });
 
