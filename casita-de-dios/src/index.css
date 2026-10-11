@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@import "@fontsource/lilita-one/400.css";
+@import "@fontsource/yellowtail/400.css";
+@import "@fontsource-variable/nunito/wght.css";
+
+@source "./";
+
+/*
+  La Casita de Dios: una casita de muñecas rosada.
+  Crema del fondo del logo, cacao de sus letras, el menta brillante de su contorno,
+  el rosa de la taza y los corazones, el malva de los pósters de la carta,
+  el chicle de las paredes y el amarillo vainilla de la pared de las frases.
+*/
+:root {
+  --crema: #f6eedc;
+  --cacao: #622a1c;
+  --menta: #a6f2e3;
+  color-scheme: light;
+}
+
+@theme {
+  --color-crema: #f6eedc;
+  --color-papel: #ede5ce;
+  --color-cacao: #622a1c;
+  --color-cacao-2: #3a1812;
+  --color-menta: #a6f2e3;
+  --color-menta-2: #4fbfa8;
+  --color-rosa: #d98aa6;
+  --color-rosa-2: #b8456f;
+  --color-chicle: #f6b5d1;
+  --color-malva: #d9c0d2;
+  --color-vainilla: #f8e68f;
+  /* Letras redondas y gruesas como el cartel, y la cursiva de pincel de sus pósters. */
+  --font-display: "Lilita One", ui-rounded, system-ui, sans-serif;
+  --font-script: "Yellowtail", cursive;
+  --font-sans: "Nunito Variable", ui-rounded, system-ui, sans-serif;
+}
+
+html {
+  /* Igual que el footer: si la página rebota al final no aparece otro color. */
+  background: var(--color-cacao-2);
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--crema);
+  color: var(--cacao);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-chicle);
+  color: var(--cacao);
+}
+
+a,
+button,
+[role="button"],
+[role="tab"] {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-menta-2);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+  }
+  .script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    line-height: 1;
+  }
+  /* Contorno blanco y halo menta, como las letras del logo. */
+  .sticker {
+    text-shadow:
+      0 0 0 #fff,
+      2px 2px 0 #fff, -2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff,
+      0 3px 0 #fff, 0 -3px 0 #fff, 3px 0 0 #fff, -3px 0 0 #fff,
+      0 0 14px var(--color-menta), 0 0 24px var(--color-menta);
+  }
+  /* Marco del logo: borde blanco y halo menta. */
+  .halo {
+    box-shadow: 0 0 0 5px #fff, 0 0 0 11px var(--color-menta), 0 18px 40px -18px rgb(98 42 28 / 0.45);
+  }
+  /* Silueta de casita (techo a dos aguas) para recortar fotos. */
+  .casa {
+    clip-path: polygon(50% 0, 100% 26%, 100% 100%, 0 100%, 0 26%);
+  }
+  /* Arco de ventana. */
+  .arco {
+    border-radius: 999px 999px 28px 28px;
+  }
+  /* Borde festoneado del toldo de la fachada (abajo). */
+  .feston {
+    -webkit-mask: radial-gradient(circle at 50% 0, #000 70%, transparent 71%) 0 100% / 34px 17px repeat-x, linear-gradient(#000, #000) 0 0 / 100% calc(100% - 16px) no-repeat;
+    mask: radial-gradient(circle at 50% 0, #000 70%, transparent 71%) 0 100% / 34px 17px repeat-x, linear-gradient(#000, #000) 0 0 / 100% calc(100% - 16px) no-repeat;
+  }
+  /* Rayas del toldo: rosa y menta. */
+  .toldo {
+    background: repeating-linear-gradient(90deg, var(--color-chicle) 0 34px, #fff 34px 40px, var(--color-menta) 40px 74px, #fff 74px 80px);
+  }
+  /* Estampado de mesa: puntos suaves como sus manteles. */
+  .mantel {
+    background-image: radial-gradient(rgb(246 181 209 / 0.55) 2px, transparent 2.5px), radial-gradient(rgb(166 242 227 / 0.5) 2px, transparent 2.5px);
+    background-size: 28px 28px;
+    background-position: 0 0, 14px 14px;
+  }
+  /* Grano de papel. */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Guirnaldas que se mecen colgadas del techo. */
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50% { transform: rotate(1.2deg); }
+}
+.sway {
+  transform-origin: 50% 0;
+  animation: sway 7s ease-in-out infinite;
+}
+
+/* Neón que titila al encender. */
+@keyframes neon {
+  0%, 19%, 21%, 23%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 55% { opacity: 0.45; }
+}
+.neon-glow {
+  filter: drop-shadow(0 0 6px var(--color-menta)) drop-shadow(0 0 18px var(--color-menta)) drop-shadow(0 0 42px rgb(166 242 227 / 0.8));
+  animation: neon 5s infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 34s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sway, .neon-glow, .marquee-track { animation: none; }
+}
