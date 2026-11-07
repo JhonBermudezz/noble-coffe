@@ -1,0 +1,171 @@
+@import "tailwindcss";
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
+@import "@fontsource/damion/400.css";
+@import "@fontsource-variable/figtree/wght.css";
+
+@source "./";
+
+/*
+  Panal de Amor: el taller donde se arma cada frasquito de miel.
+  Miel dorada y café del logo ("Panal"), fucsia de "Amor" y de los lazos,
+  crema de la etiqueta, y el lila y el verde hoja de las flores que rodean el logo.
+*/
+:root {
+  --crema: #fdf8f0;
+  --cafe: #4a2a14;
+  --miel: #e9a426;
+  color-scheme: light;
+}
+
+@theme {
+  --color-crema: #fdf8f0;
+  --color-crema-2: #f7ecd9;
+  --color-cafe: #4a2a14;
+  --color-cafe-2: #2b1709;
+  --color-miel: #e9a426;
+  --color-miel-2: #b9740a;
+  --color-ambar: #f7c64a;
+  --color-polen: #fbe7b8;
+  --color-fucsia: #d63c7c;
+  --color-fucsia-2: #a82a5e;
+  --color-rosa: #fbe3ec;
+  --color-lila: #a98bd6;
+  --color-hoja: #7fa35c;
+  /* Serif suave de etiqueta artesanal, la cursiva de "Amor" y una sans amable para leer. */
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-script: "Damion", cursive;
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background: var(--color-cafe-2);
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--crema);
+  color: var(--cafe);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-ambar);
+  color: var(--cafe);
+}
+
+a,
+button,
+[role="button"],
+[role="tab"],
+label {
+  cursor: pointer;
+}
+
+/* Con la cucharita activa se oculta la flecha del sistema. */
+html.dipper,
+html.dipper * {
+  cursor: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-fucsia);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 96;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .display-i {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 96;
+  }
+  .script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    line-height: 1;
+  }
+  /* Celda de panal (hexágono con punta arriba). */
+  .hex {
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  }
+  /* Hexágono acostado. */
+  .hex-flat {
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  }
+  /* Trama de panal de fondo. */
+  .panal {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zM28 64l28 16v32M28 64L0 80v32' fill='none' stroke='%23e9a426' stroke-opacity='.22' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-size: 56px 97px;
+  }
+  .panal-light {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zM28 64l28 16v32M28 64L0 80v32' fill='none' stroke='%23fbe7b8' stroke-opacity='.18' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-size: 56px 97px;
+  }
+  /* Papel kraft de las tarjetitas. */
+  .kraft {
+    background-color: #e7cfa6;
+    background-image: radial-gradient(rgb(120 80 40 / 0.12) 1px, transparent 1.2px), radial-gradient(rgb(255 255 255 / 0.18) 1px, transparent 1.2px);
+    background-size: 7px 7px, 11px 11px;
+    background-position: 0 0, 3px 5px;
+  }
+  /* Brillo de miel en los botones. */
+  .btn-miel {
+    background: linear-gradient(180deg, #f7c64a 0%, #e9a426 55%, #c9850e 100%);
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.45), inset 0 -3px 0 rgb(120 70 0 / 0.25), 0 10px 24px -10px rgb(185 116 10 / 0.8);
+  }
+  .btn-fucsia {
+    background: linear-gradient(180deg, #e2558f 0%, #d63c7c 60%, #b52c66 100%);
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.35), inset 0 -3px 0 rgb(90 10 40 / 0.25), 0 10px 24px -10px rgb(214 60 124 / 0.8);
+  }
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* La abejita aletea. */
+@keyframes flap {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.82); }
+}
+.flap { animation: flap 0.22s ease-in-out infinite; transform-origin: 50% 60%; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.bob { animation: bob 4s ease-in-out infinite; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.sway { transform-origin: 50% 0; animation: sway 4.5s ease-in-out infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin 26s linear infinite; }
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 40s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flap, .bob, .sway, .spin-slow, .marquee-track { animation: none; }
+}
