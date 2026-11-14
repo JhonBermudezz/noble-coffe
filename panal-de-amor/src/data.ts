@@ -5,11 +5,12 @@
 export const ROOT = new URL(document.documentElement.dataset.root ?? "./", location.href).pathname;
 
 // Páginas del sitio: cada una tiene su propio index.html (para abrirla directo) y se navega sin recargar.
-export type PageId = "inicio" | "souvenirs" | "personaliza" | "nosotros" | "como-pedir" | "ideas" | "contacto";
+export type PageId = "inicio" | "souvenirs" | "personaliza" | "galeria" | "nosotros" | "como-pedir" | "ideas" | "contacto";
 export const pages: { id: PageId; label: string; title: string }[] = [
   { id: "inicio", label: "Inicio", title: "Panal de Amor | Frasquitos de miel personalizados" },
   { id: "souvenirs", label: "Souvenirs", title: "Souvenirs | Panal de Amor" },
   { id: "personaliza", label: "Personaliza", title: "Diseña tu etiqueta | Panal de Amor" },
+  { id: "galeria", label: "Galería", title: "Galería | Panal de Amor" },
   { id: "nosotros", label: "Nosotros", title: "Nosotros | Panal de Amor" },
   { id: "como-pedir", label: "Cómo pedir", title: "Cómo pedir | Panal de Amor" },
   { id: "ideas", label: "Ideas", title: "Ideas dulces | Panal de Amor" },
@@ -157,6 +158,29 @@ export const gallery = [
   { photo: "etiqueta-gracias-bee", caption: "Etiqueta baby shower" },
   { photo: "frasquito-quince", caption: "Quince con coronita" },
   { photo: "frasquito-bautizo", caption: "Bautizo celeste" },
+];
+
+// Galería completa (página Galería), por categoría.
+export type Shot = { photo: string; caption: string; cat: "Frasquitos" | "Eventos" | "Colmena" | "Taller" };
+export const galleryAll: Shot[] = [
+  { photo: "frasquito-mano-flores", caption: "Recordatorio de boda con gypsophila", cat: "Eventos" },
+  { photo: "frasquito-lazo-fucsia", caption: "Clásico lazo fucsia", cat: "Frasquitos" },
+  { photo: "abejas-flores", caption: "Abejas entre flores", cat: "Colmena" },
+  { photo: "frasquito-yute-gracias", caption: "Rústico con yute y corazón", cat: "Frasquitos" },
+  { photo: "frasquitos-encaje-boda", caption: "Mesa rústica con encaje", cat: "Eventos" },
+  { photo: "manos-frasquitos", caption: "Hechos a mano, uno por uno", cat: "Taller" },
+  { photo: "frasquito-quince", caption: "Quince años con coronita", cat: "Eventos" },
+  { photo: "colmena-poster", caption: "Visita a la colmena", cat: "Colmena" },
+  { photo: "frasquito-bautizo", caption: "Bautizo celeste", cat: "Eventos" },
+  { photo: "miel-panales", caption: "Miel natural y panales", cat: "Colmena" },
+  { photo: "frasquito-comunion", caption: "Primera comunión perla", cat: "Eventos" },
+  { photo: "calidad-miel-pura", caption: "Envasado con cuidado", cat: "Taller" },
+  { photo: "frasquito-mini", caption: "Mini con cucharita", cat: "Frasquitos" },
+  { photo: "andes-banner", caption: "Los Andes de Boyacá", cat: "Colmena" },
+  { photo: "frasquito-corporativo", caption: "Corporativo con logo", cat: "Frasquitos" },
+  { photo: "mujeres-cabeza-de-familia", caption: "Mujeres que endulzan", cat: "Taller" },
+  { photo: "frasquito-flores", caption: "Detalle para quince años", cat: "Eventos" },
+  { photo: "etiqueta-gracias-bee", caption: "Etiqueta baby shower", cat: "Frasquitos" },
 ];
 
 export const cities = ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira", "Manizales", "Ibagué", "Santa Marta", "Villavicencio", "Pasto", "Neiva", "Montería"];

@@ -178,7 +178,7 @@ export function Etiqueta({ bare = false }: { bare?: boolean }) {
             <a href={wa(msg)} target="_blank" rel="noreferrer" className="btn-fucsia mt-8 block rounded-full px-6 py-4 text-center text-lg font-bold text-white transition-transform hover:-translate-y-0.5">
               Cotizar este diseño por WhatsApp
             </a>
-            <p className="mt-3 text-center text-sm text-cafe/60">Es una vista previa: nuestro equipo te envía la prueba final sin costo.</p>
+            <p className="mt-3 text-center text-sm text-cafe/60">Es una vista previa: nuestro equipo te envía la prueba final para aprobar.</p>
           </div>
         </div>
       </div>
