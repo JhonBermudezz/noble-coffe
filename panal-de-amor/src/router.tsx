@@ -1,26 +1,35 @@
 import { AnimatePresence, motion } from "motion/react";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { ROOT, img, pagePath, pages, type PageId } from "./data";
+import { ROOT, articles, img, pagePath, pages, type PageId } from "./data";
 
 // Enrutador mínimo: cada página es una URL real (con su index.html para abrirla directo), pero al
 // navegar no se recarga: así la música sigue sonando y la cortina de miel hace la transición.
-function fromPath(path: string): PageId {
+type Route = { page: PageId; sub?: string };
+
+function fromPath(path: string): Route {
   const rest = path.startsWith(ROOT) ? path.slice(ROOT.length) : "";
-  const id = rest.split("/")[0] as PageId;
-  return pages.some((p) => p.id === id) ? id : "inicio";
+  const [id, sub] = rest.split("/") as [PageId, string | undefined];
+  if (!pages.some((p) => p.id === id)) return { page: "inicio" };
+  return { page: id, sub: sub || undefined };
 }
 
-type Router = { page: PageId; go: (id: PageId, hash?: string) => void };
+function titleOf(r: Route) {
+  const a = r.page === "ideas" && r.sub ? articles.find((x) => x.slug === r.sub) : undefined;
+  return a ? `${a.title} | Panal de Amor` : pages.find((p) => p.id === r.page)!.title;
+}
+
+type Router = { page: PageId; sub?: string; go: (id: PageId, hash?: string, sub?: string) => void };
 const Ctx = createContext<Router>({ page: "inicio", go: () => {} });
 export const useRouter = () => useContext(Ctx);
 
-export function RouterProvider({ children }: { children: (page: PageId) => React.ReactNode }) {
-  const [page, setPage] = useState<PageId>(() => fromPath(location.pathname));
+export function RouterProvider({ children }: { children: (page: PageId, sub?: string) => React.ReactNode }) {
+  const [route, setRoute] = useState<Route>(() => fromPath(location.pathname));
+  const { page, sub } = route;
   const [curtain, setCurtain] = useState(false);
 
-  const show = useCallback((id: PageId, hash?: string) => {
-    setPage(id);
-    document.title = pages.find((p) => p.id === id)!.title;
+  const show = useCallback((r: Route, hash?: string) => {
+    setRoute(r);
+    document.title = titleOf(r);
     requestAnimationFrame(() => {
       const el = hash && document.getElementById(hash);
       if (el) el.scrollIntoView({ behavior: "instant" as ScrollBehavior });
@@ -29,24 +38,25 @@ export function RouterProvider({ children }: { children: (page: PageId) => React
   }, []);
 
   const go = useCallback(
-    (id: PageId, hash?: string) => {
-      if (id === page) {
+    (id: PageId, hash?: string, to?: string) => {
+      if (id === page && to === sub) {
         const el = hash && document.getElementById(hash);
         if (el) el.scrollIntoView({ behavior: "smooth" });
         else window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
-      history.pushState({ id }, "", pagePath(id) + (hash ? `#${hash}` : ""));
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return show(id, hash);
+      const r = { page: id, sub: to };
+      history.pushState(r, "", pagePath(id, to) + (hash ? `#${hash}` : ""));
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return show(r, hash);
       setCurtain(true);
-      setTimeout(() => show(id, hash), 520);
+      setTimeout(() => show(r, hash), 520);
       setTimeout(() => setCurtain(false), 620);
     },
-    [page, show],
+    [page, sub, show],
   );
 
   useEffect(() => {
-    document.title = pages.find((p) => p.id === page)!.title;
+    document.title = titleOf(route);
     const pop = () => show(fromPath(location.pathname), location.hash.slice(1) || undefined);
     window.addEventListener("popstate", pop);
     return () => window.removeEventListener("popstate", pop);
@@ -54,8 +64,8 @@ export function RouterProvider({ children }: { children: (page: PageId) => React
   }, []);
 
   return (
-    <Ctx.Provider value={{ page, go }}>
-      {children(page)}
+    <Ctx.Provider value={{ page, sub, go }}>
+      {children(page, sub)}
       {/* Cortina de miel entre páginas */}
       <AnimatePresence>
         {curtain && (
@@ -82,18 +92,18 @@ export function RouterProvider({ children }: { children: (page: PageId) => React
 }
 
 // Enlace interno: URL real (abre en otra pestaña si se pide) y navegación sin recarga con un clic normal.
-export function Link({ to, hash, className, children, onClick, ...rest }: { to: PageId; hash?: string; className?: string; children: React.ReactNode; onClick?: () => void } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick">) {
+export function Link({ to, sub, hash, className, children, onClick, ...rest }: { to: PageId; sub?: string; hash?: string; className?: string; children: React.ReactNode; onClick?: () => void } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick">) {
   const { go } = useRouter();
   return (
     <a
       {...rest}
-      href={pagePath(to) + (hash ? `#${hash}` : "")}
+      href={pagePath(to, sub) + (hash ? `#${hash}` : "")}
       className={className}
       onClick={(e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
         e.preventDefault();
         onClick?.();
-        go(to, hash);
+        go(to, hash, sub);
       }}
     >
       {children}

@@ -7,32 +7,36 @@ import { img } from "../data";
 // No recibe clics, para no estorbar lo que haya debajo.
 const HEART = `<svg viewBox="0 0 24 22" width="100%" height="100%"><path d="M12 21S1 14 1 7a5.5 5.5 0 0 1 11-1 5.5 5.5 0 0 1 11 1c0 7-11 14-11 14z" fill="COLOR"/></svg>`;
 const COLORS = ["#f7c64a", "#d63c7c", "#e9a426", "#f4a6c4"];
-const SWEEPS = 7; // cuántas veces cruza la pantalla de un lado al otro en toda la página
+// Velocidad fija en todas las páginas: cruza la pantalla una vez cada 3.600 px de scroll, sin importar
+// lo larga que sea la página (antes dependía del largo y en las páginas cortas iba demasiado rápido).
+const PX_PER_CROSS = 3600;
 
 export function ScrollBee() {
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const p = useSpring(scrollYProgress, { stiffness: 60, damping: 18 });
-  // De borde a borde (en vw, descontando el tamaño de la abeja).
-  const left = useTransform(p, (v) => `calc(${(0.5 - 0.5 * Math.cos(v * Math.PI * SWEEPS)) * 100}vw - ${(0.5 - 0.5 * Math.cos(v * Math.PI * SWEEPS)) * 6.5}rem)`);
-  const top = useTransform(p, (v) => `calc(${22 + Math.sin(v * Math.PI * SWEEPS * 2) * 10 + v * 40}vh)`);
-  const opacity = useTransform(scrollYProgress, [0, 0.03, 0.06, 0.97, 1], [0, 0, 1, 1, 0]);
+  const { scrollY, scrollYProgress } = useScroll();
+  // Muy suave: el resorte hace que la abeja "flote" detrás del scroll en vez de saltar.
+  const y = useSpring(scrollY, { stiffness: 18, damping: 14, mass: 1.2 });
+  const phase = useTransform(y, (v) => (v / PX_PER_CROSS) * Math.PI);
+  // De borde a borde (en vw, descontando el tamaño de la abeja), con un vaivén vertical suave.
+  const left = useTransform(phase, (a) => `calc(${(0.5 - 0.5 * Math.cos(a)) * 100}vw - ${(0.5 - 0.5 * Math.cos(a)) * 7}rem)`);
+  const top = useTransform([phase, scrollYProgress], ([a, v]: number[]) => `calc(${26 + Math.sin(a * 2) * 8 + v * 34}vh)`);
+  const opacity = useTransform(scrollY, [0, 250, 450], [0, 0, 1]);
   const [right, setRight] = useState(true);
   const [rise, setRise] = useState(false);
   const layer = useRef<HTMLDivElement>(null);
   const bee = useRef<HTMLDivElement>(null);
   const last = useRef(0);
 
-  useMotionValueEvent(p, "change", (v) => {
+  useMotionValueEvent(phase, "change", (a) => {
     // Hacia dónde va en x: derivada del coseno.
-    const goingRight = Math.sin(v * Math.PI * SWEEPS) >= 0;
-    const prev = p.getPrevious() ?? 0;
-    const forward = v >= prev;
+    const goingRight = Math.sin(a) >= 0;
+    const prev = phase.getPrevious() ?? 0;
+    const forward = a >= prev;
     const r = forward ? goingRight : !goingRight;
     if (r !== right) setRight(r);
     if (!forward !== rise) setRise(!forward);
     const now = performance.now();
-    if (reduce || now - last.current < 180 || v < 0.06 || !bee.current || !layer.current) return;
+    if (reduce || now - last.current < 320 || y.get() < 450 || !bee.current || !layer.current) return;
     last.current = now;
     const box = bee.current.getBoundingClientRect();
     const h = document.createElement("span");

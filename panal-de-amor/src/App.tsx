@@ -7,20 +7,18 @@ import { Calidad } from "./components/Calidad";
 import { Catalogo } from "./components/Catalogo";
 import { Colmena } from "./components/Colmena";
 import { ComoPedir } from "./components/ComoPedir";
-import { CompromisoBanner, CompromisoPage } from "./components/Compromiso";
+import { CompromisoBanner, Eleccion, Manos, Mosaico, Vida } from "./components/Compromiso";
 import { Contacto } from "./components/Contacto";
 import { Destacados } from "./components/Destacados";
 import { Dipper } from "./components/Dipper";
 import { Envios } from "./components/Envios";
 import { Etiqueta } from "./components/Etiqueta";
-import { Eventos } from "./components/Eventos";
 import { Footer } from "./components/Footer";
 import { Frase } from "./components/Frase";
 import { Galeria } from "./components/Galeria";
 import { Hero } from "./components/Hero";
 import { Historia } from "./components/Historia";
-import { Ideas } from "./components/Ideas";
-import { Mujeres } from "./components/Mujeres";
+import { Articulo, Ideas } from "./components/Ideas";
 import { MusicToggle } from "./components/Musica";
 import { Nav } from "./components/Nav";
 import { Nosotros } from "./components/Nosotros";
@@ -32,14 +30,13 @@ import type { PageId } from "./data";
 import { RouterProvider } from "./router";
 
 // Cada página del sitio corporativo.
-function Page({ id, ready }: { id: PageId; ready: boolean }) {
+function Page({ id, sub, ready }: { id: PageId; sub?: string; ready: boolean }) {
   switch (id) {
     case "souvenirs":
       return (
         <>
           <Colmena as="hero" />
           <Catalogo />
-          <Eventos />
           <Galeria />
         </>
       );
@@ -54,16 +51,17 @@ function Page({ id, ready }: { id: PageId; ready: boolean }) {
     case "nosotros":
       return (
         <>
-          <PageHero current="Nosotros" kicker="Nosotros" title={<>Hechos a mano, con fe y con <span className="script text-[1.1em] text-fucsia">amor</span></>} />
+          <CompromisoBanner />
           <Nosotros />
+          <Vida />
           <Colmena kicker="Nuestra colmena" />
+          <Manos />
           <Historia />
           <Calidad />
-          <Mujeres />
+          <Mosaico />
+          <Eleccion />
         </>
       );
-    case "compromiso":
-      return <CompromisoPage />;
     case "como-pedir":
       return (
         <>
@@ -74,6 +72,7 @@ function Page({ id, ready }: { id: PageId; ready: boolean }) {
         </>
       );
     case "ideas":
+      if (sub) return <Articulo slug={sub} />;
       return (
         <>
           <PageHero current="Ideas" kicker="Ideas dulces" title="Inspiración para tu celebración" intro="Tradición, frases para la etiqueta y consejos para bodas, bautizos y quince años." />
@@ -95,11 +94,10 @@ function Page({ id, ready }: { id: PageId; ready: boolean }) {
           <Goteo />
           <Beneficios />
           <Armado />
+          <Frase />
           <Destacados />
           <CompromisoBanner as="section" />
           <Colmena kicker="Nuestra colmena" />
-          <Frase />
-          <Eventos />
         </>
       );
   }
@@ -113,13 +111,13 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <RouterProvider>
-        {(page) => (
+        {(page, sub) => (
           <div className="grain">
             {intro && <Preloader onDone={done} />}
             <Dipper />
             <Nav />
             <main>
-              <Page id={page} ready={ready} />
+              <Page id={page} sub={sub} ready={ready} />
             </main>
             <Footer />
             {ready && <MusicToggle />}

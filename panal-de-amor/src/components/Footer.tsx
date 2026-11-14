@@ -57,7 +57,7 @@ export function Footer() {
           {(
             [
               { t: "Souvenirs", l: [["Todos los souvenirs", "souvenirs", ""], ["Diseña tu etiqueta", "personaliza", ""], ["Galería", "souvenirs", "galeria"], ["Para empresas", "souvenirs", "catalogo"]] },
-              { t: "Panal de Amor", l: [["Quiénes somos", "nosotros", ""], ["Nuestro compromiso", "compromiso", ""], ["Nuestra colmena", "nosotros", "colmena"], ["Nuestra historia", "nosotros", "historia"], ["Mujeres que endulzan", "nosotros", "mujeres"]] },
+              { t: "Panal de Amor", l: [["Quiénes somos", "nosotros", ""], ["Nuestro compromiso", "nosotros", "compromiso"], ["Nuestra colmena", "nosotros", "colmena"], ["Nuestra historia", "nosotros", "historia"], ["Mujeres que endulzan", "nosotros", "proposito"]] },
               { t: "Ayuda", l: [["Cómo pedir", "como-pedir", ""], ["Envíos", "como-pedir", "envios"], ["Preguntas", "como-pedir", "preguntas"], ["Contacto", "contacto", ""]] },
             ] as { t: string; l: [string, PageId, string][] }[]
           ).map((c) => (

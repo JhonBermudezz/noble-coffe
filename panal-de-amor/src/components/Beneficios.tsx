@@ -18,15 +18,16 @@ export function Beneficios() {
               whileInView={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ delay: i * 0.1, type: "spring", stiffness: 140, damping: 15 }}
-              className={`group relative w-[calc(50%-0.5rem)] sm:w-[230px] ${i % 2 ? "md:mt-24" : ""}`}
+              className={`group relative w-[calc(50%-0.5rem)] pb-4 sm:w-[220px] ${i % 2 ? "md:mt-20" : ""}`}
             >
-              <div className="hex relative aspect-[0.88] bg-gradient-to-b from-white to-polen p-[3px] transition-transform duration-500 group-hover:-translate-y-2">
-                <div className="hex flex h-full flex-col items-center justify-center bg-white px-4 text-center sm:px-6">
-                  <img src={img(b.icon)} alt="" className="h-14 w-14 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-8deg] sm:h-20 sm:w-20 md:h-24 md:w-24" />
-                  <h3 className="display mt-2 text-base leading-tight sm:text-lg md:text-xl">{b.title}</h3>
-                  <p className="mt-1.5 hidden text-sm leading-snug text-cafe/70 sm:block">{b.text}</p>
+              {/* El ícono va en la celda y el texto debajo, para que se lea completo en cualquier pantalla. */}
+              <div className="hex relative mx-auto aspect-[0.88] w-[132px] bg-gradient-to-b from-white to-polen p-[3px] transition-transform duration-500 group-hover:-translate-y-2 md:w-[160px]">
+                <div className="hex grid h-full place-items-center bg-white">
+                  <img src={img(b.icon)} alt="" className="h-20 w-20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-8deg] md:h-24 md:w-24" />
                 </div>
               </div>
+              <h3 className="display mt-4 text-center text-lg leading-tight md:text-xl">{b.title}</h3>
+              <p className="mx-auto mt-1.5 max-w-[210px] text-center text-sm leading-snug text-cafe/75 md:text-[0.95rem]">{b.text}</p>
             </motion.li>
           ))}
         </ul>
