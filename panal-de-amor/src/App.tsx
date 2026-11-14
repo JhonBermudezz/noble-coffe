@@ -16,6 +16,7 @@ import { Etiqueta } from "./components/Etiqueta";
 import { Footer } from "./components/Footer";
 import { Frase } from "./components/Frase";
 import { Galeria } from "./components/Galeria";
+import { GaleriaPage } from "./components/GaleriaPage";
 import { Hero } from "./components/Hero";
 import { Historia } from "./components/Historia";
 import { Articulo, Ideas } from "./components/Ideas";
@@ -46,6 +47,13 @@ function Page({ id, sub, ready }: { id: PageId; sub?: string; ready: boolean }) 
           <PageHero current="Personaliza" kicker="Personaliza" title={<>Un frasquito con <span className="script text-[1.1em] text-fucsia">tu nombre</span></>} intro="Escribe los nombres, elige la frase y la cinta, de tela o de yute. Mira cómo queda y mándanos el diseño para cotizar." />
           <Etiqueta bare />
           <ComoPedir />
+        </>
+      );
+    case "galeria":
+      return (
+        <>
+          <PageHero current="Galería" kicker="Galería" title={<>Detalles que endulzan <span className="script text-[1.1em] text-fucsia">celebraciones</span></>} intro="Frasquitos, eventos, nuestra colmena y el taller donde se hace cada detalle. Toca una foto para verla en grande." />
+          <GaleriaPage />
         </>
       );
     case "nosotros":

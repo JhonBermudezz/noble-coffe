@@ -5,11 +5,12 @@
 export const ROOT = new URL(document.documentElement.dataset.root ?? "./", location.href).pathname;
 
 // Páginas del sitio: cada una tiene su propio index.html (para abrirla directo) y se navega sin recargar.
-export type PageId = "inicio" | "souvenirs" | "personaliza" | "nosotros" | "como-pedir" | "ideas" | "contacto";
+export type PageId = "inicio" | "souvenirs" | "personaliza" | "galeria" | "nosotros" | "como-pedir" | "ideas" | "contacto";
 export const pages: { id: PageId; label: string; title: string }[] = [
   { id: "inicio", label: "Inicio", title: "Panal de Amor | Frasquitos de miel personalizados" },
   { id: "souvenirs", label: "Souvenirs", title: "Souvenirs | Panal de Amor" },
   { id: "personaliza", label: "Personaliza", title: "Diseña tu etiqueta | Panal de Amor" },
+  { id: "galeria", label: "Galería", title: "Galería | Panal de Amor" },
   { id: "nosotros", label: "Nosotros", title: "Nosotros | Panal de Amor" },
   { id: "como-pedir", label: "Cómo pedir", title: "Cómo pedir | Panal de Amor" },
   { id: "ideas", label: "Ideas", title: "Ideas dulces | Panal de Amor" },
@@ -109,7 +110,7 @@ export const benefits = [
 
 export const steps = [
   { img: "paso-1", title: "Cuéntanos tu evento", text: "Escríbenos por WhatsApp con la fecha, la cantidad y los colores. Te enviamos la cotización el mismo día." },
-  { img: "paso-2", title: "Aprueba tu diseño", text: "Creamos la etiqueta con tus nombres y frase. Recibes una prueba digital y ajustamos hasta que te encante." },
+  { img: "paso-2", title: "Aprueba tu diseño", text: "Creamos la etiqueta con tus nombres y frase. Te enviamos el diseño para tu aprobación y lo ajustamos hasta que te encante." },
   { img: "paso-3", title: "Hecho a mano con amor", text: "Preparamos cada frasquito a mano y lo enviamos protegido a tu ciudad, listo para entregar." },
 ];
 
@@ -159,6 +160,29 @@ export const gallery = [
   { photo: "frasquito-bautizo", caption: "Bautizo celeste" },
 ];
 
+// Galería completa (página Galería), por categoría.
+export type Shot = { photo: string; caption: string; cat: "Frasquitos" | "Eventos" | "Colmena" | "Taller" };
+export const galleryAll: Shot[] = [
+  { photo: "frasquito-mano-flores", caption: "Recordatorio de boda con gypsophila", cat: "Eventos" },
+  { photo: "frasquito-lazo-fucsia", caption: "Clásico lazo fucsia", cat: "Frasquitos" },
+  { photo: "abejas-flores", caption: "Abejas entre flores", cat: "Colmena" },
+  { photo: "frasquito-yute-gracias", caption: "Rústico con yute y corazón", cat: "Frasquitos" },
+  { photo: "frasquitos-encaje-boda", caption: "Mesa rústica con encaje", cat: "Eventos" },
+  { photo: "manos-frasquitos", caption: "Hechos a mano, uno por uno", cat: "Taller" },
+  { photo: "frasquito-quince", caption: "Quince años con coronita", cat: "Eventos" },
+  { photo: "colmena-poster", caption: "Visita a la colmena", cat: "Colmena" },
+  { photo: "frasquito-bautizo", caption: "Bautizo celeste", cat: "Eventos" },
+  { photo: "miel-panales", caption: "Miel natural y panales", cat: "Colmena" },
+  { photo: "frasquito-comunion", caption: "Primera comunión perla", cat: "Eventos" },
+  { photo: "calidad-miel-pura", caption: "Envasado con cuidado", cat: "Taller" },
+  { photo: "frasquito-mini", caption: "Mini con cucharita", cat: "Frasquitos" },
+  { photo: "andes-banner", caption: "Los Andes de Boyacá", cat: "Colmena" },
+  { photo: "frasquito-corporativo", caption: "Corporativo con logo", cat: "Frasquitos" },
+  { photo: "mujeres-cabeza-de-familia", caption: "Mujeres que endulzan", cat: "Taller" },
+  { photo: "frasquito-flores", caption: "Detalle para quince años", cat: "Eventos" },
+  { photo: "etiqueta-gracias-bee", caption: "Etiqueta baby shower", cat: "Frasquitos" },
+];
+
 export const cities = ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira", "Manizales", "Ibagué", "Santa Marta", "Villavicencio", "Pasto", "Neiva", "Montería"];
 
 export const faqs = [
@@ -166,7 +190,7 @@ export const faqs = [
   { q: "¿Con cuánto tiempo debo hacer mi pedido?", a: "Recomendamos pedir con 2 a 3 semanas de anticipación. Para pedidos urgentes escríbenos por WhatsApp y revisamos disponibilidad." },
   { q: "¿Hacen envíos a todo Colombia?", a: "Sí. Enviamos a cualquier ciudad o municipio con transportadora aliada, empacados con protección especial para vidrio." },
   { q: "¿Qué tipo de miel usan?", a: "Miel de abejas 100 % pura, de apicultores colombianos, sin aditivos ni jarabes." },
-  { q: "¿Puedo personalizar la etiqueta?", a: "Sí. Diseñamos la etiqueta con los nombres, la fecha, una frase o versículo y los colores de tu evento. Te enviamos una prueba digital para aprobar antes de producir." },
+  { q: "¿Puedo personalizar la etiqueta?", a: "Sí. Diseñamos la etiqueta con los nombres, la fecha, una frase o versículo y los colores de tu evento. Te enviamos el diseño para tu aprobación antes de producir." },
   { q: "¿Cuánto dura la miel?", a: "La miel pura no se daña. Recomendamos consumirla dentro de los 2 años siguientes y guardarla en un lugar fresco, lejos del sol." },
   { q: "¿Cómo se paga?", a: "Con un anticipo del 50 % iniciamos la producción y el saldo se paga antes del envío. Recibimos transferencia, Nequi y Daviplata." },
   { q: "¿Cómo me postulo como mamá cabeza de familia?", a: "Escríbenos por WhatsApp con tu nombre y ciudad. Te contamos cómo funciona el curso de manipulación de alimentos y el trabajo desde casa." },

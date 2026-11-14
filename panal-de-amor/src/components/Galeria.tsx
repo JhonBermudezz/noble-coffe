@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { gallery, img } from "../data";
+import { Link } from "../router";
 import { Heading } from "./Bits";
 
 const SHAPES = ["rounded-t-full rounded-b-[28px]", "hex", "rounded-[32px]", "rounded-full aspect-square", "rounded-t-full rounded-b-[28px]", "hex", "rounded-[32px]"];
@@ -33,7 +34,12 @@ export function Galeria() {
       <div className="mx-auto max-w-[1240px] px-4 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Heading kicker="Galería" title="Así lucen en las mesas" />
-          <p className="max-w-sm text-cafe/70">Arrastra para ver más · toca una foto para verla en grande.</p>
+          <div className="flex flex-col items-start gap-3">
+            <p className="max-w-sm text-cafe/70">Arrastra para ver más · toca una foto para verla en grande.</p>
+            <Link to="galeria" className="group flex items-center gap-2 rounded-full border-2 border-cafe/15 bg-white px-6 py-3 font-bold transition-colors hover:border-miel">
+              Ver toda la galería <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
         </div>
       </div>
       <div className="mt-12 overflow-hidden px-4 md:px-8">

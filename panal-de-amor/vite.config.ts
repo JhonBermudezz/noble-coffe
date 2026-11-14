@@ -17,7 +17,7 @@ export default defineConfig({
     rollupOptions: {
       input: Object.fromEntries(
         [
-          "", "souvenirs", "personaliza", "nosotros", "como-pedir", "ideas", "contacto",
+          "", "souvenirs", "personaliza", "galeria", "nosotros", "como-pedir", "ideas", "contacto",
           // Un index.html por artículo del blog, para abrirlo directo desde Google o un enlace compartido.
           "ideas/que-significa-regalar-un-frasquito-de-miel", "ideas/ideas-recordatorios-para-bodas",
           "ideas/recordatorios-para-bautizos", "ideas/recordatorios-para-quince-anos",

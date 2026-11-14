@@ -108,7 +108,7 @@ export function Articulo({ slug }: { slug: string }) {
             <div className="rounded-[30px] bg-polen p-7 text-center shadow-[0_24px_40px_-34px_rgb(74_42_20/0.7)]">
               <img src={img("jar-fucsia")} alt="" className="mx-auto w-28" />
               <p className="display mt-3 text-2xl">¿Te gustaría frasquitos así para tu evento?</p>
-              <p className="mt-2 text-cafe/75">Cotiza por WhatsApp y recibe tu prueba de diseño sin costo.</p>
+              <p className="mt-2 text-cafe/75">Escríbenos por WhatsApp y te ayudamos a crear el tuyo.</p>
               <a href={wa(`¡Hola, Panal de Amor! Leí "${a.title}" y quiero cotizar.`)} target="_blank" rel="noreferrer" className="btn-fucsia mt-5 block rounded-full px-5 py-3.5 font-bold text-white">
                 Cotizar por WhatsApp
               </a>

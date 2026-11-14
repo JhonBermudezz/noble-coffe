@@ -7,6 +7,7 @@ import { Bee, Goteo } from "./Bits";
 const SOCIAL_LINKS = [
   { n: "Instagram", u: SOCIAL.instagram, d: "M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.3-.5.2-.8.4-1.2.8-.4.4-.6.7-.8 1.2-.1.4-.3.9-.3 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.3 1.9.2.5.4.8.8 1.2.4.4.7.6 1.2.8.4.1.9.3 1.9.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.3.5-.2.8-.4 1.2-.8.4-.4.6-.7.8-1.2.1-.4.3-.9.3-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.3-1.9-.2-.5-.4-.8-.8-1.2-.4-.4-.7-.6-1.2-.8-.4-.1-.9-.3-1.9-.3-1.2-.1-1.6-.1-4.7-.1zm0 3.3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 7.4a2.9 2.9 0 1 0 0-5.8 2.9 2.9 0 0 0 0 5.8zm5.7-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0z" },
   { n: "Facebook", u: SOCIAL.facebook, d: "M13.5 21.9v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.4v3.2h2.7v8h3.4z" },
+  { n: "WhatsApp", u: wa(), d: "M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.2-1.4A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7 3.9zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z" },
   { n: "TikTok", u: SOCIAL.tiktok, d: "M16.6 2h-3.3v13.2a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9a6.3 6.3 0 1 0 5.4 6.2V8.6a8 8 0 0 0 4.4 1.3V6.6a4.6 4.6 0 0 1-4.4-4.6z" },
 ];
 
@@ -23,7 +24,7 @@ export function Footer() {
           <h2 className="display text-[clamp(2.6rem,6.5vw,5.4rem)] text-cafe">
             Haz que tu celebración se recuerde con <span className="script text-[1.15em] text-fucsia-2">amor</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-cafe/80">Cotiza tus frasquitos hoy, desde uno solo, y recibe tu prueba de diseño sin costo.</p>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-cafe/80">Cotiza tus frasquitos hoy, desde uno solo.</p>
           <motion.a whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} href={wa()} target="_blank" rel="noreferrer" className="btn-fucsia mt-9 inline-block rounded-full px-8 py-4 text-xl font-bold text-white">
             Cotizar por WhatsApp
           </motion.a>
@@ -56,7 +57,7 @@ export function Footer() {
           </div>
           {(
             [
-              { t: "Souvenirs", l: [["Todos los souvenirs", "souvenirs", ""], ["Diseña tu etiqueta", "personaliza", ""], ["Galería", "souvenirs", "galeria"], ["Para empresas", "souvenirs", "catalogo"]] },
+              { t: "Souvenirs", l: [["Todos los souvenirs", "souvenirs", ""], ["Diseña tu etiqueta", "personaliza", ""], ["Galería", "galeria", ""], ["Para empresas", "souvenirs", "catalogo"]] },
               { t: "Panal de Amor", l: [["Quiénes somos", "nosotros", ""], ["Nuestro compromiso", "nosotros", "compromiso"], ["Nuestra colmena", "nosotros", "colmena"], ["Nuestra historia", "nosotros", "historia"], ["Mujeres que endulzan", "nosotros", "proposito"]] },
               { t: "Ayuda", l: [["Cómo pedir", "como-pedir", ""], ["Envíos", "como-pedir", "envios"], ["Preguntas", "como-pedir", "preguntas"], ["Contacto", "contacto", ""]] },
             ] as { t: string; l: [string, PageId, string][] }[]
