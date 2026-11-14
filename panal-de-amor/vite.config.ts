@@ -16,7 +16,12 @@ export default defineConfig({
     // Sitio de varias páginas: cada una tiene su index.html para abrirla directo; comparten el mismo código.
     rollupOptions: {
       input: Object.fromEntries(
-        ["", "souvenirs", "personaliza", "nosotros", "compromiso", "como-pedir", "ideas", "contacto"].map((p) => [p || "inicio", resolve(__dirname, p, "index.html")]),
+        [
+          "", "souvenirs", "personaliza", "nosotros", "como-pedir", "ideas", "contacto",
+          // Un index.html por artículo del blog, para abrirlo directo desde Google o un enlace compartido.
+          "ideas/que-significa-regalar-un-frasquito-de-miel", "ideas/ideas-recordatorios-para-bodas",
+          "ideas/recordatorios-para-bautizos", "ideas/recordatorios-para-quince-anos",
+        ].map((p) => [p || "inicio", resolve(__dirname, p, "index.html")]),
       ),
     },
   },

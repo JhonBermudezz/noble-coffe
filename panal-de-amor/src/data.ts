@@ -5,18 +5,18 @@
 export const ROOT = new URL(document.documentElement.dataset.root ?? "./", location.href).pathname;
 
 // Páginas del sitio: cada una tiene su propio index.html (para abrirla directo) y se navega sin recargar.
-export type PageId = "inicio" | "souvenirs" | "personaliza" | "nosotros" | "compromiso" | "como-pedir" | "ideas" | "contacto";
+export type PageId = "inicio" | "souvenirs" | "personaliza" | "nosotros" | "como-pedir" | "ideas" | "contacto";
 export const pages: { id: PageId; label: string; title: string }[] = [
   { id: "inicio", label: "Inicio", title: "Panal de Amor | Frasquitos de miel personalizados" },
   { id: "souvenirs", label: "Souvenirs", title: "Souvenirs | Panal de Amor" },
   { id: "personaliza", label: "Personaliza", title: "Diseña tu etiqueta | Panal de Amor" },
   { id: "nosotros", label: "Nosotros", title: "Nosotros | Panal de Amor" },
-  { id: "compromiso", label: "Nuestro compromiso", title: "Nuestro compromiso | Panal de Amor" },
   { id: "como-pedir", label: "Cómo pedir", title: "Cómo pedir | Panal de Amor" },
   { id: "ideas", label: "Ideas", title: "Ideas dulces | Panal de Amor" },
   { id: "contacto", label: "Contacto", title: "Contacto | Panal de Amor" },
 ];
-export const pagePath = (id: PageId) => (id === "inicio" ? ROOT : `${ROOT}${id}/`);
+// sub: una página dentro de otra, como cada artículo del blog (ideas/<slug>/).
+export const pagePath = (id: PageId, sub?: string) => (id === "inicio" ? ROOT : `${ROOT}${id}/${sub ? `${sub}/` : ""}`);
 
 // "Nuestro compromiso": textos enviados por la clienta.
 export const compromiso = {
@@ -63,11 +63,10 @@ export const WHATSAPP = "573195514507";
 export const WHATSAPP_LABEL = "319 551 4507";
 export const CONTACT_NAME = "Maye Jiménez";
 export const HOURS = "Lunes a sábado, 8:00 a. m. a 7:00 p. m.";
-// Por confirmar: los enlaces reales de redes.
 export const SOCIAL = {
-  instagram: "https://www.instagram.com/",
-  facebook: "https://www.facebook.com/",
-  tiktok: "https://www.tiktok.com/",
+  instagram: "https://www.instagram.com/mayejimenezmiel/",
+  facebook: "https://www.facebook.com/maye.jimenex.79",
+  tiktok: "https://www.tiktok.com/@panaldeamor",
 };
 export const VERSE = "“Me alegraré con ellos haciéndoles bien”";
 export const VERSE_REF = "Jeremías 32:41";
@@ -173,11 +172,12 @@ export const faqs = [
   { q: "¿Cómo me postulo como mamá cabeza de familia?", a: "Escríbenos por WhatsApp con tu nombre y ciudad. Te contamos cómo funciona el curso de manipulación de alimentos y el trabajo desde casa." },
 ];
 
-export type Article = { id: string; tag: string; title: string; date: string; minutes: number; photo: string; intro: string; blocks: { h: string; p?: string; list?: string[] }[] };
+export type Article = { id: string; slug: string; tag: string; title: string; date: string; minutes: number; photo: string; intro: string; blocks: { h: string; p?: string; list?: string[] }[] };
 
 export const articles: Article[] = [
   {
     id: "significado",
+    slug: "que-significa-regalar-un-frasquito-de-miel",
     tag: "Tradición",
     title: "¿Qué significa regalar un frasquito de miel?",
     date: "14 de octubre de 2026",
@@ -193,6 +193,7 @@ export const articles: Article[] = [
   },
   {
     id: "bodas",
+    slug: "ideas-recordatorios-para-bodas",
     tag: "Bodas",
     title: "Ideas de recordatorios para bodas: 9 detalles dulces",
     date: "22 de septiembre de 2026",
@@ -210,6 +211,7 @@ export const articles: Article[] = [
   },
   {
     id: "bautizos",
+    slug: "recordatorios-para-bautizos",
     tag: "Bautizos",
     title: "Recordatorios para bautizos: ideas tiernas",
     date: "30 de agosto de 2026",
@@ -225,6 +227,7 @@ export const articles: Article[] = [
   },
   {
     id: "quince",
+    slug: "recordatorios-para-quince-anos",
     tag: "Quince años",
     title: "Recordatorios para quince años",
     date: "18 de julio de 2026",

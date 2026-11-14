@@ -1,6 +1,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { compromiso, img } from "../data";
+import { compromiso, img, wa } from "../data";
 import { Link } from "../router";
 import { Bee, Goteo, HexIcon } from "./Bits";
 import { FloatingHearts, Heart } from "./Hearts";
@@ -33,7 +33,7 @@ export function CompromisoBanner({ as = "hero" }: { as?: "hero" | "section" }) {
                 Inicio
               </Link>
               <span className="mx-2">›</span>
-              <span className="text-crema">Nuestro compromiso</span>
+              <span className="text-crema">Nosotros</span>
             </nav>
           )}
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-6 inline-flex items-center gap-2 rounded-full bg-crema/15 px-4 py-2 text-sm font-bold text-polen ring-1 ring-polen/30 backdrop-blur">
@@ -53,7 +53,7 @@ export function CompromisoBanner({ as = "hero" }: { as?: "hero" | "section" }) {
             {compromiso.banner.text}
           </motion.p>
           {!hero && (
-            <Link to="compromiso" className="btn-miel mt-8 inline-block rounded-full px-7 py-4 text-lg font-bold text-cafe transition-transform hover:-translate-y-1">
+            <Link to="nosotros" className="btn-miel mt-8 inline-block rounded-full px-7 py-4 text-lg font-bold text-cafe transition-transform hover:-translate-y-1">
               Conoce nuestro compromiso
             </Link>
           )}
@@ -65,10 +65,10 @@ export function CompromisoBanner({ as = "hero" }: { as?: "hero" | "section" }) {
 }
 
 // Nuestro compromiso con la vida y la naturaleza.
-function Vida() {
+export function Vida() {
   const v = compromiso.vida;
   return (
-    <section className="relative overflow-hidden bg-crema pb-24 pt-32 md:pb-32 md:pt-40">
+    <section id="compromiso" className="relative overflow-hidden bg-crema pb-24 pt-32 md:pb-32 md:pt-40">
       <div aria-hidden className="panal absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_80%_40%,#000_10%,transparent_70%)]" />
       <div className="relative mx-auto grid max-w-[1240px] items-center gap-14 px-4 md:grid-cols-2 md:px-8">
         <div>
@@ -106,10 +106,10 @@ function Vida() {
 }
 
 // Hecho a mano, con propósito y corazón.
-function Manos() {
+export function Manos() {
   const m = compromiso.manos;
   return (
-    <section className="relative overflow-hidden bg-crema-2 py-24 md:py-32">
+    <section id="proposito" className="relative overflow-hidden bg-crema-2 py-24 md:py-32">
       <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-4 md:grid-cols-[1.05fr_0.95fr] md:px-8">
         <div className="relative mx-auto grid w-full max-w-[560px] grid-cols-[1.2fr_0.8fr] items-end gap-4">
           <motion.img
@@ -141,9 +141,13 @@ function Manos() {
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-cafe/85 md:text-xl">{m.text}</p>
           <p className="mt-4 text-lg leading-relaxed text-cafe/85 md:text-xl">{m.social}</p>
-          <Link to="nosotros" hash="mujeres" className="mt-8 inline-flex items-center gap-2 font-bold text-fucsia-2 underline decoration-2 underline-offset-4">
-            Conoce Mujeres que endulzan →
-          </Link>
+          <div className="mt-8 rounded-[28px] bg-white/80 p-6">
+            <p className="script text-3xl text-fucsia">Mujeres que endulzan</p>
+            <p className="mt-2 text-cafe/80">¿Eres mamá cabeza de familia y quieres trabajar desde casa? Te acompañamos con el curso de manipulación de alimentos y aprendes el oficio paso a paso.</p>
+            <a href={wa("¡Hola, Panal de Amor! Quiero postularme al programa Mujeres que endulzan.")} target="_blank" rel="noreferrer" className="btn-fucsia mt-5 inline-block rounded-full px-6 py-3.5 font-bold text-white transition-transform hover:-translate-y-0.5">
+              Quiero postularme
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -151,7 +155,7 @@ function Manos() {
 }
 
 // Elegir un detalle también es elegir lo que apoyamos.
-function Eleccion() {
+export function Eleccion() {
   const e = compromiso.eleccion;
   return (
     <section className="relative overflow-hidden bg-cafe py-24 text-crema md:py-32">
@@ -198,7 +202,7 @@ function Eleccion() {
 }
 
 // Una galería de los momentos de la miel: paisaje, abejas, panales y manos.
-function Mosaico() {
+export function Mosaico() {
   const fotos = [
     { src: "andes-banner", alt: "Paisaje andino de Boyacá", cls: "col-span-2 aspect-[16/9]" },
     { src: "abejas-flores", alt: "Abejas entre flores", cls: "aspect-square md:aspect-[8/9]" },
@@ -216,17 +220,5 @@ function Mosaico() {
         ))}
       </ul>
     </section>
-  );
-}
-
-export function CompromisoPage() {
-  return (
-    <>
-      <CompromisoBanner />
-      <Vida />
-      <Manos />
-      <Mosaico />
-      <Eleccion />
-    </>
   );
 }
