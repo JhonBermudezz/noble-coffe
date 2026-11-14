@@ -8,7 +8,7 @@ const STAGES = [
   { n: "01", t: "Miel 100 % pura", d: "De apicultores colombianos, sin jarabes ni aditivos. Llenamos cada frasco nuevo, uno por uno." },
   { n: "02", t: "Tapa hermética", d: "La tapa dorada sella la miel y la conserva fresca hasta que llegue a tus invitados." },
   { n: "03", t: "Tela, lazo y flores", d: "Lino, un lazo de satín en el color de tu celebración y un ramito de gypsophila." },
-  { n: "04", t: "Tu etiqueta", d: "Con sus nombres, la fecha y la frase que elijas. Te enviamos la prueba antes de producir." },
+  { n: "04", t: "Tu etiqueta", d: "Con sus nombres, la fecha y la frase que elijas. Te enviamos el diseño para tu aprobación." },
 ];
 
 // "Así nace tu frasquito": sección fijada donde, al bajar, el frasco vacío se llena de miel,

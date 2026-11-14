@@ -110,7 +110,7 @@ export const benefits = [
 
 export const steps = [
   { img: "paso-1", title: "Cuéntanos tu evento", text: "Escríbenos por WhatsApp con la fecha, la cantidad y los colores. Te enviamos la cotización el mismo día." },
-  { img: "paso-2", title: "Aprueba tu diseño", text: "Creamos la etiqueta con tus nombres y frase. Recibes una prueba digital y ajustamos hasta que te encante." },
+  { img: "paso-2", title: "Aprueba tu diseño", text: "Creamos la etiqueta con tus nombres y frase. Te enviamos el diseño para tu aprobación y lo ajustamos hasta que te encante." },
   { img: "paso-3", title: "Hecho a mano con amor", text: "Preparamos cada frasquito a mano y lo enviamos protegido a tu ciudad, listo para entregar." },
 ];
 
@@ -190,7 +190,7 @@ export const faqs = [
   { q: "¿Con cuánto tiempo debo hacer mi pedido?", a: "Recomendamos pedir con 2 a 3 semanas de anticipación. Para pedidos urgentes escríbenos por WhatsApp y revisamos disponibilidad." },
   { q: "¿Hacen envíos a todo Colombia?", a: "Sí. Enviamos a cualquier ciudad o municipio con transportadora aliada, empacados con protección especial para vidrio." },
   { q: "¿Qué tipo de miel usan?", a: "Miel de abejas 100 % pura, de apicultores colombianos, sin aditivos ni jarabes." },
-  { q: "¿Puedo personalizar la etiqueta?", a: "Sí. Diseñamos la etiqueta con los nombres, la fecha, una frase o versículo y los colores de tu evento. Te enviamos una prueba digital para aprobar antes de producir." },
+  { q: "¿Puedo personalizar la etiqueta?", a: "Sí. Diseñamos la etiqueta con los nombres, la fecha, una frase o versículo y los colores de tu evento. Te enviamos el diseño para tu aprobación antes de producir." },
   { q: "¿Cuánto dura la miel?", a: "La miel pura no se daña. Recomendamos consumirla dentro de los 2 años siguientes y guardarla en un lugar fresco, lejos del sol." },
   { q: "¿Cómo se paga?", a: "Con un anticipo del 50 % iniciamos la producción y el saldo se paga antes del envío. Recibimos transferencia, Nequi y Daviplata." },
   { q: "¿Cómo me postulo como mamá cabeza de familia?", a: "Escríbenos por WhatsApp con tu nombre y ciudad. Te contamos cómo funciona el curso de manipulación de alimentos y el trabajo desde casa." },
