@@ -18,10 +18,12 @@ import { Hero } from "./components/Hero";
 import { Historia } from "./components/Historia";
 import { Ideas } from "./components/Ideas";
 import { Mujeres } from "./components/Mujeres";
+import { MusicToggle } from "./components/Musica";
 import { Nav } from "./components/Nav";
 import { Nosotros } from "./components/Nosotros";
 import { Preguntas } from "./components/Preguntas";
 import { Preloader, shouldShowIntro } from "./components/Preloader";
+import { ScrollBee } from "./components/ScrollBee";
 
 export default function App() {
   const [intro] = useState(shouldShowIntro);
@@ -55,6 +57,8 @@ export default function App() {
           <Contacto />
         </main>
         <Footer />
+        {ready && <MusicToggle />}
+        {ready && <ScrollBee />}
       </div>
     </MotionConfig>
   );

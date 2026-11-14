@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react";
 import { img, wa } from "../data";
 import { Bee, HexIcon } from "./Bits";
+import { FloatingHearts } from "./Hearts";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -40,6 +41,17 @@ export function Hero() {
       <div aria-hidden className="absolute -right-40 -top-40 h-[640px] w-[640px] rounded-full bg-polen/70 blur-3xl" />
       <div aria-hidden className="absolute -left-40 bottom-0 h-[420px] w-[420px] rounded-full bg-rosa blur-3xl" />
 
+      <FloatingHearts
+        items={[
+          { left: "6%", top: "18%", size: "h-5 w-5", color: "#f7c64a" },
+          { left: "44%", top: "14%", size: "h-4 w-4", color: "#d63c7c" },
+          { left: "52%", top: "78%", size: "h-6 w-6", color: "#e9a426" },
+          { left: "90%", top: "12%", size: "h-5 w-5", color: "#f4a6c4" },
+          { left: "86%", top: "86%", size: "h-4 w-4", color: "#f7c64a" },
+          { left: "3%", top: "82%", size: "h-6 w-6", color: "#f4a6c4" },
+          { left: "62%", top: "40%", size: "h-3 w-3", color: "#d63c7c" },
+        ]}
+      />
       <div className="relative mx-auto grid max-w-[1320px] items-center gap-14 px-4 md:grid-cols-[1.08fr_0.92fr] md:px-8">
         <div className="relative z-10">
           <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.6 }} className="script text-3xl text-fucsia md:text-4xl">

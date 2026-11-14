@@ -194,6 +194,8 @@ export const ribbons: Ribbon[] = [
   { id: "lila", name: "Lila", color: "#b9a3e0" },
   { id: "champana", name: "Champaña", color: "#e8d3a8" },
 ];
+// Cinta de yute rústica (pedida por la clienta como alternativa a la cinta de tela).
+export const YUTE: Ribbon = { id: "yute", name: "Yute", color: "#b08a5a" };
 
 export const labelEvents: { id: EventKind; name: string; names: string; phrase: string; ribbon: string }[] = [
   { id: "boda", name: "Boda", names: "Laura & Andrés", phrase: "Gracias por acompañarnos en este día tan especial", ribbon: "fucsia" },
