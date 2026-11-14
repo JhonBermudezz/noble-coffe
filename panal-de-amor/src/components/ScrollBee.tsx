@@ -53,13 +53,10 @@ export function ScrollBee() {
     <>
       <div ref={layer} aria-hidden className="pointer-events-none fixed inset-0 z-[54]" />
       <motion.div ref={bee} aria-hidden className="pointer-events-none fixed z-[55]" style={{ left, top, opacity }}>
-        <motion.img
-          src={img("abeja")}
-          alt=""
-          className="flap w-20 drop-shadow-[0_12px_12px_rgb(74_42_20/0.25)] md:w-28"
-          animate={{ scaleX: right ? 1 : -1, rotate: rise ? -12 : 10 }}
-          transition={{ type: "spring", stiffness: 220, damping: 16 }}
-        />
+        {/* El giro va en un contenedor aparte: la animación del aleteo usa transform y lo pisaría. */}
+        <motion.div animate={{ scaleX: right ? 1 : -1, rotate: rise ? -12 : 10 }} transition={{ type: "spring", stiffness: 220, damping: 16 }}>
+          <img src={img("abeja")} alt="" className="flap w-20 drop-shadow-[0_12px_12px_rgb(74_42_20/0.25)] md:w-28" />
+        </motion.div>
       </motion.div>
     </>
   );
