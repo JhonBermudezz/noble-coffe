@@ -4,7 +4,7 @@ import { benefits, img } from "../data";
 // Por qué regalar miel: cinco celdas de panal que se encajan una a una.
 export function Beneficios() {
   return (
-    <section className="relative bg-crema-2 pb-24 pt-36 md:pb-32 md:pt-48">
+    <section className="relative bg-crema-2 pb-24 pt-28 md:pb-32 md:pt-36">
       <div className="mx-auto max-w-[1320px] px-4 md:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="script text-3xl text-fucsia md:text-4xl">Beneficios de regalar miel</p>
