@@ -25,10 +25,13 @@ export function Armado() {
   const fill = useTransform(p, [0.04, 0.26], [100, 6]);
   const fullClip = useTransform(fill, (v) => `inset(${v}% 0 0 0)`);
   const stream = useTransform(p, [0.02, 0.05, 0.24, 0.28], [0, 1, 1, 0]);
-  const streamHeight = useTransform(fill, (v) => `calc(60vh + ${Math.max(8, v)}%)`);
+  // El chorro termina en la superficie de la miel y nunca pasa del fondo del frasco (88 % del lienzo).
+  const streamHeight = useTransform(fill, (v) => `calc(60vh + ${Math.min(88, Math.max(10, v))}%)`);
+  const emptyOp = useTransform(p, [0.25, 0.28], [1, 0]);
   // 2. La tapa
-  const lid = useTransform(p, [0.3, 0.42], [0, 1]);
-  const lidY = useTransform(p, [0.3, 0.42], [-40, 0]);
+  const lid = useTransform(p, [0.3, 0.4, 0.64, 0.67], [0, 1, 1, 0]);
+  const fullOp = useTransform(p, [0.3, 0.4], [1, 0]);
+  const click = useTransform(p, [0.39, 0.42, 0.45], [1, 1.035, 1]);
   // 3. Tela y lazo: se cubre de arriba hacia abajo
   const dress = useTransform(p, [0.5, 0.64], [0, 100]);
   const dressClip = useTransform(dress, (v) => `inset(0 0 ${100 - v}% 0)`);
@@ -74,9 +77,9 @@ export function Armado() {
             {/* Chorro de miel */}
             <motion.div aria-hidden className="absolute left-1/2 top-[-60vh] w-[3.5%] -translate-x-1/2 rounded-b-full bg-gradient-to-r from-miel-2 via-ambar to-miel" style={{ opacity: stream, height: streamHeight }} />
             <div ref={jarRef} className="relative" style={{ aspectRatio: JAR_ASPECT }}>
-              <img src={img("jar-empty")} alt="" className="absolute inset-0 h-full w-full" />
-              <motion.img src={img("jar-full")} alt="" className="absolute inset-0 h-full w-full" style={{ clipPath: fullClip }} />
-              <motion.img src={img("jar-lid")} alt="" className="absolute inset-0 h-full w-full" style={{ opacity: lid, y: lidY }} />
+              <motion.img src={img("jar-empty")} alt="" className="absolute inset-0 h-full w-full" style={{ opacity: emptyOp }} />
+              <motion.img src={img("jar-full")} alt="" className="absolute inset-0 h-full w-full" style={{ clipPath: fullClip, opacity: fullOp }} />
+              <motion.img src={img("jar-lid")} alt="" className="absolute inset-0 h-full w-full" style={{ opacity: lid, scale: click }} />
               <motion.img src={img("jar-fucsia")} alt="Frasquito de miel con tapa, tela de lino y lazo fucsia" className="absolute inset-0 h-full w-full" style={{ clipPath: dressClip }} />
               <motion.div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ ...LABEL_POS, fontSize: size, opacity: label, scale: labelScale, rotate: labelRot }}>
                 <Label names="Laura & Andrés" date="14 · 02 · 2027" phrase="Gracias por acompañarnos en este día tan especial" kind="boda" accent="#d63c7c" />

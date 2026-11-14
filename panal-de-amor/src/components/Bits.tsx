@@ -2,16 +2,15 @@ import { motion } from "motion/react";
 import { img } from "../data";
 
 // Separador: una franja de miel que gotea sobre la sección siguiente.
-export function Goteo({ className = "", flip = false }: { className?: string; flip?: boolean }) {
-  // El detector va en el contenedor: una imagen recortada del todo no cuenta como visible.
+export function Goteo({ className = "" }: { className?: string }) {
+  // El detector va en el contenedor: una franja recortada del todo no cuenta como visible.
   return (
-    <motion.div aria-hidden className={`pointer-events-none relative z-20 h-px ${className}`} initial="hide" whileInView="show" viewport={{ once: true, margin: "0px 0px -15% 0px" }}>
-      <motion.img
-        src={img("miel-goteo")}
-        alt=""
-        className={`absolute left-0 top-0 w-full ${flip ? "-scale-x-100" : ""}`}
+    <motion.div aria-hidden className={`pointer-events-none relative z-20 h-px ${className}`} initial="hide" whileInView="show" viewport={{ once: true, margin: "0px 0px -10% 0px" }}>
+      <motion.div
+        className="absolute inset-x-0 top-0 h-[clamp(80px,9vw,150px)]"
+        style={{ backgroundImage: `url(${img("miel-goteo")})`, backgroundSize: "auto 100%", backgroundRepeat: "repeat-x", backgroundPosition: "center top" }}
         variants={{ hide: { clipPath: "inset(0% 0% 100% 0%)" }, show: { clipPath: "inset(0% 0% 0% 0%)" } }}
-        transition={{ duration: 1.8, ease: [0.45, 0, 0.2, 1] }}
+        transition={{ duration: 1.6, ease: [0.45, 0, 0.2, 1] }}
       />
     </motion.div>
   );

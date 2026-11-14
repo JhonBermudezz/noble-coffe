@@ -57,17 +57,18 @@ export function Hero() {
           <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.6 }} className="script text-3xl text-fucsia md:text-4xl">
             Endulzamos tus momentos más especiales
           </motion.p>
-          <h1 className="display mt-4 text-[clamp(3.3rem,8.4vw,7.6rem)]">
+          <h1 className="display mt-4 text-[clamp(3.2rem,6.6vw,6.4rem)] leading-[0.92]">
             <motion.span className="block" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.9, ease }}>
               Frasquitos
             </motion.span>
-            <motion.span className="block" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease }}>
-              de miel <span className="display-i text-miel-2">hechos</span>
+            <motion.span className="block" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32, duration: 0.9, ease }}>
+              de miel
             </motion.span>
-            <motion.span className="mt-1 flex items-baseline gap-4" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.9, ease }}>
+            <motion.span className="flex flex-wrap items-baseline gap-x-[0.22em]" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.9, ease }}>
+              <span className="display-i text-miel-2">hechos</span>
               <span className="display-i">con</span>
               <motion.span
-                className="script text-[1.25em] text-fucsia [text-shadow:0_4px_0_#fbe3ec]"
+                className="script text-[1.12em] leading-[0.8] text-fucsia [text-shadow:0_4px_0_#fbe3ec]"
                 initial={{ clipPath: "inset(-30% 100% -40% -5%)" }}
                 animate={{ clipPath: "inset(-30% -10% -40% -5%)" }}
                 transition={{ delay: 0.9, duration: 1.1, ease: "easeInOut" }}
