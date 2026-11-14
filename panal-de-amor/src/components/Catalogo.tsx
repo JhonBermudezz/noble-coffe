@@ -1,6 +1,7 @@
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { cop, eventLabels, img, products, wa, type EventKind, type Product } from "../data";
+import { Link } from "../router";
 import { Heading, HexIcon } from "./Bits";
 
 const FILTERS: ("todos" | EventKind)[] = ["todos", "boda", "bautizo", "quince", "comunion", "empresa", "otros"];
@@ -82,9 +83,9 @@ function Detail({ p, onClose }: { p: Product; onClose: () => void }) {
             <a href={wa(`¡Hola, Panal de Amor! Quiero cotizar el modelo "${p.name}".`)} target="_blank" rel="noreferrer" className="btn-fucsia rounded-full px-6 py-3.5 font-bold text-white">
               Cotizar este modelo
             </a>
-            <a href="#etiqueta" onClick={onClose} className="rounded-full border-2 border-cafe/15 bg-white px-6 py-3 font-bold">
+            <Link to="personaliza" onClick={onClose} className="rounded-full border-2 border-cafe/15 bg-white px-6 py-3 font-bold">
               Diseñar mi etiqueta
-            </a>
+            </Link>
           </div>
         </div>
         <button onClick={onClose} aria-label="Cerrar" className="btn-miel hex-flat absolute right-4 top-4 grid h-11 w-12 place-items-center text-2xl font-bold">
