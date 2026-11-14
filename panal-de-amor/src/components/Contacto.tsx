@@ -37,7 +37,7 @@ export function Contacto({ bare = false }: { bare?: boolean }) {
 {!bare && (
           <Heading kicker="Contacto" title="Cuéntanos de tu evento" />
 )}
-          <p className="mt-5 text-lg text-cafe/75">Llena el formulario y te llevamos a WhatsApp con tu solicitud lista. Te atiende {CONTACT_NAME} de lunes a sábado.</p>
+          <p className={`text-lg text-cafe/75 ${bare ? "" : "mt-5"}`}>{!bare && "Llena el formulario y te llevamos a WhatsApp con tu solicitud lista. "}Te atiende {CONTACT_NAME} de lunes a sábado.</p>
           <div className="mt-8 space-y-3">
             <a href={wa()} target="_blank" rel="noreferrer" className="group flex items-center gap-4 rounded-[24px] bg-white p-4 transition-transform hover:-translate-y-0.5">
               <img src={img("logo")} alt="" className="h-14 w-14 rounded-full" />
