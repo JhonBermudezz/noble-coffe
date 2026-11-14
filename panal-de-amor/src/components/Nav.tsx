@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
 import { img, wa } from "../data";
+import { Heart } from "./Hearts";
 
 const LINKS = [
   { href: "#etiqueta", label: "Diseña tu etiqueta" },
@@ -35,7 +36,15 @@ export function Nav() {
       <div className={`transition-colors duration-500 ${solid || open ? "bg-crema/90 shadow-[0_10px_30px_-20px_rgb(74_42_20/0.5)] backdrop-blur-md" : ""}`}>
         <nav className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between gap-4 px-4 md:px-8">
           <a href="#inicio" className="group flex items-center gap-3" aria-label="Panal de Amor, inicio">
-            <img src={img("logo")} alt="" className="h-12 w-12 rounded-full shadow-[0_0_0_3px_#fff,0_0_0_5px_var(--color-miel)] transition-transform duration-500 group-hover:rotate-[-12deg]" />
+            <span className="relative">
+              <img src={img("logo")} alt="" className="h-12 w-12 rounded-full shadow-[0_0_0_3px_#fff,0_0_0_5px_var(--color-miel)] transition-transform duration-500 group-hover:rotate-[-12deg]" />
+              <motion.span className="absolute -right-2 -top-1" animate={{ y: [0, -4, 0], rotate: [-10, 10, -10] }} transition={{ duration: 3, repeat: Infinity }}>
+                <Heart className="h-4 w-4" color="#d63c7c" />
+              </motion.span>
+              <motion.span className="absolute -bottom-1 -left-2" animate={{ y: [0, -3, 0], rotate: [8, -8, 8] }} transition={{ duration: 3.6, repeat: Infinity }}>
+                <Heart className="h-3 w-3" color="#f7c64a" />
+              </motion.span>
+            </span>
             <span className="display hidden text-2xl sm:block">
               Panal <span className="script text-[1.15em] text-fucsia">de Amor</span>
             </span>
@@ -48,14 +57,15 @@ export function Nav() {
                 </a>
                 {hover === l.href && (
                   <motion.span layoutId="nav-honey" className="absolute inset-x-2 bottom-0 h-full rounded-full bg-polen" transition={{ type: "spring", stiffness: 420, damping: 34 }}>
-                    <span className="absolute -bottom-2 left-1/2 h-3 w-2.5 -translate-x-1/2 rounded-b-full bg-miel" />
+                    <Heart className="absolute -top-2.5 left-1/2 h-3.5 w-3.5 -translate-x-1/2" color="#d63c7c" />
                   </motion.span>
                 )}
               </li>
             ))}
           </ul>
           <div className="flex items-center gap-2">
-            <a href={wa()} target="_blank" rel="noreferrer" className="btn-fucsia hidden rounded-full px-5 py-3 font-bold text-white transition-transform hover:-translate-y-0.5 sm:block">
+            <a href={wa()} target="_blank" rel="noreferrer" className="btn-fucsia group hidden items-center gap-2 rounded-full px-5 py-3 font-bold text-white transition-transform hover:-translate-y-0.5 sm:flex">
+              <Heart className="h-4 w-4 transition-transform duration-300 group-hover:scale-125" color="#fbe7b8" />
               Cotizar por WhatsApp
             </a>
             <button

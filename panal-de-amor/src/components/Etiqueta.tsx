@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { VERSE, VERSE_REF, img, labelEvents, ribbons, wa, type EventKind } from "../data";
+import { VERSE, VERSE_REF, YUTE, img, labelEvents, ribbons, wa, type EventKind } from "../data";
 import { Heading } from "./Bits";
 import { JAR_ASPECT, LABEL_POS, useLabelSize } from "./Jar";
 import { Label } from "./Label";
@@ -24,26 +24,33 @@ export function Etiqueta() {
   const [ribbon, setRibbon] = useState(preset.ribbon);
   const [bump, setBump] = useState(0);
   const { ref, size } = useLabelSize();
-  const r = ribbons.find((x) => x.id === ribbon)!;
+  const [lastTela, setLastTela] = useState(preset.ribbon);
+  const yute = ribbon === "yute";
+  const r = yute ? YUTE : ribbons.find((x) => x.id === ribbon)!;
+  const pickTela = (id: string) => {
+    setRibbon(id);
+    setLastTela(id);
+  };
 
   const pickEvent = (k: EventKind) => {
     const e = labelEvents.find((x) => x.id === k)!;
     setKind(k);
     setNames(e.names);
     setPhrase(e.phrase);
-    setRibbon(e.ribbon);
+    if (!yute) setRibbon(e.ribbon);
+    setLastTela(e.ribbon);
     setBump((b) => b + 1);
   };
 
   const phrases = [preset.phrase, ...COMMON.filter((c) => c !== preset.phrase)];
-  const msg = `¡Hola, Panal de Amor! Diseñé mi etiqueta en su página y quiero cotizarla:\n• Evento: ${preset.name}\n• Nombres: ${names}\n• Fecha: ${formatDate(date) || "por definir"}\n• Frase: ${phrase}\n• Color del lazo: ${r.name}\n¿Me ayudan con la cotización?`;
+  const msg = `¡Hola, Panal de Amor! Diseñé mi etiqueta en su página y quiero cotizarla:\n• Evento: ${preset.name}\n• Nombres: ${names}\n• Fecha: ${formatDate(date) || "por definir"}\n• Frase: ${phrase}\n• Cinta: ${yute ? "Yute rústico" : `Tela, color ${r.name.toLowerCase()}`}\n¿Me ayudan con la cotización?`;
 
   return (
     <section id="etiqueta" className="relative overflow-hidden bg-gradient-to-b from-crema to-polen/70 py-24 md:py-32">
       <img src={img("flores-ramo")} alt="" aria-hidden className="absolute -left-16 top-24 hidden w-56 -rotate-12 opacity-90 lg:block" />
       <div className="relative mx-auto max-w-[1240px] px-4 md:px-8">
         <Heading kicker="Hazlo tuyo" title={<>Diseña tu etiqueta</>} center />
-        <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-cafe/75">Escribe los nombres, elige la frase y el color del lazo. Así se vería tu frasquito, y con un toque nos lo mandas para cotizar.</p>
+        <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-cafe/75">Escribe los nombres, elige la frase y la cinta, de tela o de yute. Así se vería tu frasquito, y con un toque nos lo mandas para cotizar.</p>
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Vista previa */}
@@ -65,7 +72,7 @@ export function Etiqueta() {
               <motion.div
                 key={bump}
                 className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ ...LABEL_POS, fontSize: size }}
+                style={{ ...LABEL_POS, top: yute ? "65%" : LABEL_POS.top, fontSize: size }}
                 initial={{ scale: 1.25, rotate: -14, opacity: 0 }}
                 animate={{ scale: 1, rotate: -4, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 260, damping: 16 }}
@@ -130,18 +137,40 @@ export function Etiqueta() {
             </fieldset>
 
             <fieldset className="mt-7">
-              <legend className="display text-xl">5. Color del lazo</legend>
-              <div className="mt-3 flex flex-wrap gap-3">
-                {ribbons.map((x) => (
-                  <button key={x.id} type="button" onClick={() => setRibbon(x.id)} aria-pressed={ribbon === x.id} aria-label={x.name} className="group flex flex-col items-center gap-1">
-                    <span className="relative grid h-12 w-12 place-items-center">
-                      {ribbon === x.id && <motion.span layoutId="ribbon-ring" className="absolute inset-0 rounded-full border-[3px] border-cafe" />}
-                      <span className="h-9 w-9 rounded-full shadow-[inset_0_-3px_0_rgb(0_0_0/0.15),inset_0_2px_0_rgb(255_255_255/0.5)] transition-transform group-hover:scale-110" style={{ background: x.color }} />
-                    </span>
-                    <span className="text-xs font-semibold text-cafe/70">{x.name}</span>
-                  </button>
-                ))}
+              <legend className="display text-xl">5. La cinta</legend>
+              <div className="mt-3 inline-flex rounded-full bg-crema-2 p-1">
+                {[
+                  { id: "tela", label: "Cinta de tela" },
+                  { id: "yute", label: "Yute rústico" },
+                ].map((o) => {
+                  const on = (o.id === "yute") === yute;
+                  return (
+                    <button key={o.id} type="button" aria-pressed={on} onClick={() => (o.id === "yute" ? setRibbon("yute") : setRibbon(lastTela))} className="relative rounded-full px-5 py-2.5 font-bold">
+                      {on && <motion.span layoutId="cinta-pill" className={`absolute inset-0 rounded-full ${o.id === "yute" ? "kraft" : "btn-miel"}`} transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
+                      <span className="relative">{o.label}</span>
+                    </button>
+                  );
+                })}
               </div>
+              <AnimatePresence initial={false} mode="wait">
+                {yute ? (
+                  <motion.p key="yute" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-3 text-cafe/75">
+                    Tela de yute natural, cordón rústico y un corazoncito de madera.
+                  </motion.p>
+                ) : (
+                  <motion.div key="tela" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-3 flex flex-wrap gap-3">
+                    {ribbons.map((x) => (
+                      <button key={x.id} type="button" onClick={() => pickTela(x.id)} aria-pressed={ribbon === x.id} aria-label={x.name} className="group flex flex-col items-center gap-1">
+                        <span className="relative grid h-12 w-12 place-items-center">
+                          {ribbon === x.id && <motion.span layoutId="ribbon-ring" className="absolute inset-0 rounded-full border-[3px] border-cafe" />}
+                          <span className="h-9 w-9 rounded-full shadow-[inset_0_-3px_0_rgb(0_0_0/0.15),inset_0_2px_0_rgb(255_255_255/0.5)] transition-transform group-hover:scale-110" style={{ background: x.color }} />
+                        </span>
+                        <span className="text-xs font-semibold text-cafe/70">{x.name}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </fieldset>
 
             <a href={wa(msg)} target="_blank" rel="noreferrer" className="btn-fucsia mt-8 block rounded-full px-6 py-4 text-center text-lg font-bold text-white transition-transform hover:-translate-y-0.5">
