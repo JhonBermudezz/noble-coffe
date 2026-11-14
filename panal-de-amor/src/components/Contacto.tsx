@@ -8,7 +8,7 @@ const TYPES = ["Boda", "Bautizo", "Primera comunión", "Quince años", "Cumplea�
 const field = "mt-2 w-full rounded-2xl border-2 border-cafe/10 bg-crema px-4 py-3 text-lg outline-none transition-colors focus:border-miel";
 
 // Contacto: el formulario arma el mensaje y lo abre en WhatsApp.
-export function Contacto() {
+export function Contacto({ bare = false }: { bare?: boolean }) {
   const [f, setF] = useState({ name: "", phone: "", type: "", qty: "", date: "", city: "", msg: "" });
   const [tried, setTried] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setF({ ...f, [k]: e.target.value });
@@ -34,7 +34,9 @@ export function Contacto() {
     <section id="contacto" className="relative overflow-hidden bg-rosa/60 py-24 md:py-32">
       <div className="mx-auto grid max-w-[1240px] gap-12 px-4 md:grid-cols-[0.85fr_1.15fr] md:px-8">
         <div>
+{!bare && (
           <Heading kicker="Contacto" title="Cuéntanos de tu evento" />
+)}
           <p className="mt-5 text-lg text-cafe/75">Llena el formulario y te llevamos a WhatsApp con tu solicitud lista. Te atiende {CONTACT_NAME} de lunes a sábado.</p>
           <div className="mt-8 space-y-3">
             <a href={wa()} target="_blank" rel="noreferrer" className="group flex items-center gap-4 rounded-[24px] bg-white p-4 transition-transform hover:-translate-y-0.5">

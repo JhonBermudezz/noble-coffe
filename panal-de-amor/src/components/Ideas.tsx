@@ -73,12 +73,14 @@ function Reader({ a, onClose }: { a: Article; onClose: () => void }) {
 }
 
 // Ideas dulces: los artículos del blog se leen en un panel lateral sin salir de la página.
-export function Ideas() {
+export function Ideas({ bare = false }: { bare?: boolean }) {
   const [open, setOpen] = useState<Article | null>(null);
   return (
     <section id="ideas" className="relative bg-crema-2 py-24 md:py-32">
       <div className="mx-auto max-w-[1240px] px-4 md:px-8">
+{!bare && (
         <Heading kicker="Ideas dulces" title="Inspiración para tu celebración" />
+)}
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {articles.map((a, i) => (
             <motion.li key={a.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>

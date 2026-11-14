@@ -13,5 +13,11 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, "../dist/panal-de-amor"),
     emptyOutDir: true,
+    // Sitio de varias páginas: cada una tiene su index.html para abrirla directo; comparten el mismo código.
+    rollupOptions: {
+      input: Object.fromEntries(
+        ["", "souvenirs", "personaliza", "nosotros", "compromiso", "como-pedir", "ideas", "contacto"].map((p) => [p || "inicio", resolve(__dirname, p, "index.html")]),
+      ),
+    },
   },
 });

@@ -1,6 +1,61 @@
 // Contenido de Panal de Amor, tomado de su sitio (repo panal-de-amor). Lo que falta confirmar está marcado.
 
-export const ROOT = document.documentElement.dataset.root ?? "./";
+// Raíz del sitio como ruta absoluta (p. ej. "/noble-coffe/panal-de-amor/" o "/" en el dominio propio):
+// se calcula una vez desde data-root y no cambia al navegar entre páginas.
+export const ROOT = new URL(document.documentElement.dataset.root ?? "./", location.href).pathname;
+
+// Páginas del sitio: cada una tiene su propio index.html (para abrirla directo) y se navega sin recargar.
+export type PageId = "inicio" | "souvenirs" | "personaliza" | "nosotros" | "compromiso" | "como-pedir" | "ideas" | "contacto";
+export const pages: { id: PageId; label: string; title: string }[] = [
+  { id: "inicio", label: "Inicio", title: "Panal de Amor | Frasquitos de miel personalizados" },
+  { id: "souvenirs", label: "Souvenirs", title: "Souvenirs | Panal de Amor" },
+  { id: "personaliza", label: "Personaliza", title: "Diseña tu etiqueta | Panal de Amor" },
+  { id: "nosotros", label: "Nosotros", title: "Nosotros | Panal de Amor" },
+  { id: "compromiso", label: "Nuestro compromiso", title: "Nuestro compromiso | Panal de Amor" },
+  { id: "como-pedir", label: "Cómo pedir", title: "Cómo pedir | Panal de Amor" },
+  { id: "ideas", label: "Ideas", title: "Ideas dulces | Panal de Amor" },
+  { id: "contacto", label: "Contacto", title: "Contacto | Panal de Amor" },
+];
+export const pagePath = (id: PageId) => (id === "inicio" ? ROOT : `${ROOT}${id}/`);
+
+// "Nuestro compromiso": textos enviados por la clienta.
+export const compromiso = {
+  banner: {
+    title: "La dulzura de la naturaleza, hecha con amor",
+    text: "Trabajamos con miel de los Andes de Paipa, Boyacá, de calidad tipo exportación, para llevar a cada celebración un producto que representa la riqueza natural de nuestra tierra colombiana.",
+  },
+  vida: {
+    title: "Nuestro compromiso con la vida y la naturaleza",
+    text: "Creemos en la importancia de cuidar el medio ambiente, proteger a las abejas y preservar los ecosistemas que hacen posible la producción de miel.",
+    note: "Las abejas son fundamentales para la polinización, la biodiversidad y el equilibrio de nuestro planeta. Cuidarlas es cuidar la vida.",
+    pillars: [
+      { title: "Polinización", text: "Gracias a su trabajo florecen los campos, los frutos y los alimentos que llegan a nuestra mesa." },
+      { title: "Biodiversidad", text: "Al ir de flor en flor sostienen la variedad de plantas y especies de nuestros ecosistemas." },
+      { title: "Equilibrio del planeta", text: "Proteger a las abejas es proteger el equilibrio natural del que todos dependemos." },
+    ],
+  },
+  manos: {
+    title: "Hecho a mano, con propósito y corazón",
+    text: "Cada frasquito se prepara artesanalmente, con dedicación, cuidado y amor por los detalles.",
+    social: "Panal de Amor tiene un propósito social: generar oportunidades laborales para madres cabeza de familia, que desarrollan actividades manuales desde sus hogares y comparten tiempo con sus hijos.",
+  },
+  eleccion: {
+    title: "Elegir un detalle también es elegir lo que apoyamos",
+    text: "Cuando eliges nuestros productos no solo adquieres un recordatorio personalizado:",
+    items: [
+      { title: "Apoyas el trabajo artesanal", text: "Manos colombianas que preparan cada frasquito con dedicación." },
+      { title: "Valoras lo natural", text: "Miel pura de los Andes, un regalo auténtico de nuestra tierra." },
+      { title: "Siembras conciencia", text: "Contribuyes a una cultura de mayor respeto por el medio ambiente." },
+    ],
+  },
+  firma: "Regalamos dulzura, celebramos momentos.",
+};
+
+export const colmena = {
+  kicker: "Souvenirs",
+  title: "Dulzura que nace en la colmena",
+  text: "En Panal de Amor cuidamos nuestras abejas y producimos miel de forma responsable, en armonía con la naturaleza. Cada frasco lleva el sabor auténtico de nuestra colmena local y celebra el valioso trabajo de los polinizadores. Comparte una dulzura natural, hecha con cariño y respeto por la tierra.",
+};
 export const img = (name: string) => `${ROOT}img/${name}.webp`;
 export const cop = (n: number) => "$" + n.toLocaleString("es-CO");
 

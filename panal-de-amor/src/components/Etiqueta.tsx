@@ -15,7 +15,7 @@ function formatDate(v: string) {
 
 // "Diseña tu etiqueta": se escriben los nombres, se elige el evento, la frase y el color del lazo,
 // y el frasquito se actualiza en vivo. El diseño se envía por WhatsApp para cotizar.
-export function Etiqueta() {
+export function Etiqueta({ bare = false }: { bare?: boolean }) {
   const [kind, setKind] = useState<EventKind>("boda");
   const preset = labelEvents.find((e) => e.id === kind)!;
   const [names, setNames] = useState(preset.names);
@@ -49,7 +49,9 @@ export function Etiqueta() {
     <section id="etiqueta" className="relative overflow-hidden bg-gradient-to-b from-crema to-polen/70 py-24 md:py-32">
       <img src={img("flores-ramo")} alt="" aria-hidden className="absolute -left-16 top-24 hidden w-56 -rotate-12 opacity-90 lg:block" />
       <div className="relative mx-auto max-w-[1240px] px-4 md:px-8">
+{!bare && (
         <Heading kicker="Hazlo tuyo" title={<>Diseña tu etiqueta</>} center />
+)}
         <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-cafe/75">Escribe los nombres, elige la frase y la cinta, de tela o de yute. Así se vería tu frasquito, y con un toque nos lo mandas para cotizar.</p>
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">

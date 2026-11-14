@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { img, wa } from "../data";
+import { Link } from "../router";
 import { Bee, HexIcon } from "./Bits";
 import { FloatingHearts } from "./Hearts";
 
@@ -84,10 +85,10 @@ export function Hero() {
             <a href={wa()} target="_blank" rel="noreferrer" className="btn-fucsia rounded-full px-7 py-4 text-lg font-bold text-white transition-transform hover:-translate-y-1">
               Cotizar por WhatsApp
             </a>
-            <a href="#etiqueta" className="group flex items-center gap-2 rounded-full border-2 border-cafe/15 bg-white/70 px-6 py-[14px] text-lg font-bold backdrop-blur transition-colors hover:border-miel">
+            <Link to="personaliza" className="group flex items-center gap-2 rounded-full border-2 border-cafe/15 bg-white/70 px-6 py-[14px] text-lg font-bold backdrop-blur transition-colors hover:border-miel">
               <HexIcon className="h-5 w-5 transition-transform duration-500 group-hover:rotate-180" />
               Diseña tu etiqueta
-            </a>
+            </Link>
           </motion.div>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3 }} className="mt-6 text-cafe/70">
             <strong className="text-cafe">Cotiza desde un solo frasquito.</strong> Sin pedido mínimo.
