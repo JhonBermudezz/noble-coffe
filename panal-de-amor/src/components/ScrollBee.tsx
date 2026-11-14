@@ -18,7 +18,7 @@ export function ScrollBee() {
   const y = useSpring(scrollY, { stiffness: 18, damping: 14, mass: 1.2 });
   const phase = useTransform(y, (v) => (v / PX_PER_CROSS) * Math.PI);
   // De borde a borde (en vw, descontando el tamaño de la abeja), con un vaivén vertical suave.
-  const left = useTransform(phase, (a) => `calc(${(0.5 - 0.5 * Math.cos(a)) * 100}vw - ${(0.5 - 0.5 * Math.cos(a)) * 7}rem)`);
+  const left = useTransform(phase, (a) => `calc(${(0.5 - 0.5 * Math.cos(a)) * 100}vw - var(--bee) * ${(0.5 - 0.5 * Math.cos(a)).toFixed(4)})`);
   const top = useTransform([phase, scrollYProgress], ([a, v]: number[]) => `calc(${26 + Math.sin(a * 2) * 8 + v * 34}vh)`);
   const opacity = useTransform(scrollY, [0, 250, 450], [0, 0, 1]);
   const [right, setRight] = useState(true);
@@ -56,10 +56,10 @@ export function ScrollBee() {
   return (
     <>
       <div ref={layer} aria-hidden className="pointer-events-none fixed inset-0 z-[54]" />
-      <motion.div ref={bee} aria-hidden className="pointer-events-none fixed z-[55]" style={{ left, top, opacity }}>
+      <motion.div ref={bee} aria-hidden className="pointer-events-none fixed z-[55] [--bee:2.75rem] md:[--bee:7rem]" style={{ left, top, opacity }}>
         {/* El giro va en un contenedor aparte: la animación del aleteo usa transform y lo pisaría. */}
         <motion.div animate={{ scaleX: right ? 1 : -1, rotate: rise ? -12 : 10 }} transition={{ type: "spring", stiffness: 220, damping: 16 }}>
-          <img src={img("abeja")} alt="" className="flap w-20 drop-shadow-[0_12px_12px_rgb(74_42_20/0.25)] md:w-28" />
+          <img src={img("abeja")} alt="" className="flap w-11 opacity-90 drop-shadow-[0_8px_8px_rgb(74_42_20/0.25)] md:w-28 md:opacity-100" />
         </motion.div>
       </motion.div>
     </>

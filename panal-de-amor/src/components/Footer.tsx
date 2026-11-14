@@ -30,7 +30,7 @@ export function Footer() {
         </div>
       </section>
       <Goteo />
-      <footer className="relative bg-cafe-2 pb-10 pt-32 text-crema md:pt-40">
+      <footer className="relative bg-cafe-2 pb-24 pt-32 text-crema md:pb-10 md:pt-40">
         <div aria-hidden className="panal-light absolute inset-0 opacity-60" />
         <div className="relative mx-auto grid max-w-[1240px] gap-10 px-4 md:grid-cols-[1.3fr_1fr_1fr_1fr] md:px-8">
           <div>

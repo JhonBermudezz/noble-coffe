@@ -52,7 +52,7 @@ export function Etiqueta({ bare = false }: { bare?: boolean }) {
 {!bare && (
         <Heading kicker="Hazlo tuyo" title={<>Diseña tu etiqueta</>} center />
 )}
-        <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-cafe/75">Escribe los nombres, elige la frase y la cinta, de tela o de yute. Así se vería tu frasquito, y con un toque nos lo mandas para cotizar.</p>
+        {!bare && <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-cafe/75">Escribe los nombres, elige la frase y la cinta, de tela o de yute. Así se vería tu frasquito, y con un toque nos lo mandas para cotizar.</p>}
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Vista previa */}
